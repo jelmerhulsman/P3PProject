@@ -11,7 +11,6 @@ namespace Jan_die_alles_kan.Models
     public class PagesModels
     {
         [Key]
-      
         public int Id { get; set; }
         public string Name { get; set; }
     }

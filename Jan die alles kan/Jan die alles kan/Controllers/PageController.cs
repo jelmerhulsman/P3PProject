@@ -18,20 +18,16 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Pages.ToList());
+            return View("details");
         }
 
         //
         // GET: /Page/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details()
         {
-            PagesModels pagesmodels = db.Pages.Find(id);
-            if (pagesmodels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pagesmodels);
+            
+            return View("Details");
         }
 
         //
