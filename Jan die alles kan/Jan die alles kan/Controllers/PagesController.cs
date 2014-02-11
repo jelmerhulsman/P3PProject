@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Jan_die_alles_kan.Controllers
 {
-    public class HomeController : Controller
+    public class PagesController : Controller
     {
         public ActionResult Index()
         {
