@@ -182,12 +182,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\PagesModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +263,11 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Page\Create.aspx" />
+    <Content Include="Views\Page\Delete.aspx" />
+    <Content Include="Views\Page\Details.aspx" />
+    <Content Include="Views\Page\Edit.aspx" />
+    <Content Include="Views\Page\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,9 +299,6 @@
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\ExternalLoginFailure.aspx" />
     <Content Include="Views\Account\ExternalLoginConfirmation.aspx" />
-    <Content Include="Views\Pages\About.aspx" />
-    <Content Include="Views\Pages\Contact.aspx" />
-    <Content Include="Views\Pages\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\_LoginPartial.aspx" />
     <Content Include="Views\Shared\Site.Master" />
