@@ -9,41 +9,33 @@ using Jan_die_alles_kan.Models;
 
 namespace Jan_die_alles_kan.Controllers
 {
-    public class PageController : Controller
+    public class defaultcontrollerpages : Controller
     {
         private PagesContext db = new PagesContext();
 
         //
-        // GET: /Page/
+        // GET: /defaultcontrollerpages/
 
         public ActionResult Index()
         {
-            
-            //if (pagemodel == null)
-            //{
-           //     return HttpNotFound();
-            //}
-            //ViewBag.Content = "content"; 
-            return View("Details");
+            return View(db.Pages.ToList());
         }
 
         //
-        // GET: /Page/Details/5
+        // GET: /defaultcontrollerpages/Details/5
 
-        public ActionResult Details(int Id = 0)
+        public ActionResult Details(int id = 0)
         {
-            PagesModels pagemodel = db.Pages.Find(Id);
-            if (pagemodel == null)
+            PagesModels pagesmodels = db.Pages.Find(id);
+            if (pagesmodels == null)
             {
                 return HttpNotFound();
             }
-            return View("pagemodel");
-            //ViewBag.Content = "content2"; 
-            //return View("Details");
+            return View(pagesmodels);
         }
 
         //
-        // GET: /Page/Create
+        // GET: /defaultcontrollerpages/Create
 
         public ActionResult Create()
         {
@@ -51,7 +43,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Page/Create
+        // POST: /defaultcontrollerpages/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -68,7 +60,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // GET: /Page/Edit/5
+        // GET: /defaultcontrollerpages/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -81,7 +73,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Page/Edit/5
+        // POST: /defaultcontrollerpages/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,7 +89,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // GET: /Page/Delete/5
+        // GET: /defaultcontrollerpages/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -110,7 +102,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Page/Delete/5
+        // POST: /defaultcontrollerpages/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
