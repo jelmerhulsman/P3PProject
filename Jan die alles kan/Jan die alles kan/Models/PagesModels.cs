@@ -8,10 +8,12 @@ using System.Web.Security;
 
 namespace Jan_die_alles_kan.Models
 {
-    [Table("Pages")]
+  
     public class PagesModels
     {
-       [Key]public int      Id                  { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+            public int      Id                  { get; set; }
             public string   Name                { get; set; }
             public string   Permalink           { get; set; }
             public string   Content             { get; set; }
