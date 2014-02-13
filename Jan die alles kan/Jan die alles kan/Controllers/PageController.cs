@@ -18,6 +18,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Index()
         {
+            ViewBag["Content"] = ; 
             return View("details");
         }
 

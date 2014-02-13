@@ -13,6 +13,12 @@ namespace Jan_die_alles_kan.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Permalink { get; set; }
+        public string Content { get; set; }
+        public int Status { get; set; }
+        public int Pageposition { get; set; }
+        public string Seokey { get; set; }
+        public string Seodiscription { get; set; }
     }
     public class PagesContext : DbContext
     {
