@@ -20,6 +20,7 @@ namespace Jan_die_alles_kan.Models
 
         public DbSet<PagesModels> Pages { get; set; }
     }
+
     [Table("Pages")]
     public class PagesModels
     {

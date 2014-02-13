@@ -18,12 +18,12 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Index()
         {
-            
-            //if (pagemodel == null)
+            //PagesModels pagemodel = db.Pages.Find(Id);
+           // if (pagemodel == null)
             //{
            //     return HttpNotFound();
-            //}
-            //ViewBag.Content = "content"; 
+           // }
+           // ViewBag.Content = "content"; 
             return View("Details");
         }
 
@@ -38,8 +38,9 @@ namespace Jan_die_alles_kan.Controllers
             {
                 return HttpNotFound();
             }
+            //ViewBag.Content = pagemodel.Content;
             return View(pagemodel);
-            //ViewBag.Content = "content2"; 
+             
             //return View("Details");
         }
 
