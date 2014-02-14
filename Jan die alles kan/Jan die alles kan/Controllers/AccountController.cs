@@ -64,7 +64,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             WebSecurity.Logout();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Page");
         }
 
         //
@@ -349,7 +349,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Page");
             }
         }
 
