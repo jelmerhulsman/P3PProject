@@ -16,6 +16,24 @@
         <th>
             <%: Html.DisplayNameFor(model => model.Name) %>
         </th>
+        <th>
+           Controls
+        </th>
+        <th>
+            <%: Html.DisplayNameFor(model => model.Permalink) %>
+        </th>
+        <th>
+            <%: Html.DisplayNameFor(model => model.Status) %>
+        </th>
+        <th>
+            <%: Html.DisplayNameFor(model => model.Pageposition) %>
+        </th>
+        <th>
+            <%: Html.DisplayNameFor(model => model.Seokey) %>
+        </th>
+        <th>
+            <%: Html.DisplayNameFor(model => model.Seodiscription) %>
+        </th>
         <th></th>
     </tr>
 
@@ -26,8 +44,23 @@
         </td>
         <td>
             <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Details", "Details", new { id=item.Id }) %> |
+            <%: Html.ActionLink("Page", "Details", new { id=item.Id }) %> |
             <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
+        </td>
+        <td>
+          <%: Html.DisplayFor(modelItem => item.Permalink) %>
+        </td>
+        <td>
+          <%: Html.DisplayFor(modelItem => item.Status) %>
+        </td>
+        <td>
+          <%: Html.DisplayFor(modelItem => item.Pageposition) %>
+        </td>
+        <td>
+          <%: Html.DisplayFor(modelItem => item.Seokey) %>
+        </td>
+        <td>
+          <%: Html.DisplayFor(modelItem => item.Seodiscription) %>
         </td>
     </tr>
 <% } %>

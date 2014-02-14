@@ -40,6 +40,7 @@
          
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Status) %>
+            </div>
                 <div class="editor-field">
             <%: Html.EditorFor(model => model.Status) %>
             <%: Html.ValidationMessageFor(model => model.Status) %>
