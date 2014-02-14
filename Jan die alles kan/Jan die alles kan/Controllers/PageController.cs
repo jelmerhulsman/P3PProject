@@ -15,7 +15,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //
         // GET: /Page/
-
+        [Authorize]
         public ActionResult Index()
         {
             //PagesModels pagemodel = db.Pages.ToList();
@@ -67,7 +67,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //
         // GET: /Page/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -96,7 +96,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //
         // GET: /Page/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
