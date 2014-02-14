@@ -35,9 +35,19 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+            CustSecurityController Secure = new CustSecurityController();
+
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                if (CustSecurity.IPCheck(Secure.Details(), Request.UserHostAddress))
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "IP is not certified");
+                    return View(model);
+                }
             }
 
             // If we got this far, something failed, redisplay form
