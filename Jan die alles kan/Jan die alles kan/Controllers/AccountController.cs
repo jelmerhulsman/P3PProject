@@ -93,7 +93,7 @@ namespace Jan_die_alles_kan.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Page");
                 }
                 catch (MembershipCreateUserException e)
                 {

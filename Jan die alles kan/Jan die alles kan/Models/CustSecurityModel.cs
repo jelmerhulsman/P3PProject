@@ -26,13 +26,14 @@ namespace Jan_die_alles_kan
         { }
         public IPProfile(string username, string ip)
         {
+            
             Username = username;
             IP = ip;
         }
         
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         public string IP { get; set; }
     }

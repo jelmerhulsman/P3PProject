@@ -42,7 +42,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //
         // GET: /Page/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             return View();
