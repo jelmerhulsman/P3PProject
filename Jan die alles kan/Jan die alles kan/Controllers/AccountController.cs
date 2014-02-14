@@ -89,7 +89,9 @@ namespace Jan_die_alles_kan.Controllers
                 // Attempt to register the user
                 try
                 {
+                    CustSecurityController Secure = new CustSecurityController();
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }

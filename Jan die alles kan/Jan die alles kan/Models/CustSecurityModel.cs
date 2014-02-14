@@ -13,7 +13,7 @@ namespace Jan_die_alles_kan
         public CustSecurityContext()
             : base("DefaultConnection")
         {
-            Database.SetInitializer<PagesContext>(null);
+            Database.SetInitializer<CustSecurityContext>(null);
         }
 
         public DbSet<IPProfile> IPProfiles { get; set; }
@@ -22,6 +22,14 @@ namespace Jan_die_alles_kan
     [Table("AdminIPs")]
     public class IPProfile
     {
+        public IPProfile()
+        { }
+        public IPProfile(string username, string ip)
+        {
+            Username = username;
+            IP = ip;
+        }
+        
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
