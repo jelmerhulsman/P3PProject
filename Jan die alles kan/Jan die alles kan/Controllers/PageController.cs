@@ -30,7 +30,7 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Page/Details/5
 
-        public ActionResult Details(int Id = 0)
+        public ActionResult Details(int Id = 1)
         {
             PagesModels pagemodel = db.Pages.Find(Id);
             

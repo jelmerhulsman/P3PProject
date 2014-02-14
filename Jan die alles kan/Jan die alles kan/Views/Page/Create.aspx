@@ -23,6 +23,35 @@
             <%: Html.ValidationMessageFor(model => model.Name) %>
         </div>
 
+                <div class="editor-label">
+            <%: Html.LabelFor(model => model.Permalink) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.Permalink) %>
+            <%: Html.ValidationMessageFor(model => model.Permalink) %>
+        </div>
+                        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Content) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.Content) %>
+            <%: Html.ValidationMessageFor(model => model.Content) %>
+        </div>
+         
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Status) %>
+                <div class="editor-field">
+            <%: Html.EditorFor(model => model.Status) %>
+            <%: Html.ValidationMessageFor(model => model.Status) %>
+        </div>
+                        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Pageposition) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.Pageposition) %>
+            <%: Html.ValidationMessageFor(model => model.Pageposition) %>
+        </div>
+
         <p>
             <input type="submit" value="Create" />
         </p>
