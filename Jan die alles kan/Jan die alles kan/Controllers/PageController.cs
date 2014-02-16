@@ -51,8 +51,10 @@ namespace Jan_die_alles_kan.Controllers
         //
         // POST: /Page/Create
 
+        
+        //[ValidateAntiForgeryToken]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(PagesModels pagesmodels)
         {
             if (ModelState.IsValid)
@@ -81,8 +83,10 @@ namespace Jan_die_alles_kan.Controllers
         //
         // POST: /Page/Edit/5
 
+       
+        //[ValidateAntiForgeryToken]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(PagesModels pagesmodels)
         {
             if (ModelState.IsValid)
