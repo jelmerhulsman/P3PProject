@@ -12,17 +12,39 @@ body {
 }
 
 #main {
+    width:80%;
+    min-width:320px;
+    position:relative;
+    margin:0 auto;
+}
 
+#main img {
+    display:block;
+    margin:100px auto 40px;
 }
 
 #searchField {
+    width:100%;
+    height:48px;
     border-radius:10px;
+    box-shadow:rgba(0,0,0,0.4) 0 0 15px inset;
+    font-family:'Khmer UI', Arial;
+    font-size:27px;
+    padding:0 2%;
 }
 
 #searchButton {
+    width:21%;
+    height:43px;
+    border:0;
     border-radius:10px;
+    background:url(../Images/btn_src.png) no-repeat center center;
+    background-size:contain;
 }
 
 #footer {
-
+    width:80%;
+    min-width:320px;
+    position:relative;
+    margin:0 auto;
 }
