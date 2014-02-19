@@ -253,6 +253,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\slides\D7K_0112_Rome.jpg" />
+    <Content Include="Images\slides\D7K_1105_2011_Sziget.jpg" />
+    <Content Include="Images\slides\D7K_1440_Berlijn.jpg" />
+    <Content Include="Images\slides\DSCF2071_New_Orleans.jpg" />
+    <Content Include="Images\slides\DSCF3438_Berlijn_FOL.jpg" />
     <Content Include="Images\milanovLogo.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
