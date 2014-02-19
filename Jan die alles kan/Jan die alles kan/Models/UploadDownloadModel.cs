@@ -32,6 +32,5 @@ namespace Jan_die_alles_kan.Models
         public DateTime MTime { get; set; }
         public DateTime CTime { get; set; }
         public int Size { get; set; }
-        public System.Byte[] Data { get; set; }
     }
 }

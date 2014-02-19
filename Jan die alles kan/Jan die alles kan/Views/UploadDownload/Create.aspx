@@ -42,22 +42,7 @@
                 <%: Html.EditorFor(model => model.MainCategorie) %>
                 <%: Html.ValidationMessageFor(model => model.MainCategorie) %>
             </div>
-    
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.MTime) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.EditorFor(model => model.MTime) %>
-                <%: Html.ValidationMessageFor(model => model.MTime) %>
-            </div>
-    
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.CTime) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.EditorFor(model => model.CTime) %>
-                <%: Html.ValidationMessageFor(model => model.CTime) %>
-            </div>
+
     
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Size) %>
@@ -67,13 +52,7 @@
                 <%: Html.ValidationMessageFor(model => model.Size) %>
             </div>
     
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Data) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.EditorFor(model => model.Data) %>
-                <%: Html.ValidationMessageFor(model => model.Data) %>
-            </div>
+            
     
             <p>
                 <input type="submit" value="Create" />

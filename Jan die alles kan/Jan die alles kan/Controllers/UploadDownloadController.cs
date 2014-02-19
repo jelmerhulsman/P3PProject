@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -121,14 +122,12 @@ namespace Jan_die_alles_kan.Controllers
             base.Dispose(disposing);
         }
 
-        public FileContentResult download(int id)
+        [HttpPost]
+        public FileContentResult download()
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
-            var attachment = uploaddownloadmodel.Data;
-            var output = new FileContentResult(attachment, "image/jpeg");
-            output.FileDownloadName = uploaddownloadmodel.Name;
-            return output;
-
+            byte[] fileBytes = System.IO.File.ReadAllBytes("\\\\\\\\Images\bullet.jpg");
+            string fileName = "bullet.jpg";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             
         }
 
