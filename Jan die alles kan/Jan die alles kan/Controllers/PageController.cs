@@ -23,6 +23,11 @@ namespace Jan_die_alles_kan.Controllers
             return View(db.Pages.ToList());
         }
 
+        public ActionResult Landingpage()
+        {
+            return View();
+        }
+
         //
         // GET: /Page/Details/5
 
