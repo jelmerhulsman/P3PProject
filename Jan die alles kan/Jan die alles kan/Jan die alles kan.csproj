@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\UploadDownloadController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -283,6 +284,11 @@
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Page\Edit.aspx" />
     <Content Include="Views\Page\Index.aspx" />
+    <Content Include="Views\UploadDownload\Create.aspx" />
+    <Content Include="Views\UploadDownload\Delete.aspx" />
+    <Content Include="Views\UploadDownload\Details.aspx" />
+    <Content Include="Views\UploadDownload\Edit.aspx" />
+    <Content Include="Views\UploadDownload\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
