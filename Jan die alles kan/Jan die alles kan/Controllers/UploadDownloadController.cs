@@ -123,10 +123,11 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         [HttpPost]
-        public FileContentResult download()
+        [ValidateAntiForgeryToken]
+        public FileContentResult download(string name, string route)
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes("\\\\\\\\Images\bullet.jpg");
-            string fileName = "bullet.jpg";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(route + name);
+            string fileName = name;
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             
         }
