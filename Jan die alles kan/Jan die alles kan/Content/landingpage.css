@@ -1,55 +1,175 @@
 ﻿* {
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+.open {
+    display: block;
+    margin-top: -28px;
+    cursor: pointer;
+}
+
+.close {
+    display: none;
+    margin-top: -28px;
+    cursor: pointer;
+}
+
+.slideshow {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
 
 body {
-
+    overflow: hidden;
 }
 
 #main {
-    width:60%;
-    min-width:320px;
-    position:relative;
-    margin:0 auto;
+    width: 60%;
+    min-width: 320px;
+    position: relative;
+    margin: 0 auto;
 }
 
-#main img {
-    display:block;
-    margin:100px auto 0px;
-}
+    #main img {
+        display: block;
+        margin: 100px auto 0px;
+    }
 
-#main form {
-    position:relative;
-}
+    #main form {
+        position: relative;
+    }
 
 #searchField {
-    width:96%;
-    height:48px;
-    border-radius:10px;
-    box-shadow:rgba(0,0,0,0.4) 0 0 15px inset;
-    font-family:'Khmer UI', Arial;
-    font-size:27px;
-    padding:0 2%;
-    outline:none;
-    border:0;
+    width: 96%;
+    height: 48px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.4) 0 0 15px inset;
+    font-family: 'Khmer UI', Arial;
+    font-size: 27px;
+    padding: 0 2%;
+    outline: none;
 }
 
 #searchButton {
-    width:138px;
-    height:39px;
-    border:0;
-    border-radius:10px;
-    background:url(../Images/btn_src.png) no-repeat center center;
-    background-size:contain;
-    position:absolute;
-    top:5px;
-    right:0px;
+    width: 138px;
+    height: 39px;
+    border: 0;
+    border-radius: 10px;
+    background: url(../Images/Btn/btn_src.png) no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    cursor:pointer;
 }
 
 #footer {
-    width:360px;
-    min-width:320px;
-    position:relative;
-    margin:0 auto;
+    width: 360px;
+    min-width: 320px;
+    height: 140px;
+    position: absolute;
+    bottom: -140px;
+    left: 50%;
+    margin-left: -180px;
+    background: #02477A;
+    border: 0;
+    border-radius: 10px 10px 0px 0px;
+    border-top: 4px solid #025490;
+    box-shadow: rgba(0,0,0,0.8) 0 0 15px;
+    text-align: center;
 }
+
+#left {
+    width: 179px;
+    float: left;
+}
+
+    #left h1 {
+        font-size: 18px;
+        font-family: 'Khmer UI', Arial;
+        font-weight: bold;
+        color: #fff;
+        padding-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    #left .field {
+        width: 126px;
+        height: 22px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0 0 6px inset;
+        border: 0px;
+        display: block;
+        padding: 0 5px;
+        margin: 0 auto 8px;
+        outline: none;
+    }
+
+    #left #button {
+        width: 136px;
+        height: 22px;
+        border-radius: 10px;
+        border: 0px;
+        margin: 0 auto;
+        display: block;
+        background: url(../Images/Btn/btn_green.png) repeat-x left center;
+        color: white;
+        cursor: pointer;
+        outline: none;
+    }
+
+#stroke {
+    width: 2px;
+    float: left;
+    background: url(../Images/stroke.png) repeat-y left top;
+    height: 100%;
+}
+
+#right {
+    position: relative;
+    width: 179px;
+    float: right;
+}
+
+    #right #sticker {
+        float: right;
+        margin-right: -102px;
+        margin-top: -105px;
+        position: relative;
+    }
+
+    #right a {
+        width: 141px;
+        height: 141px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        top: -70px;
+        right: -68px;
+    }
+
+    #right p {
+        position: absolute;
+        bottom: 25px;
+        left: 15px;
+        color: white;
+        font-family: 'Khmer UI', Arial;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    #right #arrow {
+        position: absolute;
+        bottom: -25px;
+        right: 30px;
+    }

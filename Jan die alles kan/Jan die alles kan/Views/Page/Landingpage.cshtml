@@ -6,42 +6,72 @@
     <title>Gerlof Productions</title>
     <link href="~/Content/landingpage.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
     <script src="~/Scripts/backstretch.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $.backstretch([
+            $('.slideshow').backstretch([
                 "http://localhost:52802/Images/Slides/slide1.jpg",
                 "http://localhost:52802/Images/Slides/slide2.jpg",
                 "http://localhost:52802/Images/Slides/slide3.jpg",
                 "http://localhost:52802/Images/Slides/slide4.jpg",
                 "http://localhost:52802/Images/Slides/slide5.jpg"
             ], { duration: 6000, fade: 1500 });
+
+            $('#footer .open').click(function () {
+                $('#footer').animate({ 'bottom': 0 }, 300);
+                $('.close').show();
+                $('.open').hide();
+            });
+
+            $('#footer .close').click(function () {
+                $('#footer').animate({ 'bottom': '-140px' }, 300);
+                $('.close').hide();
+                $('.open').show();
+            });
+
+            $('body *').not(':has(input)').not('input').disableSelection();
+            //Textfield controller and select fixing
         });
     </script>
 </head>
-<body>
+<body oncontextmenu="return false">
     <div id="main">
         <img src="~/Images/milanovLogoBlack.png" />
         <form>
-            <input id="searchField" type="text" placeholder="Search images..."/>
+            <input name="search" id="searchField" type="text" placeholder="Search images..." />
             <input id="searchButton" type="submit" value="" />
         </form>
     </div>
 
     <div id="footer">
+        <div class="open"><img src="~/Images/Btn/btn_up.png" /></div>
+        <div class="close"><img src="~/Images/Btn/btn_down.png" /></div>
+
         <div id="left">
             <h1>Direct Login</h1>
             <form>
-                <input class="field" type="text" placeholder="Name" />
-                <input class="field" type="password" placeholder="Password" />
-                <input class="button" type="submit" value="" />
+                <input name="name" class="field" type="text" placeholder="Name" />
+                <input name="password" class="field" type="password" placeholder="Password" />
+                <input id="button" type="submit" value="Login" />
             </form>
         </div>
 
-        <div id="right">
-            <p>New on Gerlof Productions?</p>
+        <div id="stroke">
+
         </div>
+
+        <div id="right">
+            <img src="~/Images/sticker.png" id="sticker" />
+            <a href="#" id="stickerLink"></a>
+            <p>New on <br /> Gerlof Productions?</p>
+            <img src="~/Images/arrow_big.png" id="arrow" />
+        </div>
+
+        <div class="clear"></div>
     </div>
+
+    <div class="slideshow"></div>
 </body>
 </html>
