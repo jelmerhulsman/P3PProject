@@ -1,8 +1,4 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -13,20 +9,18 @@
     <script src="~/Scripts/backstretch.js"></script>
 
     <script type="text/javascript">
-        $('#slideshow').backstretch([
-            "http://localhost:52802/Images/slides/D7K_0112_Rome.jpg",
-            "http://localhost:52802/Images/slides/D7K_1105_2011_Sziget.jpg",
-            "http://localhost:52802/Images/slides/D7K_1440_Berlijn.jpg",
-            "http://localhost:52802/Images/slides/DSCF2071_New_Orleans.jpg",
-            "http://localhost:52802/Images/slides/DSCF3438_Berlijn_FOL.jpg"
-        ], {duration: 1000, fade: 750});
+        $(document).ready(function () {
+            $.backstretch([
+                "http://localhost:52802/Images/Slides/slide1.jpg",
+                "http://localhost:52802/Images/Slides/slide2.jpg",
+                "http://localhost:52802/Images/Slides/slide3.jpg",
+                "http://localhost:52802/Images/Slides/slide4.jpg",
+                "http://localhost:52802/Images/Slides/slide5.jpg"
+            ], { duration: 6000, fade: 1500 });
+        });
     </script>
 </head>
 <body>
-    <div id="slideshow">
-        
-    </div>
-
     <div id="main">
         <img src="~/Images/milanovLogoBlack.png" />
         <form>
@@ -36,7 +30,18 @@
     </div>
 
     <div id="footer">
+        <div id="left">
+            <h1>Direct Login</h1>
+            <form>
+                <input class="field" type="text" placeholder="Name" />
+                <input class="field" type="password" placeholder="Password" />
+                <input class="button" type="submit" value="" />
+            </form>
+        </div>
 
+        <div id="right">
+            <p>New on Gerlof Productions?</p>
+        </div>
     </div>
 </body>
 </html>

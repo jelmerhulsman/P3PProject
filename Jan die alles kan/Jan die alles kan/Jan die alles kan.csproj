@@ -258,11 +258,11 @@
     <Content Include="Images\btn_src.png" />
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
-    <Content Include="Images\slides\D7K_0112_Rome.jpg" />
-    <Content Include="Images\slides\D7K_1105_2011_Sziget.jpg" />
-    <Content Include="Images\slides\D7K_1440_Berlijn.jpg" />
-    <Content Include="Images\slides\DSCF2071_New_Orleans.jpg" />
-    <Content Include="Images\slides\DSCF3438_Berlijn_FOL.jpg" />
+    <Content Include="Images\Slides\slide1.jpg" />
+    <Content Include="Images\Slides\slide2.jpg" />
+    <Content Include="Images\Slides\slide3.jpg" />
+    <Content Include="Images\Slides\slide4.jpg" />
+    <Content Include="Images\Slides\slide5.jpg" />
     <Content Include="Images\milanovLogo.png" />
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
