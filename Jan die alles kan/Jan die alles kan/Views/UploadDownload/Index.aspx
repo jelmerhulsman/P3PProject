@@ -31,9 +31,7 @@
             <th>
                 <%: Html.DisplayNameFor(model => model.Size) %>
             </th>
-            <th>
-                <%: Html.DisplayNameFor(model => model.Data) %>
-            </th>
+  
             <th></th>
         </tr>
     
@@ -57,9 +55,7 @@
             <td>
                 <%: Html.DisplayFor(modelItem => item.Size) %>
             </td>
-            <td>
-                <%: Html.DisplayFor(modelItem => item.Data) %>
-            </td>
+
             <td>
                 <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
                 <%: Html.ActionLink("Download File", "download", new { id=item.Id }, null) %> |

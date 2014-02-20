@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,7 +19,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Upload.ToList());
+            return View(db.Pictures.ToList());
         }
 
         //
@@ -26,7 +27,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
+            UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
             if (uploaddownloadmodel == null)
             {
                 return HttpNotFound();
@@ -51,7 +52,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Upload.Add(uploaddownloadmodel);
+                db.Pictures.Add(uploaddownloadmodel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -64,7 +65,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
+            UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
             if (uploaddownloadmodel == null)
             {
                 return HttpNotFound();
@@ -93,7 +94,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
+            UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
             if (uploaddownloadmodel == null)
             {
                 return HttpNotFound();
@@ -108,8 +109,8 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
-            db.Upload.Remove(uploaddownloadmodel);
+            UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
+            db.Pictures.Remove(uploaddownloadmodel);
             db.SaveChanges();
             
             return RedirectToAction("Index");
@@ -121,14 +122,13 @@ namespace Jan_die_alles_kan.Controllers
             base.Dispose(disposing);
         }
 
-        public FileContentResult download(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public FileContentResult download(string name, string route)
         {
-            UploadDownloadModel uploaddownloadmodel = db.Upload.Find(id);
-            var attachment = uploaddownloadmodel.Data;
-            var output = new FileContentResult(attachment, "image/jpeg");
-            output.FileDownloadName = uploaddownloadmodel.Name;
-            return output;
-
+            byte[] fileBytes = System.IO.File.ReadAllBytes(route + name);
+            string fileName = name;
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             
         }
 

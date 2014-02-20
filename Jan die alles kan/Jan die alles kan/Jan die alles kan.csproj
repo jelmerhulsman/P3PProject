@@ -262,11 +262,11 @@
     <Content Include="Images\btn_up.png" />
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
-    <Content Include="Images\slides\D7K_0112_Rome.jpg" />
-    <Content Include="Images\slides\D7K_1105_2011_Sziget.jpg" />
-    <Content Include="Images\slides\D7K_1440_Berlijn.jpg" />
-    <Content Include="Images\slides\DSCF2071_New_Orleans.jpg" />
-    <Content Include="Images\slides\DSCF3438_Berlijn_FOL.jpg" />
+    <Content Include="Images\Slides\slide1.jpg" />
+    <Content Include="Images\Slides\slide2.jpg" />
+    <Content Include="Images\Slides\slide3.jpg" />
+    <Content Include="Images\Slides\slide4.jpg" />
+    <Content Include="Images\Slides\slide5.jpg" />
     <Content Include="Images\milanovLogo.png" />
     <Content Include="Images\sticker.png" />
     <Content Include="Images\stroke.png" />
@@ -309,19 +309,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\Account\_ChangePasswordPartial.aspx" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.aspx" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.aspx" />

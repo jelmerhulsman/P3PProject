@@ -18,10 +18,10 @@ namespace Jan_die_alles_kan.Models
             Database.SetInitializer<UploadDownloadContext>(null);
         }
 
-        public DbSet<UploadDownloadModel> Upload { get; set; }
+        public DbSet<UploadDownloadModel> Pictures { get; set; }
     }
 
-    [Table("Upload")]
+    [Table("Pictures")]
     public class UploadDownloadModel
     {
         [Key]
@@ -32,6 +32,5 @@ namespace Jan_die_alles_kan.Models
         public DateTime MTime { get; set; }
         public DateTime CTime { get; set; }
         public int Size { get; set; }
-        public System.Byte[] Data { get; set; }
     }
 }
