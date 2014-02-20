@@ -69,13 +69,7 @@
                 <%: Html.ValidationMessageFor(model => model.Size) %>
             </div>
     
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Data) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.EditorFor(model => model.Data) %>
-                <%: Html.ValidationMessageFor(model => model.Data) %>
-            </div>
+            
     
             <p>
                 <input type="submit" value="Save" />

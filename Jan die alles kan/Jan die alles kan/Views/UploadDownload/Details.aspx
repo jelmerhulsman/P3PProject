@@ -53,12 +53,7 @@
             <%: Html.DisplayFor(model => model.Size) %>
         </div>
     
-        <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Data) %>
-        </div>
-        <div class="display-field">
-            <%: Html.DisplayFor(model => model.Data) %>
-        </div>
+       
     </fieldset>
     <p>
     
