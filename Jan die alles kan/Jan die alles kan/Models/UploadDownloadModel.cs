@@ -18,10 +18,10 @@ namespace Jan_die_alles_kan.Models
             Database.SetInitializer<UploadDownloadContext>(null);
         }
 
-        public DbSet<UploadDownloadModel> Upload { get; set; }
+        public DbSet<UploadDownloadModel> Pictures { get; set; }
     }
 
-    [Table("Upload")]
+    [Table("Pictures")]
     public class UploadDownloadModel
     {
         [Key]
