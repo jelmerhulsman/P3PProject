@@ -19,13 +19,7 @@
                     <section id="login">
                         <%: Html.Partial("_LoginPartial") %>
                     </section>
-                    <nav>
-                        <ul id="menu">
-                            <li><%: Html.ActionLink("Home", "Index", "Page") %></li>
-                            <li><%: Html.ActionLink("About", "About", "Page") %></li>
-                            <li><%: Html.ActionLink("Contact", "Contact", "Page") %></li>
-                        </ul>
-                    </nav>
+                    <%: Html.Partial("_Menu") %>
                 </div>
             </div>
         </header>
