@@ -54,6 +54,9 @@ namespace Jan_die_alles_kan.Controllers
             {
                 return HttpNotFound();
             }
+
+            pagemodel.Content = Shortcodes.ShortSplitter.ShortReplace(pagemodel.Content);
+
             //ViewBag.Content = pagemodel.Content;
             return View(pagemodel);
              
