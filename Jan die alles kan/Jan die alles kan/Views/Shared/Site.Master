@@ -19,7 +19,6 @@
                     <section id="login">
                         <%: Html.Partial("_LoginPartial") %>
                     </section>
-                    <%--<%: Html.Partial("_Menu") TEMP UIT STAAN! NOG WIP!%>--%>
                     <nav>
                         <ul id="menu">
                           
