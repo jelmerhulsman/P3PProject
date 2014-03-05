@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Jan_die_alles_kan.Constraints;
 
 namespace Jan_die_alles_kan
 {
@@ -34,21 +33,7 @@ namespace Jan_die_alles_kan
                    id = UrlParameter.Optional
                }
    );
-          /*  routes.MapRoute(
-             "Dashboard",
-             "Dashboard/{action}/",
-             new
-             {
-                 controller = "Dashboard",
-             }
-             ,
-             new
-             {
-                 isLocal = new LocalhostConstraint()
-             }
-             
-
- );*/
+         
 
             
             routes.MapRoute(
