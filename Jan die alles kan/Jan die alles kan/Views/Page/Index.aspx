@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>Index</h2>
-    <p><%: Html.ActionLink("Back To Dashboard", "DashBoard/Index", new { ReturnUrl = ViewBag.ReturnUrl }) %></p>
+    <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
     <%: Html.ActionLink("Create New", "Create") %>
 </p>

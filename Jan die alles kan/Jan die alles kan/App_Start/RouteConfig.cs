@@ -13,6 +13,8 @@ namespace Jan_die_alles_kan
         {
            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("Page/{*pathInfo}");
+            routes.IgnoreRoute("UploadDownload/{*pathInfo}");
             routes.MapRoute(
                name: "dashboard",
                url: "Dashboard/{id}",

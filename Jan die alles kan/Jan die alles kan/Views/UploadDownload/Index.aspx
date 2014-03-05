@@ -8,8 +8,7 @@
     <title>Index</title>
 </head>
 <body>
-        <p><%: Html.ActionLink("Back To Dashboard", "DashBoard/Index") %></p>
-
+       <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
