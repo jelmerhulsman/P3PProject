@@ -189,6 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\UploadDownloadController.cs" />
@@ -305,6 +306,7 @@
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Page\Edit.aspx" />
     <Content Include="Views\Page\Index.aspx" />
+    <Content Include="Views\Shared\Dashboard.aspx" />
     <Content Include="Views\UploadDownload\Create.aspx" />
     <Content Include="Views\UploadDownload\Delete.aspx" />
     <Content Include="Views\UploadDownload\Details.aspx" />

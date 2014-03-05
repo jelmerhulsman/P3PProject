@@ -30,7 +30,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //
         // GET: /Page/
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             //PagesModels pagemodel = db.Pages.ToList();
@@ -46,6 +46,11 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult Overview()
         {
             return View();
+        }
+
+        public ActionResult BackToDashboard()
+        {
+            return View("Dashboard");
         }
 
         //

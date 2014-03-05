@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>Index</h2>
-
+    <p><%: Html.ActionLink("Back To Dashboard", "BackToDashboard") %></p>
 <p>
     <%: Html.ActionLink("Create New", "Create") %>
 </p>
