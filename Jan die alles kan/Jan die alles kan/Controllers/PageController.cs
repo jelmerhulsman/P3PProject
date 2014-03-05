@@ -43,6 +43,11 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        public ActionResult Overview()
+        {
+            return View();
+        }
+
         //
         // GET: /Page/Details/5
 

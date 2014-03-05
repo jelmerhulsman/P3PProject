@@ -31,13 +31,21 @@
             ], { duration: 6000, fade: 1500 });
 
             $('#footer .open').click(function () {
-                $('#footer').animate({ 'bottom': 0 }, 300);
+                $('#footer').animate({ 'height': '140px' }, 300).css('bottom', 0);
+
+                $('#left, #right').show()
+                $('#footer .floating').hide();
+
                 $('.close').show();
                 $('.open').hide();
             });
 
             $('#footer .close').click(function () {
-                $('#footer').animate({ 'bottom': '-140px' }, 300);
+                $('#footer').animate({ 'height': '0px' }, 300).css('bottom', 0);
+                setTimeout(function () {
+                    $('#left, #right').hide()
+                    $('#footer .floating').show();
+                }, 600);
                 $('.close').hide();
                 $('.open').show();
             });
@@ -58,7 +66,9 @@
     <div id="footer">
         <div class="open"><img src="~/Images/Btn/btn_up.png" /></div>
         <div class="close"><img src="~/Images/Btn/btn_down.png" /></div>
-
+        <div class="floating">
+            <img src="~/Images/sticker.png" id="sticker" />
+        </div>
         <div id="left">
             <h1>Direct Login</h1>
             <form>

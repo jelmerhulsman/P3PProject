@@ -1,0 +1,72 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+#main {
+    position: relative;
+    background: #fff;
+    height: 100%;
+}
+
+.left {
+    position: relative;
+    width: 260px;
+    display: inline-block;
+    background: #02477a;
+    height: 100%;
+}
+
+    .left a.logo {
+        display: block;
+        width: 260px;
+        height: 165px;
+        text-align: center;
+    }
+
+    .left a.logo img {
+        width: 156px;
+        margin-top: 22px;
+    }
+
+#filters{
+    padding: 20px;
+    color: #fff;
+    background: #023c67;
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+}
+
+    #filters span.title {
+        font-family: 'Khmer UI', Arial;
+        font-size: 16px;
+        padding-bottom: 15px;
+        display: block;
+    }
+
+    #filters input[type="text"] {
+        font-family: 'Khmer UI', Arial;
+        font-size: 14px;
+        margin-bottom: 20px;
+        padding: 10px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) inset;
+        border-radius: 10px;
+        border: 0px;
+        width: 200px;
+    }
+
+    #filters .box {
+        font-family: 'Khmer UI', Arial;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #fff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) inset;
+        color: #000;
+        border-radius: 10px;
+    }

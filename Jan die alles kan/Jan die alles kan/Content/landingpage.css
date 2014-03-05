@@ -81,9 +81,9 @@ body {
 #footer {
     width: 360px;
     min-width: 320px;
-    height: 140px;
+    height: 0px;
     position: absolute;
-    bottom: -140px;
+    bottom: 0px;
     left: 50%;
     margin-left: -180px;
     background: #02477A;
@@ -92,11 +92,21 @@ body {
     border-top: 4px solid #025490;
     box-shadow: rgba(0,0,0,0.8) 0 0 15px;
     text-align: center;
+    overflow: visible !important;
 }
+
+    #footer .floating {
+        position: absolute;
+        top: -105px;
+        right: -101px;
+        height: 105px;
+        overflow: hidden;
+    }
 
 #left {
     width: 179px;
     float: left;
+    display: none;
 }
 
     #left h1 {
@@ -144,6 +154,7 @@ body {
     position: relative;
     width: 179px;
     float: right;
+    display: none;
 }
 
     #right #sticker {
