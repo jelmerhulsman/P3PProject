@@ -14,16 +14,10 @@ namespace Jan_die_alles_kan.Controllers
     {
         private UploadDownloadContext db = new UploadDownloadContext();
 
-        //
-        // GET: /UploadDownload/
-
         public ActionResult Index()
         {
             return View(db.Pictures.ToList());
         }
-
-        //
-        // GET: /UploadDownload/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -35,16 +29,10 @@ namespace Jan_die_alles_kan.Controllers
             return View(uploaddownloadmodel);
         }
 
-        //
-        // GET: /UploadDownload/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /UploadDownload/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -60,9 +48,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(uploaddownloadmodel);
         }
 
-        //
-        // GET: /UploadDownload/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
@@ -72,9 +57,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(uploaddownloadmodel);
         }
-
-        //
-        // POST: /UploadDownload/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,9 +71,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(uploaddownloadmodel);
         }
 
-        //
-        // GET: /UploadDownload/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             UploadDownloadModel uploaddownloadmodel = db.Pictures.Find(id);
@@ -101,9 +80,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(uploaddownloadmodel);
         }
-
-        //
-        // POST: /UploadDownload/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

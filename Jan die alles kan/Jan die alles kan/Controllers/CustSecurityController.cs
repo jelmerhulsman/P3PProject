@@ -13,16 +13,10 @@ namespace Jan_die_alles_kan.Controllers
     {
         private CustSecurityContext db = new CustSecurityContext();
 
-        //
-        // GET: /CustSecurity/
-
         public ActionResult Index()
         {
             return View(db.IPProfiles.ToList());
         }
-
-        //
-        // GET: /CustSecurity/Details/5
 
         public IPProfile[] Details()
         {
@@ -34,16 +28,10 @@ namespace Jan_die_alles_kan.Controllers
             return ipprofile;
         }
 
-        //
-        // GET: /CustSecurity/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /CustSecurity/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -59,9 +47,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(ipprofile);
         }
 
-        //
-        // GET: /CustSecurity/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             IPProfile ipprofile = db.IPProfiles.Find(id);
@@ -71,9 +56,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(ipprofile);
         }
-
-        //
-        // POST: /CustSecurity/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,9 +70,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(ipprofile);
         }
 
-        //
-        // GET: /CustSecurity/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             IPProfile ipprofile = db.IPProfiles.Find(id);
@@ -100,9 +79,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(ipprofile);
         }
-
-        //
-        // POST: /CustSecurity/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -28,7 +28,6 @@ namespace Jan_die_alles_kan
                url: "Dashboard/{controller}/{id}",
                defaults: new
                {
-                   controller = "Page",
                    action = "Index",
                    id = UrlParameter.Optional
                }
@@ -41,11 +40,6 @@ namespace Jan_die_alles_kan
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
             );
-        }
-
-        protected void Application_Start()
-        {
-            RegisterRoutes(RouteTable.Routes);
         }
     }
 }

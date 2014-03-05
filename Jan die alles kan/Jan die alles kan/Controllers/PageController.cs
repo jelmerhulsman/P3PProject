@@ -28,8 +28,6 @@ namespace Jan_die_alles_kan.Controllers
 
         private PagesContext db = new PagesContext();
 
-        //
-        // GET: /Page/
         //[Authorize]
         public ActionResult Index()
         {
@@ -53,9 +51,6 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("Dashboard/index");
         }
 
-        //
-        // GET: /Page/Details/5
-
         public ActionResult Details(int Id = 0)
         {
             PagesModels pagemodel = db.Pages.Find(Id);
@@ -73,18 +68,11 @@ namespace Jan_die_alles_kan.Controllers
             //return View("Details");
         }
 
-        //
-        // GET: /Page/Create
         [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Page/Create
-
-        
         //[ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]
@@ -100,8 +88,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        //
-        // GET: /Page/Edit/5
         [Authorize]
         public ActionResult Edit(int id = 0)
         {
@@ -112,10 +98,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(pagesmodels);
         }
-
-        //
-        // POST: /Page/Edit/5
-
        
         //[ValidateAntiForgeryToken]
         [HttpPost]
@@ -131,8 +113,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        //
-        // GET: /Page/Delete/5
         [Authorize]
         public ActionResult Delete(int id = 0)
         {
@@ -143,9 +123,6 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(pagesmodels);
         }
-
-        //
-        // POST: /Page/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

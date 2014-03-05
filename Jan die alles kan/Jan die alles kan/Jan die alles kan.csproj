@@ -296,11 +296,6 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Views\CustSecurity\Create.aspx" />
-    <Content Include="Views\CustSecurity\Delete.aspx" />
-    <Content Include="Views\CustSecurity\Details.aspx" />
-    <Content Include="Views\CustSecurity\Edit.aspx" />
-    <Content Include="Views\CustSecurity\Index.aspx" />
     <Content Include="Views\Page\Create.aspx" />
     <Content Include="Views\Page\Delete.aspx" />
     <Content Include="Views\Page\Details.aspx" />

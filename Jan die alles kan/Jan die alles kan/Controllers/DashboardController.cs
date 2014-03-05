@@ -8,9 +8,6 @@ namespace Jan_die_alles_kan.Controllers
 {
     public class DashboardController : Controller
     {
-        //
-        // GET: /Dashboard/
-
         public ActionResult Index()
         {
             return View("Dashboard");
