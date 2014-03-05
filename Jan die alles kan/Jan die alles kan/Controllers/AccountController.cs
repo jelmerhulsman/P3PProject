@@ -10,6 +10,10 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Jan_die_alles_kan.Filters;
 using Jan_die_alles_kan.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Globalization;
 
 namespace Jan_die_alles_kan.Controllers
 {
@@ -75,11 +79,28 @@ namespace Jan_die_alles_kan.Controllers
                 // Attempt to register the user
                 try
                 {
-                    CustSecurityController Secure = new CustSecurityController();
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Page");
+                    EmailAddressAttribute emailCheck = new EmailAddressAttribute();
+
+                    if (emailCheck.IsValid(model.Email))
+                    {
+                        UserDataContext db = new UserDataContext();
+
+                        CustSecurityController Secure = new CustSecurityController();
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+
+                        UserData dataProfile = new UserData(model.UserName, model.Email, model.Street, model.HouseNumber, model.City, model.PostalCode);
+
+                        db.DBUserData.Add(dataProfile);
+                        db.SaveChanges();
+
+                        Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
+                        WebSecurity.Login(model.UserName, model.Password);
+                        return RedirectToAction("Index", "Page");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The email address entered is not valid");
+                    }
                 }
                 catch (MembershipCreateUserException e)
                 {
