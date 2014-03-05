@@ -1,6 +1,7 @@
 ﻿* {
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 .clear {
@@ -29,7 +30,6 @@
 }
 
 body {
-    overflow: hidden;
 }
 
 #main {
@@ -45,7 +45,7 @@ body {
     }
 
     #main form {
-        width: 96%;
+        width: 100%;
         height: 48px;
         position: relative;
         background: White;
@@ -55,12 +55,12 @@ body {
     }
 
 #searchField {
-    position:absolute;
-    top:8px;
-    left:9px;
+    position: absolute;
+    top: 8px;
+    left: 9px;
     font-family: 'Khmer UI', Arial;
-    font-size: 27px;
-    background:none;
+    font-size: 28px;
+    background: none;
     border: 0;
     outline: none;
 }
@@ -76,6 +76,7 @@ body {
     top: 5px;
     right: 3px;
     cursor: pointer;
+    color:transparent;
 }
 
 #footer {
@@ -155,6 +156,7 @@ body {
     width: 179px;
     float: right;
     display: none;
+    overflow: visible;
 }
 
     #right #sticker {
@@ -189,3 +191,57 @@ body {
         bottom: -25px;
         right: 30px;
     }
+
+@media only screen and (max-device-width: 600px), only screen and (max-width: 600px) {
+    #main {
+        min-width: 300px;
+    }
+
+        #main img {
+            width: 75%;
+            display: block;
+            margin: 25px auto 0px;
+        }
+
+        #main form {
+            width: 100%;
+            height: 100px;
+            background: none;
+            box-shadow: none;
+        }
+
+    #searchField {
+        height: 48px;
+        position: relative;
+        background: White;
+        border: 0;
+        border-radius: 10px;
+        box-shadow: rgba(0,0,0,0.4) 0 0 15px inset;
+        top: 0px;
+        left: 0px;
+        margin: 0 auto;
+        display: block;
+        text-align:center;
+    }
+
+    #searchButton {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+        top: 5px;
+        right: 0px;
+        width: 100%;
+        height: 48px;
+        border-radius: 10px;
+        background: #02477A;
+        font-size: 28px;
+        font-family: 'Khmer UI', Arial;
+        font-weight: bold;
+        color: #fff;
+        text-align:center;
+    }
+
+    #footer {
+        display: none;
+    }
+}
