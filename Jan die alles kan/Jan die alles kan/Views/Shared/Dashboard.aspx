@@ -7,7 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>Dashboard</h2>
-    <p> <%: Html.ActionLink("Pagina's", "Index", "PageController", null, null) %> </p>
+    <p> <%: Html.ActionLink("Pages","page/Index") %> </p>
+    <p> <%: Html.ActionLink("Uploads/Downloads","UploadDownload/Index") %> </p>
             
         
 </asp:Content>

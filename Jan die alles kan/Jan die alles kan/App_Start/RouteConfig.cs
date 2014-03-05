@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Jan_die_alles_kan.Constraints;
 
 namespace Jan_die_alles_kan
 {
@@ -33,24 +34,33 @@ namespace Jan_die_alles_kan
                    id = UrlParameter.Optional
                }
    );
+          /*  routes.MapRoute(
+             "Dashboard",
+             "Dashboard/{action}/",
+             new
+             {
+                 controller = "Dashboard",
+             }
+             ,
+             new
+             {
+                 isLocal = new LocalhostConstraint()
+             }
+             
 
+ );*/
 
-            routes.MapRoute(
-                name:"backtodashboard",
-                url:"{controller}/BackToDashboard",
-                defaults:new
-                {
-                    controller = "Dashboard",
-                    action = "Dashboard",
-
-                }
-    );
-
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
             );
+        }
+
+        protected void Application_Start()
+        {
+            RegisterRoutes(RouteTable.Routes);
         }
     }
 }

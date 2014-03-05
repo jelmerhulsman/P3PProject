@@ -50,7 +50,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult BackToDashboard()
         {
-            return View("Dashboard");
+            return RedirectToAction("Dashboard/index");
         }
 
         //

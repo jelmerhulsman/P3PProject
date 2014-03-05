@@ -16,20 +16,6 @@ namespace Jan_die_alles_kan.Controllers
             return View("Dashboard");
         }
 
-        [HttpPost]
-        public ActionResult PageIndex()
-        {
-            return RedirectToAction("Index", "PageController");
-        }
-
-
-        //
-        // GET: /Dashboard/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
     }
 }
