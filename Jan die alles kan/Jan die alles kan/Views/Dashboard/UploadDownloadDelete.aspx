@@ -59,7 +59,7 @@
         <%: Html.AntiForgeryToken() %>
         <p>
             <input type="submit" value="Delete" /> |
-            <%: Html.ActionLink("Back to List", "Index") %>
+            <%: Html.ActionLink("Back to List", "UploadDownloadIndex") %>
         </p>
     <% } %>
     

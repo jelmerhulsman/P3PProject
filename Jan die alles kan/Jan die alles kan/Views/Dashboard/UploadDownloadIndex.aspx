@@ -11,7 +11,7 @@
        <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%: Html.ActionLink("Create New", "UploadDownloadCreate") %>
     </p>
     <table>
         <tr>
@@ -59,9 +59,9 @@
             </td>
 
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%: Html.ActionLink("Download File", "download", new { id=item.Id }, null) %> |
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
+                <%: Html.ActionLink("Edit", "UploadDownloadEdit", new { id=item.Id }) %> |
+                <%: Html.ActionLink("Download File", "UploadDownloaddownload", new { id=item.Id }, null) %> |
+                <%: Html.ActionLink("Delete", "UploadDownloadDelete", new { id=item.Id }) %>
             </td>
         </tr>
     <% } %>

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.PagesModels>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Edit
+    Create
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
@@ -14,8 +14,6 @@
 
     <fieldset>
         <legend>PagesModels</legend>
-
-        <%: Html.HiddenFor(model => model.Id) %>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Name) %>
@@ -25,7 +23,7 @@
             <%: Html.ValidationMessageFor(model => model.Name) %>
         </div>
 
-        <div class="editor-label">
+                <div class="editor-label">
             <%: Html.LabelFor(model => model.Permalink) %>
         </div>
         <div class="editor-field">
@@ -56,13 +54,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 <% } %>
 
 <div>
-    <%: Html.ActionLink("Back to List", "Index") %>
+    <%: Html.ActionLink("Back to List", "PageIndex") %>
 </div>
 
 </asp:Content>
