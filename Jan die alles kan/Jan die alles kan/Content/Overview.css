@@ -13,6 +13,15 @@
     height: 100%;
 }
 
+.stroke {
+    width:1px;
+    height: 100%;
+    position: absolute;
+    left: 263px;
+    top: 0px;
+    background: #02477a;
+}
+
 .left {
     position: relative;
     width: 260px;
@@ -26,6 +35,7 @@
         width: 260px;
         height: 165px;
         text-align: center;
+        outline: none;
     }
 
     .left a.logo img {
@@ -46,6 +56,24 @@
         font-size: 16px;
         padding-bottom: 15px;
         display: block;
+    }
+
+    #filters span.handler {
+        position: relative;
+        width: 31px;
+        height: 19px;
+        display: inline-block;
+        float: right;
+        cursor: pointer;
+    }
+
+
+    #filters span.open {
+        background: url(../../Images/Btn/btn_up_filter_box.png) no-repeat center center;
+    }
+
+    #filters span.close {
+        background: url(../../Images/Btn/btn_down_filter_box.png) no-repeat center center;
     }
 
     #filters input[type="text"] {
@@ -69,4 +97,126 @@
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) inset;
         color: #000;
         border-radius: 10px;
+        height: 17px;
     }
+
+        #filters .box ul {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #filters .box ul li {
+            list-style: none;    
+        }
+
+        #filters .box .colorHolder li {
+            position: relative;
+            float: left;
+            list-style: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        #filters .box .orientationHolder, #filters .box .categoryHolder {
+            line-height: 20px;
+        }
+
+            #filters .box .orientationHolder .radio {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5) inset;
+                cursor: pointer;
+                margin-right: 8px;
+                float: left;
+                margin-top: 5px;
+                position: relative;
+            }
+
+                #filters .box .orientationHolder .radio.clicked .inner {
+                    width: 4px;
+                    height: 4px;
+                    display: inline-block;
+                    background: #197b30;
+                    position: absolute;
+                    left: 3px;
+                    top: 3px;
+                    border-radius: 4px;
+                }
+
+            #filters .box .categoryHolder .checkbox {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5) inset;
+                cursor: pointer;
+                margin-right: 8px;
+                float: left;
+                margin-top: 5px;
+                position: relative;
+            }
+
+                #filters .box .categoryHolder .checkbox.clicked .inner {
+                    width: 4px;
+                    height: 4px;
+                    display: inline-block;
+                    background: #197b30;
+                    position: absolute;
+                    left: 3px;
+                    top: 3px;
+                }
+
+            #filters .box .orientationHolder .label, #filters .box .categoryHolder .label {
+                cursor: pointer;
+            }
+
+        #filters .box .tooltip {
+            background: url("../Images/tooltip.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            color: #FFFFFF;
+            height: 32px;
+            left: -23px;
+            line-height: 24px;
+            position: absolute;
+            text-align: center;
+            top: -32px;
+            width: 60px;
+            opacity: 0;
+            display: block;
+        }
+
+        #filters .box .color {
+            display: block;
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+
+            #filters .box .color.clicked {
+                opacity: 1;
+                width: 12px;
+                height: 12px;
+                border: 1px dotted #000 !important;
+            }
+
+            #filters .box .color.black.clicked {
+                border: 1px dotted #fff !important;
+            }
+
+        #filters .box .color:hover {
+            opacity: 1;
+        }
+
+        #filters .box .color.red { background-color: red; }
+        #filters .box .color.orange { background-color: orange; }
+        #filters .box .color.yellow { background-color: yellow; }
+        #filters .box .color.green { background-color: green; }
+        #filters .box .color.cyan { background-color: cyan; }
+        #filters .box .color.blue { background-color: blue; }
+        #filters .box .color.purple { background-color: purple; }
+        #filters .box .color.pink { background-color: pink; }
+        #filters .box .color.white { background-color: white; width: 12px; height: 12px; border: 1px solid #000; }        
+        #filters .box .color.grey { background-color: grey; }
+        #filters .box .color.black { background-color: black; }
+        #filters .box .color.brown { background-color: brown; }

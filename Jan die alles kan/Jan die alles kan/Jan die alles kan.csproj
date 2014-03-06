@@ -269,9 +269,11 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\arrow_big.png" />
     <Content Include="Images\Btn\btn_down.png" />
+    <Content Include="Images\Btn\btn_down_filter_box.png" />
     <Content Include="Images\Btn\btn_green.png" />
     <Content Include="Images\Btn\btn_src.png" />
     <Content Include="Images\Btn\btn_up.png" />
+    <Content Include="Images\Btn\btn_up_filter_box.png" />
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
     <Content Include="Images\Slides\slide1.jpg" />
@@ -282,6 +284,7 @@
     <Content Include="Images\milanovLogo.png" />
     <Content Include="Images\sticker.png" />
     <Content Include="Images\stroke.png" />
+    <Content Include="Images\tooltip.png" />
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
