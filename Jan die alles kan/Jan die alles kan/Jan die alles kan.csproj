@@ -274,6 +274,7 @@
     <Content Include="Images\Btn\btn_src.png" />
     <Content Include="Images\Btn\btn_up.png" />
     <Content Include="Images\Btn\btn_up_filter_box.png" />
+    <Content Include="Images\check.png" />
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
     <Content Include="Images\Slides\slide1.jpg" />

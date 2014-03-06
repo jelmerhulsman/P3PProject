@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Gerlof Productions</title>
     <link href="~/Content/Overview.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
 
@@ -34,16 +35,7 @@
 
             $('.tooltip').hide();
 
-            $('.orientationHolder .radio, .orientationHolder .label').click(function () {
-                var Class = "";
-                if ($(this).hasClass('label')) {
-                    var Class = ".radio";
-                }
-                console.log($(Class + '.clicked').length);
-                if ($(Class + '.clicked').length == 1) {
-                    $(Class + '.clicked').removeClass('clicked');
-                }
-
+            $('.categoryHolder .checkbox, .categoryHolder .label, .orientationHolder .checkbox, .orientationHolder .label').click(function () {
                 if ($(this).hasClass('label')) {
                     $(this).prev().toggleClass('clicked');
                 } else {
@@ -51,17 +43,22 @@
                 }
             })
 
-            $('.categoryHolder .checkbox, .categoryHolder .label').click(function () {
-                if ($(this).hasClass('label')) {
-                    $(this).prev().toggleClass('clicked');
-                } else {
-                    $(this).toggleClass('clicked');
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 30,
+                values: [0, 15],
+                slide: function (event, ui) {
+                    $("#min").val("€" + ui.values[0]);
+                    $("#max").val("€" + ui.values[1]);
                 }
-            })
+            });
+            $("#min").val("€" + $("#slider-range").slider("values", 0));
+            $("#max").val("€" + $("#slider-range").slider("values", 1));
         });
     </script>
 </head>
-<body oncontextmenu="return false">
+<body oncontextmenu=""><!-- return false TERUG PLAATSEN -->
     <div id="main">
         <div class="stroke"></div>
         <div class="left">
@@ -70,7 +67,7 @@
             <div id="filters">
                 <span class="title">Refine collection</span>
 
-                <form action="" method="post">
+                <form action="">
                     <input type="text" name="keyword" class="field" placeholder="Search..." />
                 </form>
 
@@ -99,9 +96,8 @@
                     <span>Orientation</span><span class="handler close"></span>
 
                     <ul class="orientationHolder">
-                        <li><span class="radio"><span class="inner"></span></span><span class="label">Horizontal</span></li>
-                        <li><span class="radio"><span class="inner"></span></span><span class="label">Vertical</span></li>
-                        <li><span class="radio"><span class="inner"></span></span><span class="label">Both</span></li>
+                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Horizontal</span></li>
+                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Vertical</span></li>
                     </ul>
                 </div>
 
@@ -117,6 +113,15 @@
 
                 <div class="box">
                     <span>Price range</span><span class="handler close"></span>
+
+                    <ul>
+                        <li>
+                            <input type="text" id="min" style="border:0; color:#f6931f; font-weight:bold;" readonly="readonly">
+                            <div id="slider-range"></div>
+                            <input type="text" id="max" style="border:0; color:#f6931f; font-weight:bold;" readonly="readonly">
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
