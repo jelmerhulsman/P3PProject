@@ -12,20 +12,6 @@ namespace Jan_die_alles_kan.Controllers
     public class PageController : Controller
     {
 
-        public ActionResult SendEmail()
-        {
-            try
-            {
-                new MailController().Sample().DeliverAsync();
-            }
-            catch
-            {
-                new MailController().Sample().Deliver();
-            }
-
-            return View();
-        }
-
         private PagesContext db = new PagesContext();
 
         //[Authorize]
