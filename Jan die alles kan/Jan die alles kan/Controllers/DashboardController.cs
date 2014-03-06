@@ -42,7 +42,7 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult PageEdit(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -67,7 +67,7 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult PageDelete(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
