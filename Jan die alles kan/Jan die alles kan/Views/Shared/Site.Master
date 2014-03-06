@@ -13,7 +13,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title"><%: Html.ActionLink("your logo here", "Index", "Page") %></p>
+                    <p class="site-title"><%: Html.ActionLink("your logo here", "Details", "Page") %></p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -22,7 +22,7 @@
                     <nav>
                         <ul id="menu">
                           
-                            <li><%: Html.ActionLink("Home", "Index", "Page") %></li>
+                            <li><%: Html.ActionLink("Home", "Details", "Page") %></li>
                             <li><%: Html.ActionLink("About", "About", "Page") %></li>
                             <li><%: Html.ActionLink("Contact", "Contact", "Page") %></li>
                            

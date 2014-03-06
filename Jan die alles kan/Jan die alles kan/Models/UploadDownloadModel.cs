@@ -25,6 +25,7 @@ namespace Jan_die_alles_kan.Models
     public class UploadDownloadModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Route { get; set; }

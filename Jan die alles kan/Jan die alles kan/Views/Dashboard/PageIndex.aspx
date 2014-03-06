@@ -9,7 +9,7 @@
 <h2>Index</h2>
     <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
-    <%: Html.ActionLink("Create New", "Create") %>
+    <%: Html.ActionLink("Create New", "PageCreate") %>
 </p>
 <table>
     <tr>
@@ -43,9 +43,9 @@
             <%: Html.DisplayFor(modelItem => item.Name) %>
         </td>
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Show page", "Details", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
+            <%: Html.ActionLink("Edit", "PageEdit", new { id=item.Id }) %> |
+            <%: Html.ActionLink("Show page", "Page/Details", new { id=item.Id }) %> |
+            <%: Html.ActionLink("Delete", "PageDelete", new { id=item.Id }) %>
         </td>
         <td>
           <%: Html.DisplayFor(modelItem => item.Permalink) %>

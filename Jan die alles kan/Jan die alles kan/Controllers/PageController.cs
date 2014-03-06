@@ -12,30 +12,9 @@ namespace Jan_die_alles_kan.Controllers
     public class PageController : Controller
     {
 
-        public ActionResult SendEmail()
-        {
-            try
-            {
-                new MailController().Sample().DeliverAsync();
-            }
-            catch
-            {
-                new MailController().Sample().Deliver();
-            }
-
-            return View();
-        }
-
         private PagesContext db = new PagesContext();
 
-        //[Authorize]
-        public ActionResult Index()
-        {
-            //PagesModels pagemodel = db.Pages.ToList();
-            ViewBag.Content = "content";
-            return View(db.Pages.ToList());
-        }
-
+       
         public ActionResult Landingpage()
         {
             return View();
@@ -68,71 +47,7 @@ namespace Jan_die_alles_kan.Controllers
             //return View("Details");
         }
 
-        //[Authorize]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        //[ValidateAntiForgeryToken]
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Create(PagesModels pagesmodels)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Pages.Add(pagesmodels);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(pagesmodels);
-        }
-
-        [Authorize]
-        public ActionResult Edit(int id = 0)
-        {
-            PagesModels pagesmodels = db.Pages.Find(id);
-            if (pagesmodels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pagesmodels);
-        }
-       
-        //[ValidateAntiForgeryToken]
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Edit(PagesModels pagesmodels)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(pagesmodels).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(pagesmodels);
-        }
-
-        [Authorize]
-        public ActionResult Delete(int id = 0)
-        {
-            PagesModels pagesmodels = db.Pages.Find(id);
-            if (pagesmodels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pagesmodels);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            PagesModels pagesmodels = db.Pages.Find(id);
-            db.Pages.Remove(pagesmodels);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
