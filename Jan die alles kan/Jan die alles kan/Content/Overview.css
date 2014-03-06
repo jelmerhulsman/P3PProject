@@ -23,11 +23,13 @@
 }
 
 .left {
-    position: relative;
+    position: fixed;
     width: 260px;
     display: inline-block;
     background: #02477a;
     height: 100%;
+    left: 0;
+    top: 0;
 }
 
     .left a.logo {
@@ -76,7 +78,7 @@
         background: url(../../Images/Btn/btn_down_filter_box.png) no-repeat center center;
     }
 
-    #filters input[type="text"] {
+    #filters input[name="keyword"] {
         font-family: 'Khmer UI', Arial;
         font-size: 14px;
         margin-bottom: 20px;
@@ -121,53 +123,29 @@
             line-height: 20px;
         }
 
-            #filters .box .orientationHolder .radio {
+            #filters .box .checkbox {
                 display: inline-block;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
+                width: 8px;
+                height: 8px;
                 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5) inset;
                 cursor: pointer;
                 margin-right: 8px;
                 float: left;
-                margin-top: 5px;
+                margin-top: 6px;
                 position: relative;
             }
 
-                #filters .box .orientationHolder .radio.clicked .inner {
-                    width: 4px;
-                    height: 4px;
+                #filters .box .checkbox.clicked .inner {
+                    width: 11px;
+                    height: 11px;
                     display: inline-block;
-                    background: #197b30;
+                    background: url("../Images/check.png") no-repeat;
                     position: absolute;
-                    left: 3px;
-                    top: 3px;
-                    border-radius: 4px;
+                    left: -1px;
+                    top: -2px;
                 }
 
-            #filters .box .categoryHolder .checkbox {
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5) inset;
-                cursor: pointer;
-                margin-right: 8px;
-                float: left;
-                margin-top: 5px;
-                position: relative;
-            }
-
-                #filters .box .categoryHolder .checkbox.clicked .inner {
-                    width: 4px;
-                    height: 4px;
-                    display: inline-block;
-                    background: #197b30;
-                    position: absolute;
-                    left: 3px;
-                    top: 3px;
-                }
-
-            #filters .box .orientationHolder .label, #filters .box .categoryHolder .label {
+            #filters .box .label {
                 cursor: pointer;
             }
 
@@ -220,3 +198,50 @@
         #filters .box .color.grey { background-color: grey; }
         #filters .box .color.black { background-color: black; }
         #filters .box .color.brown { background-color: brown; }
+
+    #filters .btn {
+        border: 0px;
+        border-radius: 8px;
+        height:26px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Khmer UI', Arial;
+        padding: 0px 8px;
+        color: #fff;
+        cursor: pointer;
+        width: 100px;
+    }
+
+    #filters .btn.search {
+        background: url(../Images/Btn/btn_bg_blue.jpg) repeat-x;
+        margin-right: 17px;
+    }
+
+    #filters .btn.cancel {
+        background: url(../Images/Btn/btn_bg_grey.jpg) repeat-x;
+    }
+
+.ui-slider-horizontal {
+    width: 60%;
+    margin-left: 1.2%;
+    display: inline-block;
+}
+#min, #max {
+    font-family: 'Khmer UI', Arial;
+    display: inline-block;
+    width: 17%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border:0; 
+    color:#000;
+}
+
+#min {
+    float: left;
+}
+
+#max {
+    float: right;
+}
