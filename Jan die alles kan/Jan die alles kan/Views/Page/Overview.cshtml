@@ -49,19 +49,19 @@
                 max: 30,
                 values: [0, 15],
                 slide: function (event, ui) {
-                    $("#min").val("€" + ui.values[0]);
-                    $("#max").val("€" + ui.values[1]);
+                    $("#min").text("€" + ui.values[0]);
+                    $("#max").text("€" + ui.values[1]);
                 }
             });
-            $("#min").val("€" + $("#slider-range").slider("values", 0));
-            $("#max").val("€" + $("#slider-range").slider("values", 1));
+            $("#min").text("€" + $("#slider-range").slider("values", 0));
+            $("#max").text("€" + $("#slider-range").slider("values", 1));
         });
     </script>
 </head>
 <body oncontextmenu=""><!-- return false TERUG PLAATSEN -->
-    <div id="main">
-        <div class="stroke"></div>
+    <div id="main">        
         <div class="left">
+            <div class="stroke"></div>  
             <a href="" class="logo"><img src="~/Images/milanovLogoWhite.png" /></a>    
 
             <div id="filters">
@@ -116,14 +116,17 @@
 
                     <ul>
                         <li>
-                            <input type="text" id="min" style="border:0; color:#f6931f; font-weight:bold;" readonly="readonly">
+                            <span id="min"></span>
                             <div id="slider-range"></div>
-                            <input type="text" id="max" style="border:0; color:#f6931f; font-weight:bold;" readonly="readonly">
+                            <span id="max"></span>
                             <div class="clear"></div>
                         </li>
                     </ul>
                 </div>
-            </div>
+
+                <button class="btn search">Search</button>
+                <button class="btn cancel">Cancel</button>
+            </div>            
         </div>
         <div class="right">
             <div id="topMenu">

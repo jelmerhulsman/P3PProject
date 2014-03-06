@@ -268,6 +268,8 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\arrow_big.png" />
+    <Content Include="Images\Btn\btn_bg_blue.jpg" />
+    <Content Include="Images\Btn\btn_bg_grey.jpg" />
     <Content Include="Images\Btn\btn_down.png" />
     <Content Include="Images\Btn\btn_down_filter_box.png" />
     <Content Include="Images\Btn\btn_green.png" />

@@ -23,11 +23,13 @@
 }
 
 .left {
-    position: relative;
+    position: fixed;
     width: 260px;
     display: inline-block;
     background: #02477a;
     height: 100%;
+    left: 0;
+    top: 0;
 }
 
     .left a.logo {
@@ -140,7 +142,7 @@
                     background: url("../Images/check.png") no-repeat;
                     position: absolute;
                     left: -1px;
-                    top: -1px;
+                    top: -2px;
                 }
 
             #filters .box .label {
@@ -197,15 +199,49 @@
         #filters .box .color.black { background-color: black; }
         #filters .box .color.brown { background-color: brown; }
 
+    #filters .btn {
+        border: 0px;
+        border-radius: 8px;
+        height:26px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Khmer UI', Arial;
+        padding: 0px 8px;
+        color: #fff;
+        cursor: pointer;
+        width: 100px;
+    }
+
+    #filters .btn.search {
+        background: url(../Images/Btn/btn_bg_blue.jpg) repeat-x;
+        margin-right: 17px;
+    }
+
+    #filters .btn.cancel {
+        background: url(../Images/Btn/btn_bg_grey.jpg) repeat-x;
+    }
+
 .ui-slider-horizontal {
     width: 60%;
-    margin: 0 auto;
+    margin-left: 1.2%;
     display: inline-block;
 }
 #min, #max {
+    font-family: 'Khmer UI', Arial;
     display: inline-block;
     width: 17%;
     text-align: center;
     padding: 0;
     margin: 0;
+    border:0; 
+    color:#000;
+}
+
+#min {
+    float: left;
+}
+
+#max {
+    float: right;
 }
