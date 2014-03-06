@@ -11,6 +11,11 @@ namespace Jan_die_alles_kan
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
+            );
            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("Page/{*pathInfo}");
@@ -24,7 +29,8 @@ namespace Jan_die_alles_kan
                    action = "Index",
                    id = UrlParameter.Optional
                }
-   );
+            );
+
             routes.MapRoute(
                name: "dashboardPage",
                url: "Dashboard/{controller}/{id}",
@@ -33,14 +39,6 @@ namespace Jan_die_alles_kan
                    action = "Index",
                    id = UrlParameter.Optional
                }
-   );
-         
-
-            
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
             );
         }
     }

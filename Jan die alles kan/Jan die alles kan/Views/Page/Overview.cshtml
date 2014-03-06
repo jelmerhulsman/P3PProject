@@ -39,6 +39,7 @@
                 if ($(this).hasClass('label')) {
                     var Class = ".radio";
                 }
+                console.log($(Class + '.clicked').length);
                 if ($(Class + '.clicked').length == 1) {
                     $(Class + '.clicked').removeClass('clicked');
                 }
