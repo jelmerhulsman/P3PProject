@@ -68,7 +68,7 @@ namespace Jan_die_alles_kan.Controllers
             //return View("Details");
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Create()
         {
             return View();
