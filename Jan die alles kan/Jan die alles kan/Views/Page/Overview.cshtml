@@ -56,6 +56,14 @@
 
             $("#min").text("€" + $("#slider-range").slider("values", 0));
             $("#max").text("€" + $("#slider-range").slider("values", 1));
+
+            $("#overlay, #closeOverlay").click(function () {
+                $("#overlay").hide();
+            });
+
+            $("#boxOverlay").click(function (event) {
+                event.stopPropagation();
+            });
         });
     </script>
 </head>

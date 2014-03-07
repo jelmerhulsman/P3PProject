@@ -345,7 +345,7 @@
 }
 
 #boxOverlay {
-    width: 75%;
+    width: 71%;
     position: absolute;
     background: White;
     border: 0;
@@ -353,7 +353,7 @@
     box-shadow: rgba(0,0,0,0.4) 0 0 15px;
     top: 12.5%;
     left: 12.5%;
-    padding: 15px;
+    padding: 2%;
     font-family: 'Khmer UI', Arial;
 }
 
@@ -427,7 +427,17 @@
     }
 
     #addCart {
-        position: relative;
+        
+    }
+
+        #addCart p {
+            float:none;
+            text-align:center;
+            padding-bottom:5px;
+        }
+
+    #cartButton {
+        float:none;
         margin: 0 auto;
     }
 }
