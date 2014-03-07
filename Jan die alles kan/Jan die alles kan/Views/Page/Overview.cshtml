@@ -55,11 +55,24 @@
             });
             $("#min").text("€" + $("#slider-range").slider("values", 0));
             $("#max").text("€" + $("#slider-range").slider("values", 1));
+
+            $('.top .inner').css('width', $('.top .inner').width() - $('.left').width() + 'px');
         });
     </script>
 </head>
 <body oncontextmenu=""><!-- return false TERUG PLAATSEN -->
-    <div id="main">        
+    <div id="main">     
+        <div class="top">
+            <div class="inner">
+                <div class="languages">
+                    <a href="#"><img src="~/Images/nl.jpg" alt="Dutch" /></a>
+                    <a href="#" class="selected"><img src="~/Images/en.jpg" alt="English" /></a>
+                </div>
+                <div class="shopping">
+                    <a href="javascript:void(0);"><img src="~/Images/Btn/btn_shoppingcart.png" alt="" /><span>3 Photos</span></a>
+                </div>
+            </div>
+        </div>   
         <div class="left">
             <div class="stroke"></div>  
             <a href="" class="logo"><img src="~/Images/milanovLogoWhite.png" /></a>    
