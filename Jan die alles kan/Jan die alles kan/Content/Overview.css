@@ -318,24 +318,24 @@
 }
 
     #description h2 {
-        padding-top:15px;
-        padding-bottom:5px;
+        padding-top: 15px;
+        padding-bottom: 5px;
     }
 
     #description p {
         border-bottom: 1px dashed gray;
-        padding-bottom:15px;
-        margin-bottom:15px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
     }
 
 #addCart {
     font-size: 18px;
-    font-weight:bold;
+    font-weight: bold;
 }
 
     #addCart p {
-        float:left;
-        margin-top:8px;
+        float: left;
+        margin-top: 8px;
     }
 
 #cartButton {
@@ -350,8 +350,7 @@
     cursor: pointer;
     outline: none;
     text-align: center;
-
-    float:right;
+    float: right;
 }
 
 #closeOverlay {
@@ -368,13 +367,18 @@
 
 @media only screen and (max-device-width: 600px), only screen and (max-width: 600px) {
     #overlay {
-        position:fixed;
-        overflow:scroll;
+        position: fixed;
+        overflow: scroll;
     }
 
     #boxOverlay {
-        position:relative;
+        position: relative;
         margin: 0 auto;
-        left:0px;
+        left: 0px;
+    }
+
+    #addCart {
+        position: relative;
+        margin: 0 auto;
     }
 }
