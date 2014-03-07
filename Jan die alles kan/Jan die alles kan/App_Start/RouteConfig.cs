@@ -16,19 +16,13 @@ namespace Jan_die_alles_kan
                  url: "{controller}/{action}/{id}",
                  defaults: new { controller = "Dashboard", action = "Index", id = 1 } //UrlParameter.Optional
              );
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
-            );
-
+            
             /*
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("Page/{*pathInfo}");
             routes.IgnoreRoute("UploadDownload/{*pathInfo}");
             routes.MapRoute(
-               name: "dashboard",
+               name: "dashboardAction",
                url: "Dashboard/{id}",
                defaults: new
                {
@@ -48,6 +42,11 @@ namespace Jan_die_alles_kan
                }
             );
             */
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
+            );
         }
     }
 }

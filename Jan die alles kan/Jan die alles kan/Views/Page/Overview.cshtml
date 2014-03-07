@@ -53,15 +53,14 @@
                     $("#max").text("€" + ui.values[1]);
                 }
             });
+
             $("#min").text("€" + $("#slider-range").slider("values", 0));
             $("#max").text("€" + $("#slider-range").slider("values", 1));
-
-            $('.top .inner').css('width', $('.top .inner').width() - $('.left').width() + 'px');
         });
     </script>
 </head>
 <body oncontextmenu=""><!-- return false TERUG PLAATSEN -->
-    <div id="main">     
+    <div id="main">        
         <div class="top">
             <div class="inner">
                 <div class="languages">
@@ -152,6 +151,25 @@
             </div>
         </div>
     </div>
+    <div id="overlay">
+        <div id="boxOverlay">
+            <div id="closeOverlay">
 
+    </div>
+            <div id="picture">
+
+            </div>
+            <div id="description">
+                <h2>Titel hier invoeren godverdomme</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt arcu vel tortor accumsan, nec sodales purus blandit. Donec convallis nibh a odio pretium pellentesque. Proin vestibulum enim nisi, nec fringilla magna adipiscing non.</p>
+            </div>
+            <div id="addCart">
+                <p>
+                    € 10,00
+                </p>
+                <input id="cartButton" type="button" value="+ Add to cart" />
+            </div>
+        </div>
+    </div>
 </body>
 </html>

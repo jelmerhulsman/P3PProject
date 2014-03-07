@@ -39,12 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActionMailer.Net">
-      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="ActionMailer.Net.Mvc">
-      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -307,17 +301,17 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Views\Page\Create.aspx" />
-    <Content Include="Views\Page\Delete.aspx" />
+    <Content Include="Views\Dashboard\PageCreate.aspx" />
+    <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Page\Details.aspx" />
-    <Content Include="Views\Page\Edit.aspx" />
-    <Content Include="Views\Page\Index.aspx" />
+    <Content Include="Views\Dashboard\PageEdit.aspx" />
+    <Content Include="Views\Dashboard\PageIndex.aspx" />
     <Content Include="Views\Shared\Dashboard.aspx" />
-    <Content Include="Views\UploadDownload\Create.aspx" />
-    <Content Include="Views\UploadDownload\Delete.aspx" />
+    <Content Include="Views\Dashboard\UploadDownloadCreate.aspx" />
+    <Content Include="Views\Dashboard\UploadDownloadDelete.aspx" />
     <Content Include="Views\UploadDownload\Details.aspx" />
-    <Content Include="Views\UploadDownload\Edit.aspx" />
-    <Content Include="Views\UploadDownload\Index.aspx" />
+    <Content Include="Views\Dashboard\UploadDownloadEdit.aspx" />
+    <Content Include="Views\Dashboard\UploadDownloadIndex.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -346,12 +340,11 @@
     <Content Include="Views\Page\Landingpage.cshtml">
       <BrowseToURL>~/Page/Landingpage</BrowseToURL>
     </Content>
-    <Content Include="Views\Mail\EmailView.html.cshtml" />
-    <Content Include="Views\Page\SendEmail.cshtml" />
     <Content Include="Views\Page\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
