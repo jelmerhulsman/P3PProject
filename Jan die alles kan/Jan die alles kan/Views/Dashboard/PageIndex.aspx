@@ -43,9 +43,9 @@
             <%: Html.DisplayFor(modelItem => item.Name) %>
         </td>
         <td>
-            <%: Html.ActionLink("Edit", "PageEdit", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Show page", "Page/Details", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Delete", "PageDelete", new { id=item.Id }) %>
+            <a href="pageedit/<%:item.Id %>">Edit Page</a> |
+            <a href="../page/details/<%:item.Id %>">Show Page</a> |
+            <a href="pagedelete/<%:item.Id %>">Delete Page</a>
         </td>
         <td>
           <%: Html.DisplayFor(modelItem => item.Permalink) %>
