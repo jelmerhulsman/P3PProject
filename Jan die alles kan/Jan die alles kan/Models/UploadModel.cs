@@ -33,7 +33,7 @@ namespace Jan_die_alles_kan.Models
             public string MainCategorie { get; set; }
             public DateTime MTime { get; set; }
             public DateTime CTime { get; set; }
-            public double Size { get; set; }
+            public float Size { get; set; }
         }   
 
 
