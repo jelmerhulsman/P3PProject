@@ -30,7 +30,7 @@ namespace Jan_die_alles_kan.Controllers
             Mail.To.Add(email);
             Mail.Body = "this is my test email body";
             client.Send(Mail);
-             return Redirect("/page/index");
+            return Redirect("/Page/Details/9");
         }
 
         public static void SendMailInner(string username)
