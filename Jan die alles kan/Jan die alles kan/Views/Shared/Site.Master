@@ -5,9 +5,9 @@
         <script src="/tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
             tinymce.init({
-                selector: "textarea",
-                
-
+                selector:  "textarea",
+                height: 400,
+                plugins: "code",
             });
         </script>
 
