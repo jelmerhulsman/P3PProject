@@ -36,8 +36,9 @@
             <%: Html.LabelFor(model => model.Content) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Content) %>
+            <%: Html.TextAreaFor(model => model.Content) %>
             <%: Html.ValidationMessageFor(model => model.Content) %>
+            
         </div>
          
         <div class="editor-label">

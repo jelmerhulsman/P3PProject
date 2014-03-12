@@ -8,7 +8,7 @@
 
 <h2>Dashboard</h2>
     <p> <%: Html.ActionLink("Pages","PageIndex") %> </p>
-    <p> <%: Html.ActionLink("Uploads/Downloads","UploadDownloadIndex") %> </p>
+    <p> <%: Html.ActionLink("Upload File","Upload") %> </p>
             
         
 </asp:Content>
