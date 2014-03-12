@@ -36,6 +36,8 @@ namespace Jan_die_alles_kan.Controllers
         {
             CustSecurityController Secure = new CustSecurityController();
 
+            //Is niet helemaal correct, moet even een aparte functie plus model voor worden gemaakt zodat je niet inlogt om nog je
+            //ip te checken.
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 if (CustSecurity.IPCheck(Secure.Details(), Request.UserHostAddress))
@@ -44,7 +46,9 @@ namespace Jan_die_alles_kan.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "IP is not certified");
+                    WebSecurity.Logout();
+                    Secure.createIPVerification(new IPProfile(model.UserName, Request.UserHostAddress));
+                    ModelState.AddModelError("", "IP is not certified, an email has been sent to your account");
                     return View(model);
                 }
             }

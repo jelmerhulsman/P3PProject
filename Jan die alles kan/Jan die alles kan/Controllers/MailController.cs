@@ -20,7 +20,7 @@ namespace Jan_die_alles_kan.Controllers
             string password = "darktranquillity";
             MailMessage Mail = new MailMessage(emailFrom, email);
             SmtpClient client = new SmtpClient();
-            client.Port= 587;
+            client.Port = 587;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Host = "smtp.gmail.com";
@@ -30,19 +30,19 @@ namespace Jan_die_alles_kan.Controllers
             Mail.To.Add(email);
             Mail.Body = "this is my test email body";
             client.Send(Mail);
-            return Redirect("/Page/Details/9");
+            return Redirect("/page/index");
         }
 
-        public static void SendMailInner(string username)
+        public static void SendMailInner(string username, string subj, string content)
         {
             UserDataContext db = new UserDataContext();
 
             var EmailAddress = from user in db.DBUserData
-                       where user.Username == username
-                       select user.Email;
+                               where user.Username == username
+                               select user.Email;
 
             string email = EmailAddress.ToList().First();
-            string subject = "test";
+            string subject = subj;
             string emailFrom = "developdejong@gmail.com";
             string password = "darktranquillity";
             MailMessage Mail = new MailMessage(emailFrom, email);
@@ -55,7 +55,7 @@ namespace Jan_die_alles_kan.Controllers
             client.EnableSsl = true;
             Mail.Subject = subject;
             Mail.To.Add(email);
-            Mail.Body = "this is my test email body";
+            Mail.Body = content;
             client.Send(Mail);
         }
     }
