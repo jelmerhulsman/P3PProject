@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -192,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CartModels.cs" />
     <Compile Include="Models\CustSecurityModel.cs" />
     <Compile Include="Models\PagesModels.cs" />
     <Compile Include="Models\ProfilingModel.cs" />
