@@ -16,6 +16,11 @@ namespace Jan_die_alles_kan.Controllers
         }
         private PagesContext db = new PagesContext();
 
+        public ActionResult Upload()
+        {
+            return View("Upload");
+        }
+
         public ActionResult PageIndex()
         {
             //PagesModels pagemodel = db.Pages.ToList();
