@@ -17,7 +17,7 @@
                     $(this).next().fadeOut(300);
                     $(this).addClass('close').removeClass('open');
                 } else {
-                    $($(this)[0].parentNode).animate({ height: $($(this)[0].parentNode).height() + $(this).next().height() + 20}, 300);
+                    $($(this)[0].parentNode).animate({ height: $($(this)[0].parentNode).height() + $(this).next().height() + 20 }, 300);
                     $(this).next().fadeIn(300);
                     $(this).addClass('open').removeClass('close');
                 }
@@ -57,18 +57,51 @@
             $("#min").text("€" + $("#slider-range").slider("values", 0));
             $("#max").text("€" + $("#slider-range").slider("values", 1));
 
+            $("#overlay").hide();
+
             $("#overlay, #closeOverlay").click(function () {
-                $("#overlay").hide();
+                $("#overlay").fadeOut();
             });
 
             $("#boxOverlay").click(function (event) {
                 event.stopPropagation();
             });
+
+            $("#shoppingCartOverlay").hide();
+
+            $(".shopping").click(function () {
+                $("#shoppingCartOverlay").slideToggle();
+            });
+
+            $("#shoppingCartOverlay").click(function (event) {
+                event.stopPropagation();
+            });
+
+            if ($("#shoppingCartBox ul li").length > 0) {
+                $("#shoppingCartBox ul li:even").css("background-color", "rgba(0,0,0,0.6)");
+            }
+            if ($("#shoppingCartBox ul li").length > 1) {
+                $("#shoppingCartBox ul li:odd").css("background-color", "none");
+            }
+
+            $(".removeItem").click(function () {
+                $(this).parent("li").fadeOut(function () {
+                    $(this).remove();
+
+                    if ($("#shoppingCartBox ul li").length > 0) {
+                        $("#shoppingCartBox ul li:even").css("background-color", "rgba(0,0,0,0.6)");
+                    }
+                    if ($("#shoppingCartBox ul li").length > 1) {
+                        $("#shoppingCartBox ul li:odd").css("background-color", "none");
+                    }
+                });
+            });
         });
     </script>
 </head>
-<body oncontextmenu=""><!-- return false TERUG PLAATSEN -->
-    <div id="main">        
+<body oncontextmenu="">
+    <!-- return false TERUG PLAATSEN -->
+    <div id="main">
         <div class="top">
             <div class="inner">
                 <div class="languages">
@@ -77,12 +110,59 @@
                 </div>
                 <div class="shopping">
                     <a href="javascript:void(0);"><img src="~/Images/Btn/btn_shoppingcart.png" alt="" /><span>3 Photos</span></a>
+                    <div id="shoppingCartOverlay">
+                        <span>
+
+                        </span>
+                        <div id="shoppingCartBox">
+                            <ul>
+                                <li>
+                                    <div class="cartImage">
+
+                                    </div>
+                                    <div class="cartDescription">
+                                        <p>Title here</p>
+                                        <p>Category</p>
+                                        <p>€ 00,00</p>
+                                    </div>
+                                    <p class="removeItem"></p>
+                                    <div class="clear"></div>
+                                </li>
+                                <li>
+                                    <div class="cartImage">
+
+                                    </div>
+                                    <div class="cartDescription">
+                                        <p>Title2 here</p>
+                                        <p>Category2</p>
+                                        <p>€ 00,00</p>
+                                    </div>
+                                    <p class="removeItem"></p>
+                                    <div class="clear"></div>
+                                </li>
+                            </ul>
+                            <div id="cartPrice">
+                                <p>
+                                    Sub total<br />
+                                    Discount<br />
+                                    Total
+                                </p>
+                                <p>
+                                    € 00,00<br />
+                                    10%<br />
+                                    € 00,00
+                                </p>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="#" id="cartCheckOut">Check out</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>   
+        </div>
         <div class="left">
-            <div class="stroke"></div>  
-            <a href="" class="logo"><img src="~/Images/milanovLogoWhite.png" /></a>    
+            <div class="stroke"></div>
+            <a href="" class="logo"><img src="~/Images/milanovLogoWhite.png" /></a>
 
             <div id="filters">
                 <span class="title">Refine collection</span>
@@ -146,16 +226,14 @@
 
                 <button class="btn search">Search</button>
                 <button class="btn cancel">Cancel</button>
-            </div>            
+            </div>
         </div>
         <div class="right">
             <div id="topMenu">
 
             </div>
             <div class="photos">
-                <ul>
-
-                </ul>
+                <ul></ul>
             </div>
         </div>
     </div>
@@ -163,19 +241,17 @@
         <div id="boxOverlay">
             <div id="closeOverlay">
 
-    </div>
-            <div id="picture">
+            </div>
+            <div id="imageOverlay">
 
             </div>
-            <div id="description">
+            <div id="imageDescription">
                 <h2>Titel hier invoeren</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt arcu vel tortor accumsan, nec sodales purus blandit. Donec convallis nibh a odio pretium pellentesque. Proin vestibulum enim nisi, nec fringilla magna adipiscing non.</p>
             </div>
             <div id="addCart">
-                <p>
-                    € 10,00
-                </p>
-                <input id="cartButton" type="button" value="+ Add to cart" />
+                <p> € 00,00 </p>
+                <input id="addToCartButton" type="button" value="+ Add to cart" />
             </div>
         </div>
     </div>

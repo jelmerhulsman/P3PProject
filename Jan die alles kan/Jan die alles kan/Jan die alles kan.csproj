@@ -259,6 +259,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\delete.png" />
     <Content Include="Images\arrow_big.png" />
     <Content Include="Images\bg_top.jpg" />
     <Content Include="Images\Btn\btn_bg_blue.jpg" />
@@ -266,6 +267,7 @@
     <Content Include="Images\Btn\btn_down.png" />
     <Content Include="Images\Btn\btn_down_filter_box.png" />
     <Content Include="Images\Btn\btn_green.png" />
+    <Content Include="Images\Btn\btn_red.png" />
     <Content Include="Images\Btn\btn_shoppingcart.png" />
     <Content Include="Images\Btn\btn_src.png" />
     <Content Include="Images\Btn\btn_up.png" />
@@ -283,6 +285,7 @@
     <Content Include="Images\milanovLogo.png" />
     <Content Include="Images\sticker.png" />
     <Content Include="Images\stroke.png" />
+    <Content Include="Images\triangle.png" />
     <Content Include="Images\tooltip.png" />
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
