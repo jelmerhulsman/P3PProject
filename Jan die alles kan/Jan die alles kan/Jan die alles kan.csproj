@@ -384,9 +384,11 @@
     <Content Include="Views\Catogery\Details.aspx" />
     <Content Include="Views\Catogery\Edit.aspx" />
     <Content Include="Views\Catogery\Index.aspx" />
+    <Content Include="Views\Dashboard\IndexImage.aspx" />
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
-    <Content Include="Views\Dashboard\Upload.aspx" />
+    <Content Include="Views\Dashboard\UploadImage.aspx" />
+    <Content Include="Views\Dashboard\EditImage.aspx" />
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />

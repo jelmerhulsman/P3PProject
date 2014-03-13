@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             return View("Dashboard");
         }
+#region pages LOGIC
         private PagesContext db = new PagesContext();
 
         public ActionResult Upload()
@@ -92,6 +94,58 @@ namespace Jan_die_alles_kan.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+#endregion
+        
+        private PicturesContext db2 = new PicturesContext();
+        
+        public ActionResult UploadImage()
+        {
+            return View();
+        }
+
+        
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UploadImage(UploadModel picture, PictureModel p_model)
+        {
+
+            if (picture.File.ContentLength > 0)
+            {
+                var filename = Path.GetFileName(picture.File.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Pictures"), filename);
+                p_model.File_name = filename;
+                p_model.CTime = DateTime.Now;
+                p_model.MTime = DateTime.Now;
+                picture.File.SaveAs(path);
+                db2.Picture.Add(p_model);
+                db2.SaveChanges();
+            }
+            return RedirectToAction("../Dashboard");
+        }
+
+        public ActionResult EditImage()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditImage(PictureModel p_model)
+        {
+                p_model.MTime = DateTime.Now;
+                db2.Picture.Add(p_model);
+                db2.SaveChanges();
+            return RedirectToAction("../Dashboard");
+        
+        
+        }
+
+        //public ActionResult IndexImage()
+        //{
+        //    //var a = db.Pages.ToList();
+        //    return ();
+        //}
 
 
     }
