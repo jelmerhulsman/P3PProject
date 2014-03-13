@@ -159,22 +159,7 @@ body {
     overflow: visible;
 }
 
-    #right #sticker {
-        float: right;
-        margin-right: -102px;
-        margin-top: -105px;
-        position: relative;
-    }
 
-    #right a {
-        width: 141px;
-        height: 141px;
-        border-radius: 50%;
-        display: block;
-        position: absolute;
-        top: -70px;
-        right: -68px;
-    }
 
     #right p {
         position: absolute;
@@ -190,6 +175,23 @@ body {
         position: absolute;
         bottom: -25px;
         right: 30px;
+    }
+
+      #right #sticker {
+        float: right;
+        margin-right: -102px;
+        margin-top: -105px;
+        position: relative;
+    }
+
+    #right #stickerLink {
+        width: 141px;
+        height: 141px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        top: -70px;
+        right: -68px;
     }
 
 @media only screen and (max-device-width: 600px), only screen and (max-width: 600px) {

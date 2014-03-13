@@ -1,57 +1,43 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head runat="server">
-        <script src="/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector:  "textarea",
-                height: 400,
-                plugins: "code",
-            });
-        </script>
+<head runat="server">
+    <script src="/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            height: 400,
+            plugins: "code",
+        });
+    </script>
 
-        <meta charset="utf-8" />
-        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        <%: Styles.Render("~/Content/css") %>
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title"><%: Html.ActionLink("your logo here", "Details", "Page") %></p>
-                </div>
-                <div class="float-right">
-                    <nav>
-                        <ul id="menu">
-                          
-                            <li><%: Html.ActionLink("Home", "Details", "Page") %></li>
-                            <li><%: Html.ActionLink("About", "About", "Page") %></li>
-                            <li><%: Html.ActionLink("Contact", "Contact", "Page") %></li>
-                           
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
-            <section class="content-wrapper main-content clear-fix">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; <%: DateTime.Now.Year %> - Jelmer's ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+    <meta charset="utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <%: Styles.Render("~/Content/css") %>
+    <%: Scripts.Render("~/bundles/modernizr") %>
+</head>
+<body>
+    <header>
+        <a id="logo" href="/Dashboard"></a>
+        <p>Gerlof Productions</p>
+        <p>Administratie Systeem</p>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </section>
+    </div>
+    <footer>
+        <p>&copy; <%: DateTime.Now.Year %> - Jelmer's ASP.NET MVC Application</p>
+    </footer>
 
-        <%: Scripts.Render("~/bundles/jquery") %>
-        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
-    </body>
+    <%: Scripts.Render("~/bundles/jquery") %>
+    <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+</body>
 </html>
