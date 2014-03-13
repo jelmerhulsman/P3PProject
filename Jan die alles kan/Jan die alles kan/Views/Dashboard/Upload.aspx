@@ -5,18 +5,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
 
-    <% using ( Html.BeginForm("index","Upload", FormMethod.Post, new { enctype = "multipart/form-data"} )) {%>
-   
-   <table>
-       <tr>
-           <td>File:</td>
-           <td><input type="file" name="File" id="File" /></td>
-       </tr>
-       <tr>
-           <td>&nbsp;</td>
-           <td><input type="submit" name="submit" value="Upload" /></td>
-       </tr>
-   </table>
+    <% using ( Html.BeginForm("upload","Upload", FormMethod.Post, new { enctype = "multipart/form-data"} )) {%>
+   File:<br> 
+    <input type="file" name="File" value="File" /><br>
+    Name:<br>
+    <input type="text" name="Name" value="Name" /><br>
+    Category:<br>
+    <input type="text" name="Category" value="Category" /><br>
+    Price:<br>
+    <input type="number" name="Price" value="Price" /><br>
+    Color:<br>
+    <input type="color" name="Color" value="Color" /><br>
+    Discription:<br>
+    <textarea name="Discription">discription</textarea>
+    <br><br>
+    <input type="submit" name="submit" value="Upload" />
+
     <% } %>
 </asp:Content>
 

@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatogeryController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -194,6 +195,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CartModels.cs" />
+    <Compile Include="Models\CatogeryModel.cs" />
     <Compile Include="Models\CustSecurityModel.cs" />
     <Compile Include="Models\PagesModels.cs" />
     <Compile Include="Models\ProfilingModel.cs" />
@@ -377,6 +379,11 @@
     <Content Include="tinymce\skins\lightgray\skin.min.css" />
     <Content Include="tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce\tinymce.min.js" />
+    <Content Include="Views\Catogery\Create.aspx" />
+    <Content Include="Views\Catogery\Delete.aspx" />
+    <Content Include="Views\Catogery\Details.aspx" />
+    <Content Include="Views\Catogery\Edit.aspx" />
+    <Content Include="Views\Catogery\Index.aspx" />
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Dashboard\Upload.aspx" />
@@ -425,6 +432,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Pictures\" />
+    <Folder Include="Images\Catogeries\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
