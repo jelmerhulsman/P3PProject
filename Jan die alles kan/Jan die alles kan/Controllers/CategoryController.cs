@@ -17,15 +17,15 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Category/
 
-        public ActionResult Index()
+        public ActionResult CategoryIndex()
         {
             return View(db.Categories.ToList());
         }
 
         //
-        // GET: /Category/Details/5
+        // GET: /Category/CategoryDetails/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult CategoryDetails(int id = 0)
         {
             Category category = db.Categories.Find(id);
             if (category == null)
@@ -36,19 +36,19 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // GET: /Category/Create
+        // GET: /Category/CategoryCreate
 
-        public ActionResult Create()
+        public ActionResult CategoryCreate()
         {
             return View();
         }
 
         //
-        // POST: /Category/Create
+        // POST: /Category/CategoryCreate
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Category category)
+        public ActionResult CategoryCreate(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -63,9 +63,9 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // GET: /Category/Edit/5
+        // GET: /Category/CategoryEdit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult CategoryEdit(int id = 0)
         {
             Category category = db.Categories.Find(id);
             if (category == null)
@@ -76,11 +76,11 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Category/Edit/5
+        // POST: /Category/CategoryEdit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Category category)
+        public ActionResult CategoryEdit(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -99,9 +99,9 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // GET: /Category/Delete/5
+        // GET: /Category/CategoryDelete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult CategoryDelete(int id = 0)
         {
             Category category = db.Categories.Find(id);
             if (category == null)
@@ -112,11 +112,11 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Category/Delete/5
+        // POST: /Category/CategoryDelete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult CategoryDeleteConfirmed(int id)
         {
             Category category = db.Categories.Find(id);
             string pad = Server.MapPath("~/Images/Categories/" + category.Name);
@@ -125,12 +125,6 @@ namespace Jan_die_alles_kan.Controllers
             db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

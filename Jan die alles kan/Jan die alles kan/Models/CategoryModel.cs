@@ -19,12 +19,12 @@ namespace Jan_die_alles_kan.Models
         public DbSet<Category> Categories { get; set; }
     }
 
-    [Table("Categorie")]
+    [Table("Category")]
     public class Category
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
     }
 }

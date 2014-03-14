@@ -188,7 +188,6 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\PageController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Images\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
