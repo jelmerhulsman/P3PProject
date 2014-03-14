@@ -123,7 +123,7 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("../Dashboard");
         }
 
-        public ActionResult ImageEdit()
+        public ActionResult EditImage()
         {
             return View();
         }
@@ -131,7 +131,7 @@ namespace Jan_die_alles_kan.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ImageEdit(PictureModel p_model)
+        public ActionResult EditImage(PictureModel p_model)
         {
                 p_model.MTime = DateTime.Now;
                 db2.Picture.Add(p_model);
@@ -141,7 +141,7 @@ namespace Jan_die_alles_kan.Controllers
         
         }
 
-        public ActionResult ImageIndex()
+        public ActionResult IndexImage()
         {
             var a = db.Pages.ToList();
             return View(a);
