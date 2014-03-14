@@ -24,14 +24,12 @@
 <body>
     <header>
         <a id="logo" href="/Dashboard"></a>
-        <p>Gerlof Productions</p>
         <p>Administratie Systeem</p>
+        <p>Gerlof Productions</p>
     </header>
     <div id="body">
         <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
-        <section class="content-wrapper main-content clear-fix">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </section>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>
     <footer>
         <p>&copy; <%: DateTime.Now.Year %> - Jelmer's ASP.NET MVC Application</p>
