@@ -42,11 +42,11 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Discription) %>
+            <%: Html.LabelFor(model => model.Description) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Discription) %>
-            <%: Html.ValidationMessageFor(model => model.Discription) %>
+            <%: Html.EditorFor(model => model.Description) %>
+            <%: Html.ValidationMessageFor(model => model.Description) %>
         </div>
 
         <div class="editor-label">

@@ -98,7 +98,7 @@ namespace Jan_die_alles_kan.Controllers
         
         private PicturesContext db2 = new PicturesContext();
         
-        public ActionResult UploadImage()
+        public ActionResult ImageUpload()
         {
             return View();
         }
@@ -106,7 +106,7 @@ namespace Jan_die_alles_kan.Controllers
         
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult UploadImage(UploadModel picture, PictureModel p_model)
+        public ActionResult ImageUpload(UploadModel picture, PictureModel p_model)
         {
 
             if (picture.File.ContentLength > 0)
@@ -123,7 +123,7 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("../Dashboard");
         }
 
-        public ActionResult EditImage()
+        public ActionResult ImageEdit()
         {
             return View();
         }
@@ -131,7 +131,7 @@ namespace Jan_die_alles_kan.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditImage(PictureModel p_model)
+        public ActionResult ImageEdit(PictureModel p_model)
         {
                 p_model.MTime = DateTime.Now;
                 db2.Picture.Add(p_model);
@@ -141,7 +141,7 @@ namespace Jan_die_alles_kan.Controllers
         
         }
 
-        public ActionResult IndexImage()
+        public ActionResult ImageIndex()
         {
             var a = db.Pages.ToList();
             return View(a);

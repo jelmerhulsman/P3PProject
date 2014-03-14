@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.Catogery>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.Category>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Details
@@ -9,7 +9,7 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Catogery</legend>
+    <legend>Category</legend>
 
     <div class="display-label">
         <%: Html.DisplayNameFor(model => model.Name) %>

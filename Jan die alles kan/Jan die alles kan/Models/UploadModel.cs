@@ -34,7 +34,7 @@ namespace Jan_die_alles_kan.Models
             public DateTime MTime { get; set; }
             public DateTime CTime { get; set; }
             public string Color { get; set; }
-            public string Discription { get; set; }
+            public string Description { get; set; }
             public string File_name { get; set; }
             public float Price { get; set; }
         }   

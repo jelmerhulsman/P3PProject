@@ -16,8 +16,8 @@
     <input type="number" name="Price" value="Price" /><br>
     Color:<br>
     <input type="color" name="Color" value="Color" /><br>
-    Discription:<br>
-    <textarea name="Discription">discription</textarea>
+    Description:<br>
+    <textarea name="Description" placeholder="Description"></textarea>
     <br><br>
     <input type="submit" name="submit" value="Upload" />
 

@@ -33,6 +33,6 @@ namespace Jan_die_alles_kan.Models
         public int Status { get; set; }
         public int Pageposition { get; set; }
         public string Seokey { get; set; }
-        public string Seodiscription { get; set; }
+        public string Seodescription { get; set; }
     }   
 }

@@ -29,7 +29,7 @@
             <%: Html.DisplayNameFor(model => model.Color) %>
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.Discription) %>
+            <%: Html.DisplayNameFor(model => model.Description) %>
         </th>
         <th>
             <%: Html.DisplayNameFor(model => model.File_name) %>
@@ -58,7 +58,7 @@
             <%: Html.DisplayFor(modelItem => item.Color) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.Discription) %>
+            <%: Html.DisplayFor(modelItem => item.Description) %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.File_name) %>

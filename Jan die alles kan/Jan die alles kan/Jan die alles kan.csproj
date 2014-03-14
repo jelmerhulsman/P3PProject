@@ -182,20 +182,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CatogeryController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Images\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CartModels.cs" />
-    <Compile Include="Models\CatogeryModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CustSecurityModel.cs" />
     <Compile Include="Models\PagesModels.cs" />
     <Compile Include="Models\ProfilingModel.cs" />
@@ -379,17 +379,17 @@
     <Content Include="tinymce\skins\lightgray\skin.min.css" />
     <Content Include="tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce\tinymce.min.js" />
-    <Content Include="Views\Catogery\Create.aspx" />
-    <Content Include="Views\Catogery\Delete.aspx" />
-    <Content Include="Views\Catogery\Details.aspx" />
-    <Content Include="Views\Catogery\Edit.aspx" />
-    <Content Include="Views\Catogery\Index.aspx" />
-    <Content Include="Views\Dashboard\EditImage.aspx" />
-    <Content Include="Views\Dashboard\IndexImage.aspx" />
+    <Content Include="Views\Category\CategoryCreate.aspx" />
+    <Content Include="Views\Category\CategoryDelete.aspx" />
+    <Content Include="Views\Category\CategoryDetails.aspx" />
+    <Content Include="Views\Category\CategoryEdit.aspx" />
+    <Content Include="Views\Category\CategoryIndex.aspx" />
+    <Content Include="Views\Dashboard\ImageEdit.aspx" />
+    <Content Include="Views\Dashboard\ImageIndex.aspx" />
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
-    <Content Include="Views\Dashboard\UploadImage.aspx" />
-    <Content Include="Views\Page\Details.aspx" />
+    <Content Include="Views\Dashboard\ImageUpload.aspx" />
+    <Content Include="Views\Page\PageDetails.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />
     <Content Include="Views\Shared\Dashboard.aspx" />
@@ -434,6 +434,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Pictures\" />
+    <Folder Include="Filters\" />
     <Folder Include="Images\Catogeries\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>

@@ -8,19 +8,19 @@ using System.Web.Security;
 
 namespace Jan_die_alles_kan.Models
 {
-    public class CatogeryContext : DbContext
+    public class CategoryContext : DbContext
     {
-        public CatogeryContext()
+        public CategoryContext()
             : base("DefaultConnection")
         {
-            Database.SetInitializer<CatogeryContext>(null);
+            Database.SetInitializer<CategoryContext>(null);
         }
 
-        public DbSet<Catogery> Catogeries { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 
     [Table("Categorie")]
-    public class Catogery
+    public class Category
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

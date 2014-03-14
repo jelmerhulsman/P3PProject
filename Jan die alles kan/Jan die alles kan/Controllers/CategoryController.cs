@@ -10,33 +10,33 @@ using System.IO;
 
 namespace Jan_die_alles_kan.Controllers
 {
-    public class CatogeryController : Controller
+    public class CategoryController : Controller
     {
-        private CatogeryContext db = new CatogeryContext();
+        private CategoryContext db = new CategoryContext();
 
         //
-        // GET: /Catogery/
+        // GET: /Category/
 
         public ActionResult Index()
         {
-            return View(db.Catogeries.ToList());
+            return View(db.Categories.ToList());
         }
 
         //
-        // GET: /Catogery/Details/5
+        // GET: /Category/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            Catogery catogery = db.Catogeries.Find(id);
-            if (catogery == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(catogery);
+            return View(category);
         }
 
         //
-        // GET: /Catogery/Create
+        // GET: /Category/Create
 
         public ActionResult Create()
         {
@@ -44,85 +44,85 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Catogery/Create
+        // POST: /Category/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Catogery catogery)
+        public ActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Catogeries.Add(catogery);
+                db.Categories.Add(category);
                 db.SaveChanges();
-                string pad = Server.MapPath("~/Images/Catogeries/" + catogery.Name);
+                string pad = Server.MapPath("~/Images/Categories/" + category.Name);
                 Directory.CreateDirectory(pad);
                 return RedirectToAction("Index");
             }
 
-            return View(catogery);
+            return View(category);
         }
 
         //
-        // GET: /Catogery/Edit/5
+        // GET: /Category/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            Catogery catogery = db.Catogeries.Find(id);
-            if (catogery == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(catogery);
+            return View(category);
         }
 
         //
-        // POST: /Catogery/Edit/5
+        // POST: /Category/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Catogery catogery)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-                Catogery previous = db.Catogeries.Find(catogery.Id);
-                db.Catogeries.Remove(previous);
-                db.Catogeries.Add(catogery);
+                Category previous = db.Categories.Find(category.Id);
+                db.Categories.Remove(previous);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 
-                string pad = Server.MapPath("~/Images/Catogeries/" + catogery.Name);
-                string oldPad = Server.MapPath("~/Images/Catogeries/" + previous.Name);
+                string pad = Server.MapPath("~/Images/Categories/" + category.Name);
+                string oldPad = Server.MapPath("~/Images/Categories/" + previous.Name);
                 Directory.Move(oldPad, pad);
 
                 return RedirectToAction("Index");
             }
-            return View(catogery);
+            return View(category);
         }
 
         //
-        // GET: /Catogery/Delete/5
+        // GET: /Category/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            Catogery catogery = db.Catogeries.Find(id);
-            if (catogery == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(catogery);
+            return View(category);
         }
 
         //
-        // POST: /Catogery/Delete/5
+        // POST: /Category/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Catogery catogery = db.Catogeries.Find(id);
-            string pad = Server.MapPath("~/Images/Catogeries/" + catogery.Name);
+            Category category = db.Categories.Find(id);
+            string pad = Server.MapPath("~/Images/Categories/" + category.Name);
 
             Directory.Delete(pad);
-            db.Catogeries.Remove(catogery);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

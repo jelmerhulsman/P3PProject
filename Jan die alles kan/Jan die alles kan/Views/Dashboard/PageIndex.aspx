@@ -32,7 +32,7 @@
             <%: Html.DisplayNameFor(model => model.Seokey) %>
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.Seodiscription) %>
+            <%: Html.DisplayNameFor(model => model.Seodescription) %>
         </th>
         <th></th>
     </tr>
@@ -60,7 +60,7 @@
           <%: Html.DisplayFor(modelItem => item.Seokey) %>
         </td>
         <td>
-          <%: Html.DisplayFor(modelItem => item.Seodiscription) %>
+          <%: Html.DisplayFor(modelItem => item.Seodescription) %>
         </td>
     </tr>
 <% } %>
