@@ -36,7 +36,7 @@ namespace Jan_die_alles_kan.Models
             public string Color { get; set; }
             public string Description { get; set; }
             public string File_name { get; set; }
-            public float Price { get; set; }
+            public decimal Price { get; set; }
         }   
 
 

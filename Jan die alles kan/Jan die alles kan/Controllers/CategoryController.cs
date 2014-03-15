@@ -84,7 +84,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             if (ModelState.IsValid)
             {
-                Category previous = db.Categories.Find(category.Id);
+                Category previous = db.Categories.Find(category.ID);
                 db.Categories.Remove(previous);
                 db.Categories.Add(category);
                 db.SaveChanges();

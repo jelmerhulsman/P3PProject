@@ -143,8 +143,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult ImageIndex()
         {
-            var a = db.Pages.ToList();
-            return View(a);
+            return View(db2.Picture.ToList());
         }
     }
 }
