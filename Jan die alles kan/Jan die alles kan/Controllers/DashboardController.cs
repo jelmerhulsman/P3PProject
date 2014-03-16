@@ -133,11 +133,15 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateInput(false)]
         public ActionResult ImageEdit(PictureModel p_model)
         {
+            if (ModelState.IsValid)
+            {
                 p_model.MTime = DateTime.Now;
+                db2.Entry(p_model).State = EntityState.Modified;
                 db2.Picture.Add(p_model);
                 db2.SaveChanges();
-            return RedirectToAction("../Dashboard");
-        
+                return RedirectToAction("../Dashboard");
+            }
+            return View(p_model);
         
         }
 

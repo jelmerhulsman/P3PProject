@@ -9,7 +9,7 @@
 <h2>Dashboard</h2>
     <p> <%: Html.ActionLink("Image Index","ImageIndex") %> </p>
     <p> <%: Html.ActionLink("Page Index","PageIndex") %> </p>
-    <p> <%: Html.ActionLink("Upload Image","UploadImage") %> </p>
+    <p> <%: Html.ActionLink("Upload Image","ImageUpload") %> </p>
             
         
 </asp:Content>

@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>ImageIndex</h2>
-
+        <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
     <%: Html.ActionLink("Create New", "Create") %>
 </p>
@@ -67,7 +67,7 @@
             <%: Html.DisplayFor(modelItem => item.Price) %>
         </td>
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
+            <%: Html.ActionLink("Edit", "ImageEdit", new { id=item.Id }) %> |
             <%: Html.ActionLink("Details", "Details", new { id=item.Id }) %> |
             <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
         </td>

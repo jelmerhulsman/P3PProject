@@ -388,7 +388,7 @@
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageUpload.aspx" />
-    <Content Include="Views\Page\PageDetails.aspx" />
+    <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />
     <Content Include="Views\Shared\Dashboard.aspx" />
