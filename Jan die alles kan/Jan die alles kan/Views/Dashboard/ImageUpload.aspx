@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
         <p><a href="/DashBoard">Back to dashboard</a></p>
 
-    <% using ( Html.BeginForm("UploadImage","Upload", FormMethod.Post, new { enctype = "multipart/form-data"} )) {%>
+    <% using ( Html.BeginForm("ImageUpload","Dashboard", FormMethod.Post, new { enctype = "multipart/form-data"} )) {%>
    File:<br> 
     <input type="file" name="File" value="File" /><br>
     Name:<br>

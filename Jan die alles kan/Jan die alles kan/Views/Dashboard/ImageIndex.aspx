@@ -9,7 +9,7 @@
 <h2>ImageIndex</h2>
         <p><a href="/DashBoard">Back to dashboard</a></p>
 <p>
-    <%: Html.ActionLink("Create New", "Create") %>
+    <%: Html.ActionLink("Create New", "ImageUpload") %>
 </p>
 <table>
     <tr>

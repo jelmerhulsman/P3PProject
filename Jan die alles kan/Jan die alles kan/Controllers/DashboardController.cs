@@ -123,9 +123,14 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("../Dashboard");
         }
 
-        public ActionResult ImageEdit()
+        public ActionResult ImageEdit(int id = 0)
         {
-            return View();
+            PictureModel Picturemodel = db2.Picture.Find(id);
+            if (Picturemodel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Picturemodel);
         }
 
 
@@ -133,11 +138,14 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateInput(false)]
         public ActionResult ImageEdit(PictureModel p_model)
         {
+            ModelState.Remove("CTime");
             if (ModelState.IsValid)
             {
                 p_model.MTime = DateTime.Now;
+                //p_model.CTime = p_model.CTime;
+                //db2.Entry(p_model).Entity.CTime;
                 db2.Entry(p_model).State = EntityState.Modified;
-                db2.Picture.Add(p_model);
+                //db2.Picture.Add(p_model);
                 db2.SaveChanges();
                 return RedirectToAction("../Dashboard");
             }

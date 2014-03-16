@@ -28,6 +28,7 @@ namespace Jan_die_alles_kan.Models
         {
             [Key]
             [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+            
             public int Id { get; set; }
             public string Name { get; set; }
             public string Category { get; set; }
