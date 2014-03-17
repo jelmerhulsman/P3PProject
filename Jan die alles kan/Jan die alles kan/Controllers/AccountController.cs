@@ -40,7 +40,7 @@ namespace Jan_die_alles_kan.Controllers
             //ip te checken.
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                if (CustSecurity.IPCheck(Secure.Details(), Request.UserHostAddress))
+                if (CustSecurity.IPCheck(Secure.Details(model.UserName), Request.UserHostAddress))
                 {
                     return RedirectToLocal(returnUrl);
                 }
