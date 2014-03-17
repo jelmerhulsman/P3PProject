@@ -391,6 +391,8 @@
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />
+    <Content Include="Views\Page\Landingpage.aspx" />
+    <Content Include="Views\Page\Overview.aspx" />
     <Content Include="Views\Shared\Dashboard.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -417,10 +419,10 @@
     <Content Include="Views\Shared\_LoginPartial.aspx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Page\Landingpage.cshtml">
+    <Content Include="Views\Page\Landingpage_old.cshtml">
       <BrowseToURL>~/Page/Landingpage</BrowseToURL>
     </Content>
-    <Content Include="Views\Page\Overview.cshtml" />
+    <Content Include="Views\Page\Overview_old.cshtml" />
     <Content Include="tinymce\langs\readme.md" />
     <Content Include="tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
