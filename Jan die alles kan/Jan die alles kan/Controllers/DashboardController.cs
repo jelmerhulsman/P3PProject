@@ -97,25 +97,22 @@ namespace Jan_die_alles_kan.Controllers
 #endregion
         
         private PicturesContext db2 = new PicturesContext();
-        private CategoryContext dbcategories = new CategoryContext();
         
         public ActionResult ImageUpload()
         {
-          
-            Category c = new Category();
-                return View(dbcategories.Categories.ToList());
+            return View();
         }
 
         
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
+        public ActionResult ImageUpload(UploadModel picture, PictureModel p_model)
         {
-            
+
             if (picture.File.ContentLength > 0)
             {
                 var filename = Path.GetFileName(picture.File.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/"), filename);
+                var path = Path.Combine(Server.MapPath("~/Content/Pictures"), filename);
                 p_model.File_name = filename;
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;

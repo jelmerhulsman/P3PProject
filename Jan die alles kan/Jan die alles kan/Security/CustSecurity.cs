@@ -7,11 +7,11 @@ namespace Jan_die_alles_kan
 {
     public static class CustSecurity
     {
-        public static bool IPCheck(string[] IPArray, string IP)
+        public static bool IPCheck(IPProfile[] IPArray, string IP)
         {
             for (int i = 0; i < IPArray.Length; i++)
             {
-                if (IPArray[i] == IP)
+                if (IPArray[i].IP == IP)
                 {
                     return true;
                 }

@@ -18,18 +18,14 @@ namespace Jan_die_alles_kan.Controllers
             return View(db.IPProfiles.ToList());
         }
 
-        public string[] Details(string username)
+        public IPProfile[] Details()
         {
-            var intermediate = from profile in db.IPProfiles
-                               where profile.Username == username
-                               select profile.IP;
-
-            string[] ipArray = intermediate.ToArray();
-            if (ipArray == null)
+            IPProfile[] ipprofile = db.IPProfiles.ToArray<IPProfile>();
+            if (ipprofile == null)
             {
                 return null;
             }
-            return ipArray;
+            return ipprofile;
         }
 
         public ActionResult Create()
@@ -172,9 +168,9 @@ namespace Jan_die_alles_kan.Controllers
             return false;
         }
 
-        public ActionResult test(string id)
+        public ActionResult test(int id = 0)
         {
-            if (CheckAddIP(id))
+            if (CheckAddIP(Convert.ToString(id)))
             {
                 return Redirect("/account/login");
             }

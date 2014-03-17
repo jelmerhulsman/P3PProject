@@ -1,26 +1,17 @@
-﻿<% @ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Jan_die_alles_kan.Models.Category>>"%>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Jan_die_alles_kan.Models.UploadModel>>" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
         <p><a href="/DashBoard">Back to dashboard</a></p>
 
-    <% using ( Html.BeginForm("ImageUpload","Dashboard", FormMethod.Post, new { enctype = "multipart/form-data"} )) { %>
+    <% using ( Html.BeginForm("ImageUpload","Dashboard", FormMethod.Post, new { enctype = "multipart/form-data"} )) {%>
    File:<br> 
     <input type="file" name="File" value="File" /><br>
     Name:<br>
     <input type="text" name="Name" value="Name" /><br>
-    Category:<br><select name="Category" >
-    <% foreach (var item in Model)
-   {%>
-    
-        <option value="<%: item.Name  %>"><%: item.Name  %></option>
-    
-   <%
-   }
-   %></select>
-   
+    Category:<br>
+    <input type="text" name="Category" value="Category" /><br>
     Price:<br>
     <input type="number" name="Price" value="Price" /><br>
     Color:<br>
