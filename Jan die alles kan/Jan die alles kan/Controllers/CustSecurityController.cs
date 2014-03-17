@@ -122,7 +122,7 @@ namespace Jan_die_alles_kan.Controllers
             db.SaveChanges();
 
             //Hier klopt ie nog niet, moet de juiste link zijn
-            MailController.SendMailInner(ipProfile.Username, "IP verificatie", "Hallo, er is geprobeert om op uw account in te loggen vanaf een IP dat niet eerder hiervoor is gebruikt. Als u dit was kunt u op de link hieronder klikken. Was u dit niet, dan hoeft u niks te doen. " + "http//milanov.tk/" + validationString);
+            //MailController.SendMailInner(ipProfile.Username, "IP verificatie", "Hallo, er is geprobeert om op uw account in te loggen vanaf een IP dat niet eerder hiervoor is gebruikt. Als u dit was kunt u op de link hieronder klikken. Was u dit niet, dan hoeft u niks te doen. " + "http//milanov.tk/" + validationString);
         }
 
         private string GenerateCode()
@@ -140,7 +140,7 @@ namespace Jan_die_alles_kan.Controllers
             return validationString;
         }
 
-        public void CheckAddIP(string code)
+        public bool CheckAddIP(string code)
         {
             IPVerificationContext db = new IPVerificationContext();
 
@@ -158,6 +158,25 @@ namespace Jan_die_alles_kan.Controllers
 
                 dbNew.IPProfiles.Add(newProfile);
                 dbNew.SaveChanges();
+
+                db.IPVerificationEntries.Remove(IPVerification);
+                db.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public ActionResult test(int id = 0)
+        {
+            if (CheckAddIP(Convert.ToString(id)))
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                return Redirect("/");
             }
         }
     }
