@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    <%: Html.ActionLink("Create New", "Create") %>
+    <%: Html.ActionLink("Create New", "CategoryCreate") %>
 </p>
 <table>
     <tr>
@@ -25,9 +25,9 @@
             <%: Html.DisplayFor(modelItem => item.Name) %>
         </td>
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Details", "Details", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
+            <%: Html.ActionLink("Edit", "CategoryEdit", new { id=item.ID }) %> |
+            <%: Html.ActionLink("Details", "CategoryDetails", new { id=item.ID }) %> |
+            <%: Html.ActionLink("Delete", "CategoryDelete", new { id=item.ID }) %>
         </td>
     </tr>
 <% } %>
