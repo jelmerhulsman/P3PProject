@@ -194,7 +194,6 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CartModels.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CustSecurityModel.cs" />
     <Compile Include="Models\PagesModels.cs" />
     <Compile Include="Models\ProfilingModel.cs" />
@@ -388,6 +387,7 @@
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageUpload.aspx" />
+    <Content Include="Views\Dashboard\Partial_category.ascx" />
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />
