@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+<head runat="server">
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <title>Gerlof Productions</title>
     <link href="../../Content/Landingpage.css" rel="stylesheet" />
@@ -74,7 +74,7 @@
         <div class="open"><img src="../../Images/Btn/btn_up.png" /></div>
         <div class="close"><img src="../../Images/Btn/btn_down.png" /></div>
         <div class="floating">
-            <img src="../../Images/sticker.png" id="sticker" />
+            <img src="../../Images/sticker.png" class="sticker" />
         </div>
         <div id="left">
             <h1>Direct Login</h1>
@@ -90,8 +90,8 @@
         </div>
 
         <div id="right">
-            <img src="../../Images/sticker.png" id="sticker" />
-            <a href="../../Account/Register" id="stickerLink"></a>
+            <img src="../../Images/sticker.png" />
+            <a href="../../Account/Register"></a>
             <p>New on <br /> Gerlof Productions?</p>
             <img src="../../Images/arrow_big.png" id="arrow" />
         </div>

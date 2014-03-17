@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+<head runat="server">
     <meta name="viewport" content="width=device-width" />
     <title>Gerlof Productions</title>
     <link href="../../Content/Overview.css" rel="stylesheet" />
@@ -23,7 +23,11 @@
                     $(this).next().fadeIn(300);
                     $(this).addClass('open').removeClass('close');
                 }
+                console.log("Hoogte:");
+                console.log($('body').height());
             });
+
+            $('#filtersContainer').css("height", $('body').height());
 
             $('.color').hover(function () {
                 $(this).prev().stop().show().animate({ opacity: 1 }, 300);
@@ -59,6 +63,8 @@
             $("#min").text("€" + $("#slider-range").slider("values", 0));
             $("#max").text("€" + $("#slider-range").slider("values", 1));
 
+            $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
+
             $("#overlay").hide();
 
             $("#overlay, #closeOverlay").click(function () {
@@ -68,18 +74,6 @@
             $("#boxOverlay").click(function (event) {
                 event.stopPropagation();
             });
-
-            function setCartText() {
-                var cartButtonText = $("#shoppingCartBox ul li").length
-
-                if (cartButtonText == 1)
-                    cartButtonText += " Photo";
-                else
-                    cartButtonText += " Photos";
-
-
-                $(".shopping a span").html(cartButtonText);
-            }
 
             setCartText();
 
@@ -115,69 +109,28 @@
                 });
             });
         });
+
+        $(window).resize(function () {
+            //$('#main .top').css('max-width', $(window).width() - 260);
+            $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
+        });
+
+        function setCartText() {
+            var cartButtonText = $("#shoppingCartBox ul li").length
+
+            if (cartButtonText == 1)
+                cartButtonText += " Photo";
+            else
+                cartButtonText += " Photos";
+
+
+            $(".shopping a span").html(cartButtonText);
+        }
     </script>
 </head>
 <body oncontextmenu="">
     <!-- return false TERUG PLAATSEN -->
-    <div id="main">
-        <div class="top">
-            <div class="inner">
-                <div class="languages">
-                    <a href="#">
-                        <img src="../../Images/nl.jpg" alt="Dutch" /></a>
-                    <a href="#" class="selected">
-                        <img src="../../Images/en.jpg" alt="English" /></a>
-                </div>
-                <div class="shopping">
-                    <a href="javascript:void(0);">
-                        <img src="../../Images/Btn/btn_shoppingcart.png" alt="" /><span>... Photos</span></a>
-                    <div id="shoppingCartOverlay">
-                        <span></span>
-                        <div id="shoppingCartBox">
-                            <ul>
-                                <li>
-                                    <div class="cartImage">
-                                    </div>
-                                    <div class="cartDescription">
-                                        <p>Title here</p>
-                                        <p>Category</p>
-                                        <p>€ 00,00</p>
-                                    </div>
-                                    <p class="removeItem"></p>
-                                    <div class="clear"></div>
-                                </li>
-                                <li>
-                                    <div class="cartImage">
-                                    </div>
-                                    <div class="cartDescription">
-                                        <p>Title2 here</p>
-                                        <p>Category2</p>
-                                        <p>€ 00,00</p>
-                                    </div>
-                                    <p class="removeItem"></p>
-                                    <div class="clear"></div>
-                                </li>
-                            </ul>
-                            <div id="cartPrice">
-                                <p>
-                                    Sub total<br />
-                                    Discount<br />
-                                    Total
-                                </p>
-                                <p>
-                                    € 00,00<br />
-                                    10%<br />
-                                    € 00,00
-                                </p>
-                                <div class="clear"></div>
-                            </div>
-                            <a href="#" id="cartCheckOut">Check out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="left">
+<div id="filtersContainer">
             <div class="stroke"></div>
             <a href="" class="logo">
                 <img src="../../Images/milanovLogoWhite.png" /></a>
@@ -270,11 +223,209 @@
                 <button class="btn cancel">Cancel</button>
             </div>
         </div>
+    <div id="main">
+        <div class="top">
+            <div class="inner">
+                <div class="languages">
+                    <a href="#">
+                        <img src="../../Images/nl.jpg" alt="Dutch" /></a>
+                    <a href="#" class="selected">
+                        <img src="../../Images/en.jpg" alt="English" /></a>
+                </div>
+                <div class="shopping">
+                    <a href="javascript:void(0);">
+                        <img src="../../Images/Btn/btn_shoppingcart.png" alt="" /><span>... Photos</span></a>
+                    <div id="shoppingCartOverlay">
+                        <span></span>
+                        <div id="shoppingCartBox">
+                            <ul>
+                                <li>
+                                    <div class="cartImage">
+                                    </div>
+                                    <div class="cartDescription">
+                                        <p>Title here</p>
+                                        <p>Category</p>
+                                        <p>€ 00,00</p>
+                                    </div>
+                                    <p class="removeItem"></p>
+                                    <div class="clear"></div>
+                                </li>
+                                <li>
+                                    <div class="cartImage">
+                                    </div>
+                                    <div class="cartDescription">
+                                        <p>Title2 here</p>
+                                        <p>Category2</p>
+                                        <p>€ 00,00</p>
+                                    </div>
+                                    <p class="removeItem"></p>
+                                    <div class="clear"></div>
+                                </li>
+                            </ul>
+                            <div id="cartPrice">
+                                <p>
+                                    Sub total<br />
+                                    Discount<br />
+                                    Total
+                                </p>
+                                <p>
+                                    € 00,00<br />
+                                    10%<br />
+                                    € 00,00
+                                </p>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="#" id="cartCheckOut">Check out</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="login">
+                    <a href="#">Login &gt;</a>
+                </div>
+            </div>
+        </div>
         <div class="right">
             <div id="topMenu">
+                 <form action="" method="post">
+                    <select name="sortBy">
+                        <option value="priceHL">Prijs hoog - laag</option>
+                        <option value="priceLH">Prijs laag - hoog</option>
+                        <option value="nameAZ">Naam A - Z</option>
+                        <option value="nameZA">Naam Z - A</option>
+                    </select>
+                </form>
             </div>
-            <div class="photos">
-                <ul></ul>
+            <div id="photos">
+                <ul>
+                    <li class="toprow">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li class="toprow">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li class="toprow">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li class="last toprow">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li class="last">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                    <li class="last">
+                        <img src="../../Images/testPhoto.jpg" alt="" />
+                        <div class="description">
+                            <h3>Titel</h3>
+                            <p>Category: Nature</p>
+                            <span class="price">&euro; 11,99</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div id="pagination">
+                <div class="left">
+                    <a class="disabled" href="#">&lt;</a>
+                </div>
+                <div class="center">
+                    <a class="disabled" href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                </div>
+                <div class="right">
+                    <a href="#">&gt;</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <div class="inner">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a>
+                        <ul>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Eco photos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="special">Sign up, it's free!</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="clear"></div>
             </div>
         </div>
     </div>

@@ -177,14 +177,14 @@ body {
         right: 30px;
     }
 
-      #right #sticker {
+      #right img:nth-child(1) {
         float: right;
         margin-right: -102px;
         margin-top: -105px;
         position: relative;
     }
 
-    #right #stickerLink {
+    #right a {
         width: 141px;
         height: 141px;
         border-radius: 50%;

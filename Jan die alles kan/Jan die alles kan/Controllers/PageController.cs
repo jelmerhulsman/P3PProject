@@ -25,6 +25,21 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        public ActionResult Content(int Id = 0)
+        {
+            PagesModels pagemodel = db.Pages.Find(Id);
+
+            if (pagemodel == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Name = pagemodel.Name;
+            ViewBag.Content = pagemodel.Content;
+
+            return View();
+        }
+
         public ActionResult BackToDashboard()
         {
             return RedirectToAction("Dashboard/index");
