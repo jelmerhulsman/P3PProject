@@ -12,40 +12,21 @@ namespace Jan_die_alles_kan
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapRoute(
-                 name: "Dashboard",
-                 url: "{controller}/{action}/{id}",
-                 defaults: new { controller = "Dashboard", action = "Index", id = 1 } //UrlParameter.Optional
-             );
-            
-            /*
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("Page/{*pathInfo}");
-            routes.IgnoreRoute("UploadDownload/{*pathInfo}");
-            routes.MapRoute(
-               name: "dashboardAction",
-               url: "Dashboard/{id}",
-               defaults: new
-               {
-                   controller = "Dashboard",
-                   action = "Index",
-                   id = UrlParameter.Optional
-               }
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Page", action = "Landingpage", id = 1 } //UrlParameter.Optional
             );
 
             routes.MapRoute(
-               name: "dashboardPage",
-               url: "Dashboard/{controller}/{id}",
-               defaults: new
-               {
-                   action = "Index",
-                   id = UrlParameter.Optional
-               }
+                 name: "Dashboard",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new { controller = "Dashboard", action = "Index", id = 1 } //UrlParameter.Optional
             );
-            */
+
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Page", action = "Details", id = 1 } //UrlParameter.Optional
+                     name: "Account",
+                     url: "{controller}/{action}/{id}",
+                     defaults: new { controller = "Account", action = "Manage", id = 1 } //UrlParameter.Optional
             );
         }
     }
