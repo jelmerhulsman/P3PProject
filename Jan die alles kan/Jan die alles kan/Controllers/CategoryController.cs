@@ -52,11 +52,19 @@ namespace Jan_die_alles_kan.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                string pad = Server.MapPath("~/Images/Categories/" + category.Name);
-                Directory.CreateDirectory(pad);
-                return RedirectToAction("Index");
+                var intermediate = from cato in db.Categories
+                                   where cato.Name == category.Name
+                                   select cato;
+                if (intermediate.Count() == 0)
+                {
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    string pad = Server.MapPath("~/Images/Categories/" + category.Name);
+                    Directory.CreateDirectory(pad);
+                }
+
+                return RedirectToAction("/CategoryIndex");
+
             }
 
             return View(category);
