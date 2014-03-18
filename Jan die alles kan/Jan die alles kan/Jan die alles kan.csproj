@@ -348,6 +348,7 @@
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageUpload.aspx" />
+    <Content Include="Views\Dashboard\SendMail.aspx" />
     <Content Include="Views\Page\Content.aspx" />
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />

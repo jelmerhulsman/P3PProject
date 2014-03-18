@@ -9,7 +9,7 @@
 <h2>MailSend</h2>
     <p><a href="/DashBoard">Back to dashboard</a></p>
 
-        <% using ( Html.BeginForm("SendMail2","Dashboard", FormMethod.Post, new { enctype = "multipart/form-data"} )) { %>
+        <% using ( Html.BeginForm("SendMail","Mail", FormMethod.Post, new { enctype = "multipart/form-data"} )) { %>
     Email-adress:<br>
     <input type="text" name="email" value="email" /><br>
     subject:<br>
