@@ -13,6 +13,7 @@ namespace Jan_die_alles_kan.Controllers
     {
 
         private PagesContext db = new PagesContext();
+        private PicturesContext db_pictures = new PicturesContext();
 
        
         public ActionResult Landingpage()
@@ -22,7 +23,7 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Overview()
         {
-            return View();
+            return View(db_pictures.Picture.ToList());
         }
 
         public ActionResult Content(int Id = 0)
