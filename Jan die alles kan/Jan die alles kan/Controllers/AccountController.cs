@@ -40,16 +40,23 @@ namespace Jan_die_alles_kan.Controllers
             //ip te checken.
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                if (CustSecurity.IPCheck(Secure.Details(model.UserName), Request.UserHostAddress))
+                if (User.IsInRole("Admin"))
                 {
-                    return RedirectToLocal(returnUrl);
+                    if (CustSecurity.IPCheck(Secure.Details(model.UserName), Request.UserHostAddress))
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        WebSecurity.Logout();
+                        Secure.createIPVerification(new IPProfile(model.UserName, Request.UserHostAddress));
+                        ModelState.AddModelError("", "IP is not certified, an email has been sent to your account");
+                        return View(model);
+                    }
                 }
                 else
                 {
-                    WebSecurity.Logout();
-                    Secure.createIPVerification(new IPProfile(model.UserName, Request.UserHostAddress));
-                    ModelState.AddModelError("", "IP is not certified, an email has been sent to your account");
-                    return View(model);
+                    return RedirectToLocal(returnUrl);
                 }
             }
 
@@ -97,9 +104,11 @@ namespace Jan_die_alles_kan.Controllers
                         db.DBUserData.Add(dataProfile);
                         db.SaveChanges();
 
+                        /*
                         Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
                         WebSecurity.Login(model.UserName, model.Password);
                         return RedirectToAction("Index", "Page");
+                        */
                     }
                     else
                     {

@@ -182,6 +182,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -346,6 +348,7 @@
     <Content Include="Views\Dashboard\PageCreate.aspx" />
     <Content Include="Views\Dashboard\PageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageUpload.aspx" />
+    <Content Include="Views\Dashboard\SendMail.aspx" />
     <Content Include="Views\Page\Content.aspx" />
     <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />

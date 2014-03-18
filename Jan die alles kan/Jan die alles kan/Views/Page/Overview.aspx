@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Jan_die_alles_kan.Models.PictureModel>>" %>
 
 <!DOCTYPE html>
 
@@ -107,17 +107,26 @@
                     }
                 });
             });
+
+            $('btn.search').click(function () {
+                $.post("http://localhost:52802/Ajax/Filter", null, function (data) {
+                    console.log(data);
+                });
+            })
         });
 
         $(window).resize(function () {
             //$('#main .top').css('max-width', $(window).width() - 260);
             $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
+
+            $('#filtersContainer').css("height", $('body').height());
+            $('.stroke').css("height", $('body').height());
         });
 
         function setCartText() {
             var cartButtonText = $("#shoppingCartBox ul li").length
 
-            if (cartButtonText == 1)
+            if (cartButtonText < 1)
                 cartButtonText += " Photo";
             else
                 cartButtonText += " Photos";
@@ -296,102 +305,30 @@
             </div>
             <div id="photos">
                 <ul>
-                    <li class="toprow">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
+                    <% 
+                        int i = 1;
+                        string Class = "";
+                        foreach(var item in Model){
+                            if (i % 4 == 0)
+                            {
+                                Class = "last";
+                            }
+                            else {
+                                Class = "";
+                            }
+                    %>
+                    <li class="toprow <%: Class %>">
+                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />
                         <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
+                            <h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>
+                            <p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>
+                            <span class="price">&euro; <%: Html.DisplayFor(modelItem => item.Price) %></span>
                         </div>
                     </li>
-                    <li class="toprow">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li class="toprow">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li class="last toprow">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li class="last">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
-                    <li class="last">
-                        <img src="../../Images/testPhoto.jpg" alt="" />
-                        <div class="description">
-                            <h3>Titel</h3>
-                            <p>Category: Nature</p>
-                            <span class="price">&euro; 11,99</span>
-                        </div>
-                    </li>
+                    <% 
+                            i++;
+                        } 
+                    %>                    
                 </ul>
                 <div class="clear"></div>
             </div>

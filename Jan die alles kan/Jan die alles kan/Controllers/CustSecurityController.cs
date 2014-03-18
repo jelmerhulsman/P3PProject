@@ -103,6 +103,10 @@ namespace Jan_die_alles_kan.Controllers
 
         public void createIPVerification(IPProfile ipProfile)
         {
+            //Insert your domain here to be able to send correct email verification
+            //Insert it like this: http://www.yourname.com
+            string hostAdress = "";
+            
             IPVerificationContext db = new IPVerificationContext();
             string validationString;
 
@@ -125,9 +129,10 @@ namespace Jan_die_alles_kan.Controllers
 
             db.IPVerificationEntries.Add(verification);
             db.SaveChanges();
-
-            //Hier klopt ie nog niet, moet de juiste link zijn
-            //MailController.SendMailInner(ipProfile.Username, "IP verificatie", "Hallo, er is geprobeert om op uw account in te loggen vanaf een IP dat niet eerder hiervoor is gebruikt. Als u dit was kunt u op de link hieronder klikken. Was u dit niet, dan hoeft u niks te doen. " + "http//milanov.tk/" + validationString);
+            if (hostAdress != "")
+            {
+                MailController.SendMailInner(ipProfile.Username, "IP verificatie", "Hallo, er is geprobeert om op uw account in te loggen vanaf een IP dat niet eerder hiervoor is gebruikt. Als u dit was kunt u op de link hieronder klikken. Was u dit niet, dan hoeft u niks te doen. " + hostAdress + "/test/" + validationString);
+            }
         }
 
         private string GenerateCode()
