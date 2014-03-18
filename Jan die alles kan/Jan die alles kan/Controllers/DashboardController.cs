@@ -15,6 +15,11 @@ namespace Jan_die_alles_kan.Controllers
         {
             return View("Dashboard");
         }
+
+        public ActionResult SendMail()
+        {
+            return View("SendMail");
+        }
 #region pages LOGIC
         private PagesContext db = new PagesContext();
 
