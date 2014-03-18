@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>ImageEdit</h2>
-        <p><a href="/DashBoard/Index">Back to dashboard</a></p>
+        <p><a href="/Dashboard/Index">Back to dashboard</a></p>
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
     <%: Html.ValidationSummary(true) %>
