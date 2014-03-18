@@ -23,7 +23,7 @@
 </head>
 <body>
     <header>
-        <a id="logo" href="/Dashboard"></a>
+        <a id="logo" href="/Dashboard/Index"></a>
         <p>Administratie Systeem</p>
         <p>Gerlof Productions</p>
     </header>

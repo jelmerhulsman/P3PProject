@@ -58,6 +58,14 @@
             });
 
             $('body *').not(':has(input)').not('input').disableSelection();
+
+            $('#login').click(function (event) {
+                event.preventDefault();
+
+                $.post("http://localhost:52802/Account/FormLogin", { username: $('input[name="username"]').val(), password: $('input[name="password"]').val() }, function (data) {
+                    alert(data);
+                });
+            })
         });
     </script>
 </head>
@@ -71,34 +79,41 @@
     </div>
 
     <div id="footer">
-        <div class="open"><img src="../../Images/Btn/btn_up.png" /></div>
-        <div class="close"><img src="../../Images/Btn/btn_down.png" /></div>
+        <div class="open">
+            <img src="../../Images/Btn/btn_up.png" />
+        </div>
+        <div class="close">
+            <img src="../../Images/Btn/btn_down.png" />
+        </div>
         <div class="floating">
             <img src="../../Images/sticker.png" class="sticker" />
         </div>
         <div id="left">
             <h1>Direct Login</h1>
-            <form>
-                <input name="name" class="field" type="text" placeholder="Name" />
-                <input name="password" class="field" type="password" placeholder="Password" />
-                <input id="button" type="submit" value="Login" />
+            <form id="loginForm" action="http://localhost:52802/Account/FormLogin" method="post">
+                <input type="text" name="username" id="username" class="field" placeholder="Username" />
+                <input type="password" name="password" id="password" class="field" placeholder="Password" />
+                <input type="submit" id="login" value="Login" />
             </form>
         </div>
 
         <div id="stroke">
-
         </div>
 
         <div id="right">
             <img src="../../Images/sticker.png" />
             <a href="../../Account/Register"></a>
-            <p>New on <br /> Gerlof Productions?</p>
+            <p>
+                New on
+                <br />
+                Gerlof Productions?
+            </p>
             <img src="../../Images/arrow_big.png" id="arrow" />
         </div>
-
         <div class="clear"></div>
     </div>
 
     <div class="slideshow"></div>
+
 </body>
 </html>
