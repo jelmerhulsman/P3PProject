@@ -98,6 +98,7 @@ namespace Jan_die_alles_kan.Controllers
         
         private PicturesContext db2 = new PicturesContext();
         private CategoryContext dbcategories = new CategoryContext();
+#region Image LOGIC
         public ActionResult ImageUpload()
         {
 
@@ -160,6 +161,129 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult ImageIndex()
         {
             return View(db2.Picture.ToList());
+        }
+#endregion
+        //private CategoryContext db = new CategoryContext();
+
+        //
+        // GET: /Category/
+
+        public ActionResult CategoryIndex()
+        {
+            return View(dbcategories.Categories.ToList());
+        }
+
+        //
+        // GET: /Category/CategoryDetails/5
+
+        //public ActionResult CategoryDetails(int id = 0)
+        //{
+        //    Category category = dbcategories.Categories.Find(id);
+        //    if (category == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(category);
+        //}
+
+        //
+        // GET: /Category/CategoryCreate
+
+        public ActionResult CategoryCreate()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Category/CategoryCreate
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoryCreate(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var intermediate = from cato in dbcategories.Categories
+                                   where cato.Name == category.Name
+                                   select cato;
+                if (intermediate.Count() == 0)
+                {
+                    dbcategories.Categories.Add(category);
+                    dbcategories.SaveChanges();
+                    string pad = Server.MapPath("~/Images/Categories/" + category.Name);
+                    Directory.CreateDirectory(pad);
+                }
+
+                return RedirectToAction("/CategoryIndex");
+
+            }
+
+            return View(category);
+        }
+
+        ////
+        //// GET: /Category/CategoryEdit/5
+
+        //public ActionResult CategoryEdit(int id = 0)
+        //{
+        //    Category category = dbcategories.Categories.Find(id);
+        //    if (category == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(category);
+        //}
+
+        ////
+        //// POST: /Category/CategoryEdit/5
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult CategoryEdit(Category category)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Category previous = dbcategories.Categories.Find(category.ID);
+        //        dbcategories.Categories.Remove(previous);
+        //        dbcategories.Categories.Add(category);
+        //        dbcategories.SaveChanges();
+
+        //        string pad = Server.MapPath("~/Images/Categories/" + category.Name);
+        //        string oldPad = Server.MapPath("~/Images/Categories/" + previous.Name);
+        //        Directory.Move(oldPad, pad);
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(category);
+        //}
+
+        //
+        // GET: /Category/CategoryDelete/5
+
+        public ActionResult CategoryDelete(int id = 0)
+        {
+            Category category = dbcategories.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        //
+        // POST: /Category/CategoryDelete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoryDeleteConfirmed(int id)
+        {
+            Category category = dbcategories.Categories.Find(id);
+            string pad = Server.MapPath("~/Images/Categories/" + category.Name);
+
+            Directory.Delete(pad);
+            dbcategories.Categories.Remove(category);
+            dbcategories.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
