@@ -41,6 +41,7 @@ namespace Jan_die_alles_kan.Controllers
         }
         //[ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize (Roles="Admin")]
         [ValidateInput(false)]
         public ActionResult PageCreate(PagesModels pagesmodels)
         {
