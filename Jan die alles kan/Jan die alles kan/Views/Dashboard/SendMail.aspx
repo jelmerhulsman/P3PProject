@@ -17,7 +17,7 @@
     content:<br>
     <textarea name="content" placeholder="content"></textarea>
     <br><br>
-    <input type="submit" name="submit" value="Upload" />
+    <input type="submit" name="submit" value="Send" />
 
     <% } %>
 </asp:Content>
