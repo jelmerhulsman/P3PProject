@@ -25,8 +25,6 @@
             <%: Html.DisplayFor(modelItem => item.Name) %>
         </td>
         <td>
-                       <%: Html.ActionLink("Edit", "CategoryEdit", new { id=item.ID }) %> |
-            <%: Html.ActionLink("Details", "CategoryDetails", new { id=item.ID }) %> |
             <%: Html.ActionLink("Delete", "CategoryDelete", new { id=item.ID }) %>
 
         </td>
