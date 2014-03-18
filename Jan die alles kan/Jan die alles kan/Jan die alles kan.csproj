@@ -229,6 +229,7 @@
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
     <Content Include="Images\nl.jpg" />
+    <Content Include="Images\bg_bottom.jpg" />
     <Content Include="Images\Slides\slide1.jpg" />
     <Content Include="Images\Slides\slide2.jpg" />
     <Content Include="Images\Slides\slide3.jpg" />

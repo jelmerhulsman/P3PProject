@@ -64,7 +64,7 @@
 <body>
     <div id="main">
         <img src="../../Images/milanovLogoBlack.png" />
-        <form action="Overview" method="get">
+        <form action="http://localhost:52802/Page/Overview" method="get">
             <input name="search" id="searchField" type="text" placeholder="Search images or just browse..." />
             <input id="searchButton" type="submit" value="Search >" />
         </form>

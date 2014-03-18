@@ -23,11 +23,10 @@
                     $(this).next().fadeIn(300);
                     $(this).addClass('open').removeClass('close');
                 }
-                console.log("Hoogte:");
-                console.log($('body').height());
             });
 
             $('#filtersContainer').css("height", $('body').height());
+            $('.stroke').css("height", $('body').height());
 
             $('.color').hover(function () {
                 $(this).prev().stop().show().animate({ opacity: 1 }, 300);
