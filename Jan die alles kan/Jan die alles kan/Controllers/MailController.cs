@@ -13,30 +13,7 @@ namespace Jan_die_alles_kan.Controllers
     {
         
         
-        [ValidateInput(false)]
-        public ActionResult SendMail()
-        {
-            string email = Request.Form["email"];
-            string subject = Request.Form["subject"];
-            string content = Request.Unvalidated.Form["content"];
-            string emailFrom = "developdejong@gmail.com";
-            string password = "darktranquillity";
-            MailMessage Mail = new MailMessage(emailFrom, email);
-            SmtpClient client = new SmtpClient();
-            client.Port = 587;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Host = "smtp.gmail.com";
-            client.Credentials = new NetworkCredential(emailFrom, password);
-            client.EnableSsl = true;
-            Mail.Subject = subject;
-            Mail.To.Add(email);
-            //WebUtility.HtmlEncode(content);
-            Mail.Body = content;
-            Mail.IsBodyHtml = true;
-            client.Send(Mail);
-            return Redirect("../Dashboard/Index");
-        }
+        
 
         public static void SendMailInner(string username, string subj, string content)
         {

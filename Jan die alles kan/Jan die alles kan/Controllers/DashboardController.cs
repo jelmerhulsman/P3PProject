@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,6 +21,31 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult SendMail()
         {
             return View("SendMail");
+        }
+
+        [ValidateInput(false)]
+        public ActionResult SendMail2()
+        {
+            string email = Request.Form["email"];
+            string subject = Request.Form["subject"];
+            string content = Request.Unvalidated.Form["content"];
+            string emailFrom = "developdejong@gmail.com";
+            string password = "darktranquillity";
+            MailMessage Mail = new MailMessage(emailFrom, email);
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = "smtp.gmail.com";
+            client.Credentials = new NetworkCredential(emailFrom, password);
+            client.EnableSsl = true;
+            Mail.Subject = subject;
+            Mail.To.Add(email);
+            //WebUtility.HtmlEncode(content);
+            Mail.Body = content;
+            Mail.IsBodyHtml = true;
+            client.Send(Mail);
+            return Redirect("../Dashboard/Index");
         }
 #region pages LOGIC
         private PagesContext db = new PagesContext();

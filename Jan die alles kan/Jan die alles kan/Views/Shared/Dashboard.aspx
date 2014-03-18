@@ -11,6 +11,7 @@
     <p> <%: Html.ActionLink("Page Index","PageIndex") %> </p>
     <p> <%: Html.ActionLink("Upload Image","ImageUpload") %> </p>
     <p> <%: Html.ActionLink("Category Index","CategoryIndex") %> </p>
+    <p> <%: Html.ActionLink("Send Mail", "SendMail") %></p>
 
             
         
