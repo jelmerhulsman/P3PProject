@@ -13,11 +13,13 @@ namespace Jan_die_alles_kan.Controllers
 {
     public class DashboardController : Controller
     {
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View("Dashboard");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult SendMail()
         {
             return View("SendMail");
@@ -50,18 +52,21 @@ namespace Jan_die_alles_kan.Controllers
 #region pages LOGIC
         private PagesContext db = new PagesContext();
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Upload()
         {
             return View("Upload");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult PageIndex()
         {
             //PagesModels pagemodel = db.Pages.ToList();
             ViewBag.Content = "content";
             return View(db.Pages.ToList());
         }
-        //[Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult PageCreate()
         {
             return View();
@@ -82,7 +87,7 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult PageEdit(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -95,6 +100,7 @@ namespace Jan_die_alles_kan.Controllers
 
         //[ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult PageEdit(PagesModels pagesmodels)
         {
@@ -107,7 +113,7 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult PageDelete(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -119,6 +125,7 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult PageDeleteConfirmed(int id)
         {
@@ -132,6 +139,7 @@ namespace Jan_die_alles_kan.Controllers
         private PicturesContext db2 = new PicturesContext();
         private CategoryContext dbcategories = new CategoryContext();
 #region Image LOGIC
+        [Authorize(Roles = "Admin")]
         public ActionResult ImageUpload()
         {
 
@@ -142,6 +150,7 @@ namespace Jan_die_alles_kan.Controllers
 
         
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
         {
@@ -161,6 +170,7 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("../Dashboard");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult ImageEdit(int id = 0)
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
@@ -173,6 +183,7 @@ namespace Jan_die_alles_kan.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult ImageEdit(PictureModel p_model)
         {
@@ -191,6 +202,7 @@ namespace Jan_die_alles_kan.Controllers
         
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult ImageIndex()
         {
             return View(db2.Picture.ToList());
@@ -201,6 +213,7 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Category/
 
+        [Authorize(Roles = "Admin")]
         public ActionResult CategoryIndex()
         {
             return View(dbcategories.Categories.ToList());
@@ -222,6 +235,7 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Category/CategoryCreate
 
+        [Authorize(Roles = "Admin")]
         public ActionResult CategoryCreate()
         {
             return View();
@@ -231,6 +245,7 @@ namespace Jan_die_alles_kan.Controllers
         // POST: /Category/CategoryCreate
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryCreate(Category category)
         {
@@ -293,6 +308,7 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Category/CategoryDelete/5
 
+        [Authorize(Roles = "Admin")]
         public ActionResult CategoryDelete(int id = 0)
         {
             Category category = dbcategories.Categories.Find(id);
@@ -307,6 +323,7 @@ namespace Jan_die_alles_kan.Controllers
         // POST: /Category/CategoryDelete/5
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryDeleteConfirmed(int id)
         {
