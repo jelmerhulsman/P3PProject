@@ -3,7 +3,7 @@
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <p><a href="/DashBoard">Back to dashboard</a></p>
+        <p><a href="/DashBoard/Index">Back to dashboard</a></p>
 
     <% using ( Html.BeginForm("ImageUpload","Dashboard", FormMethod.Post, new { enctype = "multipart/form-data"} )) { %>
    File:<br> 

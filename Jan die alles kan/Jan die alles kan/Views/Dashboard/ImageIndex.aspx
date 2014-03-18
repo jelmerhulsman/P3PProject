@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>ImageIndex</h2>
-        <p><a href="/DashBoard">Back to dashboard</a></p>
+        <p><a href="/DashBoard/Index">Back to dashboard</a></p>
 <p>
     <%: Html.ActionLink("Create New", "ImageUpload") %>
 </p>
