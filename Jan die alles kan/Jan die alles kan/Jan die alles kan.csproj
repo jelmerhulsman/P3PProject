@@ -325,11 +325,11 @@
     <Content Include="tinymce\skins\lightgray\skin.min.css" />
     <Content Include="tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce\tinymce.min.js" />
-    <Content Include="Views\Category\CategoryCreate.aspx" />
-    <Content Include="Views\Category\CategoryDelete.aspx" />
-    <Content Include="Views\Category\CategoryDetails.aspx" />
-    <Content Include="Views\Category\CategoryEdit.aspx" />
-    <Content Include="Views\Category\CategoryIndex.aspx" />
+    <Content Include="Views\Dashboard\CategoryCreate.aspx" />
+    <Content Include="Views\Dashboard\CategoryDelete.aspx" />
+    <Content Include="Views\Dashboard\CategoryDetails.aspx" />
+    <Content Include="Views\Dashboard\CategoryEdit.aspx" />
+    <Content Include="Views\Dashboard\CategoryIndex.aspx" />
     <Content Include="Views\Dashboard\ImageEdit.aspx" />
     <Content Include="Views\Dashboard\ImageIndex.aspx" />
     <Content Include="Views\Dashboard\PageCreate.aspx" />
