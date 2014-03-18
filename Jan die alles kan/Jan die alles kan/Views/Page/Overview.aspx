@@ -108,6 +108,12 @@
                     }
                 });
             });
+
+            $('btn.search').click(function () {
+                $.post("http://localhost:52802/Ajax/Filter", null, function (data) {
+                    console.log(data);
+                });
+            })
         });
 
         $(window).resize(function () {
@@ -118,7 +124,7 @@
         function setCartText() {
             var cartButtonText = $("#shoppingCartBox ul li").length
 
-            if (cartButtonText == 1)
+            if (cartButtonText < 1)
                 cartButtonText += " Photo";
             else
                 cartButtonText += " Photos";
