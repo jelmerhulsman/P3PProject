@@ -376,16 +376,20 @@ namespace Jan_die_alles_kan.Controllers
         //
         // POST: /Category/CategoryDelete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("CategoryDelete")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryDeleteConfirmed(int id)
         {
             Category category = dbcategories.Categories.Find(id);
             string pad = Server.MapPath("~/Images/Categories/" + category.Name);
-
-            Directory.Delete(pad);
-            
+            try
+            {
+                Directory.Delete(pad);
+            }
+            catch
+            {
+            }
             dbcategories.Categories.Remove(category);
             dbcategories.SaveChanges();
             return RedirectToAction("Index");
