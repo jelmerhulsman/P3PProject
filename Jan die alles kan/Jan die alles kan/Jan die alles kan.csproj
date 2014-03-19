@@ -208,6 +208,7 @@
     <Content Include="Content\Content.css" />
     <Content Include="Content\Overview.css" />
     <Content Include="Content\Landingpage.css" />
+    <Content Include="Content\Account.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -361,7 +362,7 @@
     <Content Include="Views\Dashboard\PageIndex.aspx" />
     <Content Include="Views\Page\_unused\Landingpage_old.aspx" />
     <Content Include="Views\Page\Overview.aspx" />
-    <Content Include="Views\Shared\Dashboard.aspx" />
+    <Content Include="Views\Dashboard\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -400,6 +401,7 @@
     <Content Include="tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Views\Page\_unused\Content_old.cshtml" />
+    <Content Include="Views\Shared\Account.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
