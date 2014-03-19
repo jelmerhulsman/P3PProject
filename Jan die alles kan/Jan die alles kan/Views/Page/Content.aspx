@@ -11,7 +11,7 @@
     <script src="../../Scripts/jquery-ui-1.8.24.min.js"></script>
     <script src="../../Scripts/backstretch.js"></script>
     
-    <script src="../../Scripts/Global/slideshow.js"></script>
+    <script src="../../Scripts/Global_Page/slideshow.js"></script>
 
     <script src="../../Scripts/Content_Page/resize-blocks.js"></script>
 </head>
