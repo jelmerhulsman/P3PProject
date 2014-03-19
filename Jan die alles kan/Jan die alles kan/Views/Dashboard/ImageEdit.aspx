@@ -18,6 +18,7 @@
         <%: Html.HiddenFor(model => model.Id) %>
         <%: Html.HiddenFor(model => model.CTime) %>
         <%: Html.HiddenFor(model => model.File_name) %>
+        <%: Html.HiddenFor(model => model.Category) %>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Name) %>
