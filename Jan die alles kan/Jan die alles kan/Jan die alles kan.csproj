@@ -256,8 +256,7 @@
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\Content_Page\resize-blocks.js" />
     <Content Include="Scripts\Global_Page\slideshow.js" />
-    <Content Include="Scripts\Landingpage_Page\footer.js" />
-    <Content Include="Scripts\Landingpage_Page\login.js" />
+    <Content Include="Scripts\Landingpage_Page\login-bar.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -377,8 +376,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Account\_ChangePasswordPartial.aspx" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.aspx" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.aspx" />
     <Content Include="Views\Account\_SetPasswordPartial.aspx" />
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\Manage.aspx" />

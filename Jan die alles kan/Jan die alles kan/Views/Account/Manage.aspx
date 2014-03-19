@@ -18,13 +18,6 @@
     } else {
         Html.RenderPartial("_SetPasswordPartial");
     } %>
-
-    <section id="externalLogins">
-        <%: Html.Action("RemoveExternalLogins") %>
-
-        <h3>Add an external login</h3>
-        <%: Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl }) %>
-    </section>
 </asp:Content>
 
 <asp:Content ID="scriptsContent" ContentPlaceHolderID="ScriptsSection" runat="server">
