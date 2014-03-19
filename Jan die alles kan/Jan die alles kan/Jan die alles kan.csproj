@@ -237,6 +237,7 @@
     <Content Include="Images\Btn\btn_up_filter_box.png" />
     <Content Include="Images\check.png" />
     <Content Include="Images\en.jpg" />
+    <Content Include="Images\imageNotFound.jpg" />
     <Content Include="Images\milanovLogoBlack.png" />
     <Content Include="Images\milanovLogoWhite.png" />
     <Content Include="Images\nl.jpg" />
@@ -400,6 +401,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Pictures\" />
     <Folder Include="Filters\" />
+    <Folder Include="Images\Categories\Gitaar\Thumbnails\" />
     <Folder Include="Images\Categories\sdgs\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>
