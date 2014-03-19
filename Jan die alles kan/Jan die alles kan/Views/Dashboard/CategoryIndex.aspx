@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Index</h2>
+<h2>Add or remove a category</h2>
 
 <p>
     <%: Html.ActionLink("Create New", "CategoryCreate") %>

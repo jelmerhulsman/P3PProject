@@ -1,17 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.PictureModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    ImageEdit
+    Edit <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>ImageEdit</h2>
+
         <p><a href="/Dashboard/Index">Back to dashboard</a></p>
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
     <%: Html.ValidationSummary(true) %>
 
+    <h2>Edit image "<%: Html.DisplayFor(model => model.Name) %>"</h2>
     <fieldset>
         <legend>PictureModel</legend>
 

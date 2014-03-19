@@ -1,14 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.PagesModels>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    PageDelete
+    Delete <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>PageDelete</h2>
+<h2>Delete page "<%: Html.DisplayFor(model => model.Name) %>"</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete <%: Html.DisplayFor(model => model.Name) %>?</h3>
 <fieldset>
     <legend>PagesModels</legend>
 

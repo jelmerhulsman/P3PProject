@@ -1,20 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.PictureModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    ImageDelete
+    Delete <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>ImageDelete</h2>
+<h2>Delete image "<%: Html.DisplayFor(model => model.Name) %>"</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete "<%: Html.DisplayFor(model => model.Name) %>"?</h3>
 <fieldset>
     <legend>PictureModel</legend>
 
     <div class="display-label">
         <%: Html.DisplayNameFor(model => model.Name) %>
     </div>
+    
     <div class="display-field">
         <%: Html.DisplayFor(model => model.Name) %>
     </div>

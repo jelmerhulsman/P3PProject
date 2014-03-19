@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Jan_die_alles_kan.Models.PictureModel>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    ImageIndex
+    Image Controls
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>ImageIndex</h2>
+<h2>Image Controls</h2>
         <p><a href="/Dashboard/Index">Back to dashboard</a></p>
 <p>
     <%: Html.ActionLink("Create New", "ImageUpload") %>

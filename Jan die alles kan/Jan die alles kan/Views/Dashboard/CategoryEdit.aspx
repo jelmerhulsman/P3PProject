@@ -1,21 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.Category>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Edit
+    Edit <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Edit</h2>
+
 
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
     <%: Html.ValidationSummary(true) %>
-
+    <h2>Edit Category "<%: Html.DisplayFor(model => model.Name) %>"</h2>
     <fieldset>
         <legend>Category</legend>
 
-        <%: Html.HiddenFor(model => model.Id) %>
+        <%: Html.HiddenFor(model => model.ID) %>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Name) %>

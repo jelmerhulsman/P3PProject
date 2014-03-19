@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.Category>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Delete
+    Delete <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Delete <%: Html.DisplayFor(model => model.Name) %> Category?</h2>
+<h2>Delete "<%: Html.DisplayFor(model => model.Name) %>" Category?</h2>
 
 <h3>    <%
         string dir = Server.MapPath("~/Images/Categories/" + Model.Name);
@@ -15,7 +15,9 @@
       files = System.IO.Directory.GetFiles(dir);
       numFiles = files.Length;
   
-  if (numFiles > 0)
+  if (numFiles == 1)
+      Response.Write("WARNING, This folder still contains " + numFiles + " image! Are you sure? ");
+  else if (numFiles > 1)
       Response.Write("WARNING, This folder still contains " + numFiles + " images! Are you sure? ");
   else
       Response.Write("Are you sure you want to delete this category?");

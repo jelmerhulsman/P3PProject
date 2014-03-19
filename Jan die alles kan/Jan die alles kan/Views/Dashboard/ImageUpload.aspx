@@ -22,6 +22,7 @@
             <%}
         %>
     </select><br>
+        <p> <%: Html.ActionLink("Add/Remove a Category","CategoryIndex") %> </p>
     Price:<br>
     <input type="number" name="Price"/><br>
     Color:<br>

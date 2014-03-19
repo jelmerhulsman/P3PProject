@@ -7,11 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>Dashboard</h2>
-    <p> <%: Html.ActionLink("Image Index","ImageIndex") %> </p>
-    <p> <%: Html.ActionLink("Page Index","PageIndex") %> </p>
-    <p> <%: Html.ActionLink("Upload Image","ImageUpload") %> </p>
-    <p> <%: Html.ActionLink("Category Index","CategoryIndex") %> </p>
-    <p> <%: Html.ActionLink("Send Mail", "SendMail") %></p>
+    <p> <%: Html.ActionLink("Image Controls","ImageIndex") %> </p>
+    <p> <%: Html.ActionLink("Page Controls","PageIndex") %> </p>
+    <p> <%: Html.ActionLink("Upload an Image","ImageUpload") %> </p>
+    <p> <%: Html.ActionLink("Add/Remove a Category","CategoryIndex") %> </p>
+    <p> <%: Html.ActionLink("Send a Mail", "SendMail") %></p>
 
             
         

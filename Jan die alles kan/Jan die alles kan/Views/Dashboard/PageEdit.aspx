@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.PagesModels>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    PageEdit
+    Edit <%: Html.DisplayFor(model => model.Name) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>PageEdit</h2>
+<h2>Edit page "<%: Html.DisplayFor(model => model.Name) %>"</h2>
         <p><a href="/Dashboard/Index">Back to dashboard</a></p>
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>

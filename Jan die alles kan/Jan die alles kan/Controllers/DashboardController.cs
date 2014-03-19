@@ -273,18 +273,6 @@ namespace Jan_die_alles_kan.Controllers
             return View(dbcategories.Categories.ToList());
         }
 
-        //
-        // GET: /Category/CategoryDetails/5
-
-        //public ActionResult CategoryDetails(int id = 0)
-        //{
-        //    Category category = dbcategories.Categories.Find(id);
-        //    if (category == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(category);
-        //}
 
         //
         // GET: /Category/CategoryCreate

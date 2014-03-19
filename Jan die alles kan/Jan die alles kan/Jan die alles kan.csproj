@@ -346,7 +346,6 @@
     <Content Include="tinymce\tinymce.min.js" />
     <Content Include="Views\Dashboard\CategoryCreate.aspx" />
     <Content Include="Views\Dashboard\CategoryDelete.aspx" />
-    <Content Include="Views\Dashboard\CategoryDetails.aspx" />
     <Content Include="Views\Dashboard\CategoryEdit.aspx" />
     <Content Include="Views\Dashboard\CategoryIndex.aspx" />
     <Content Include="Views\Dashboard\ImageDelete.aspx" />
