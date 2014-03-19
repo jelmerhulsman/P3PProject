@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -159,15 +161,36 @@ namespace Jan_die_alles_kan.Controllers
             {
                 var filename = Path.GetFileName(picture.File.FileName);
                 var path = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/"), filename);
+                var ThumPath = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"), filename);
 
                 p_model.File_name = filename;
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;
                 picture.File.SaveAs(path);
+                Image Thumb = makeThumb(picture.File);
+                Thumb.Save(ThumPath);
                 db2.Picture.Add(p_model);
                 db2.SaveChanges();
             }
             return RedirectToAction("../Dashboard/Index");
+        }
+
+        private Image makeThumb(HttpPostedFileBase file)
+        {
+            Image image = Image.FromStream(file.InputStream, true, true);
+            Image logo = Image.FromFile(Server.MapPath("~/Images/milanovLogo.png"));
+            Graphics g = System.Drawing.Graphics.FromImage(image);
+            Bitmap TransparentLogo = new Bitmap(image.Width, image.Height);
+            TransparentLogo.SetResolution(image.HorizontalResolution / 2, image.VerticalResolution / 2);
+            Graphics TGraphics = Graphics.FromImage(TransparentLogo);
+            ColorMatrix ColorMatrix = new ColorMatrix();
+            ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
+            ImageAttributes ImgAttributes = new ImageAttributes();
+            ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2), 0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2, GraphicsUnit.Pixel, ImgAttributes);
+            TGraphics.Dispose();
+            g.DrawImage(TransparentLogo, (image.Width/2), (image.Height / 2));
+            return image;
         }
 
         [Authorize(Roles = "Admin")]
