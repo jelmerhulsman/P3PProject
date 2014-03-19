@@ -10,27 +10,10 @@
     <script src="../../Scripts/jquery-1.8.2.min.js"></script>
     <script src="../../Scripts/jquery-ui-1.8.24.min.js"></script>
     <script src="../../Scripts/backstretch.js"></script>
+    
+    <script src="../../Scripts/Global/slideshow.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.slideshow').backstretch([
-                "http://localhost:52802/Images/Slides/slide1.jpg",
-                "http://localhost:52802/Images/Slides/slide2.jpg",
-                "http://localhost:52802/Images/Slides/slide3.jpg",
-                "http://localhost:52802/Images/Slides/slide4.jpg",
-                "http://localhost:52802/Images/Slides/slide5.jpg"
-            ], { duration: 6000, fade: 1500 });
-
-
-            $('#top .inner').css('max-width', $(window).width() - 20);
-            $('#content .right').css('max-width', $('#content').width() - 300);
-        });
-
-        $(window).resize(function () {
-            $('#top .inner').css('max-width', $(window).width() - 20);
-            $('#content .right').css('max-width', $('#content').width() - 300);
-        });
-    </script>
+    <script src="../../Scripts/Content_Page/resize-blocks.js"></script>
 </head>
 
 <body>
