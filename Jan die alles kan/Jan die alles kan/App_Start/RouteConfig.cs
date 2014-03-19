@@ -14,20 +14,12 @@ namespace Jan_die_alles_kan
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Page", action = "Landingpage", id = 1 } //UrlParameter.Optional
-            );
-
-            routes.MapRoute(
-                 name: "Dashboard",
-                 url: "{controller}/{action}/{id}",
-                 defaults: new { controller = "Dashboard", action = "Index", id = 1 } //UrlParameter.Optional
-            );
-
-            routes.MapRoute(
-                     name: "Account",
-                     url: "{controller}/{action}/{id}",
-                     defaults: new { controller = "Account", action = "Manage", id = 1 } //UrlParameter.Optional
-            );
+                defaults: new
+                {
+                    controller = "Page",
+                    action = "Landingpage",
+                    id = UrlParameter.Optional
+                });
         }
     }
 }

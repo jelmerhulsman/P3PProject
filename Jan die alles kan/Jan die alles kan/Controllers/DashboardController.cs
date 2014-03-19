@@ -18,7 +18,7 @@ namespace Jan_die_alles_kan.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            return View("Dashboard");
+            return View("Index");
         }
 
         [Authorize(Roles = "Admin")]
