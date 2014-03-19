@@ -161,6 +161,8 @@ namespace Jan_die_alles_kan.Controllers
             {
                 var filename = Path.GetFileName(picture.File.FileName);
                 var path = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/"), filename);
+                string thumppad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/");
+                Directory.CreateDirectory(thumppad);
                 var ThumPath = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"), filename);
 
                 p_model.File_name = filename;
@@ -189,7 +191,7 @@ namespace Jan_die_alles_kan.Controllers
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2), 0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, (image.Width/2), (image.Height / 2));
+            g.DrawImage(TransparentLogo, (image.Width/2) - (TransparentLogo.Width/2), (image.Height / 2) - (TransparentLogo.Height/4));
             return image;
         }
 
