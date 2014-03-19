@@ -113,6 +113,14 @@
                     console.log(data);
                 });
             })
+
+            $('#photos li').each(function () {
+                if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
+                    $(this).addClass('landscape');
+                } else {
+                    $(this).addClass('portrait');
+                }
+            })
         });
 
         $(window).resize(function () {
@@ -306,18 +314,31 @@
             <div id="photos">
                 <ul>
                     <% 
-                        int i = 1;
+                        int pCounter = 1; // Photo counter
+                        int bulCounter = 1; // begin ul counter
+                        int eulCounter = 4; // end ul counter
                         string Class = "";
                         foreach(var item in Model){
-                            if (i % 4 == 0)
+                            if (pCounter % 4 == 0)
                             {
                                 Class = "last";
                             }
                             else {
                                 Class = "";
                             }
+
+                            if (pCounter <= 4)
+                            { 
+                                Class += " toprow";
+                            }
+
+                            if (pCounter == bulCounter)
+                            { 
+                                %> <ul> <%
+                                bulCounter += 4;
+                            }
                     %>
-                    <li class="toprow <%: Class %>">
+                    <li class="<%: Class %>">
                         <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />
                         <div class="description">
                             <h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>
@@ -326,7 +347,12 @@
                         </div>
                     </li>
                     <% 
-                            i++;
+                            if (pCounter == eulCounter)
+                            { 
+                                %> </ul><li class="clear"></li> <%
+                                eulCounter += 4;
+                            }
+                            pCounter++;
                         } 
                     %>                    
                 </ul>

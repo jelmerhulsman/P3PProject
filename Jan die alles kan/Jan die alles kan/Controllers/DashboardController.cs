@@ -16,7 +16,7 @@ namespace Jan_die_alles_kan.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            return View("Dashboard");
+            return View("Dashboard/index");
         }
 
         [Authorize(Roles = "Admin")]
@@ -167,18 +167,24 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Picture.Add(p_model);
                 db2.SaveChanges();
             }
-            return RedirectToAction("../Dashboard");
+            return RedirectToAction("../Dashboard/Index");
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult ImageEdit(int id = 0)
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
+            var categorieContext = new CategoryContext();
+            var query = categorieContext.Categories.Where(c => c.Name == Picturemodel.Category);
             if (Picturemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(Picturemodel);
+
+            ViewData["Photo"] = Picturemodel;
+            ViewData["Categorie"] = query;
+
+            return View();
         }
 
 
@@ -196,7 +202,7 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Entry(p_model).State = EntityState.Modified;
                 //db2.Picture.Add(p_model);
                 db2.SaveChanges();
-                return RedirectToAction("../Dashboard");
+                return RedirectToAction("../Dashboard/Index");
             }
             return View(p_model);
         
