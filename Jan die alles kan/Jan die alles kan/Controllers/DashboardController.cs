@@ -174,11 +174,17 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult ImageEdit(int id = 0)
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
+            var categorieContext = new CategoryContext();
+            var query = categorieContext.Categories.Where(c => c.Name == Picturemodel.Category);
             if (Picturemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(Picturemodel);
+
+            ViewData["Photo"] = Picturemodel;
+            ViewData["Categorie"] = query;
+
+            return View();
         }
 
 
