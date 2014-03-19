@@ -16,7 +16,7 @@ namespace Jan_die_alles_kan.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            return View("Dashboard");
+            return View("Dashboard/index");
         }
 
         [Authorize(Roles = "Admin")]
@@ -167,7 +167,7 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Picture.Add(p_model);
                 db2.SaveChanges();
             }
-            return RedirectToAction("../Dashboard");
+            return RedirectToAction("../Dashboard/Index");
         }
 
         [Authorize(Roles = "Admin")]
@@ -196,7 +196,7 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Entry(p_model).State = EntityState.Modified;
                 //db2.Picture.Add(p_model);
                 db2.SaveChanges();
-                return RedirectToAction("../Dashboard");
+                return RedirectToAction("../Dashboard/Index");
             }
             return View(p_model);
         

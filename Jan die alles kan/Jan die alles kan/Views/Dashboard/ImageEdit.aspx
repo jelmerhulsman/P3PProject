@@ -16,6 +16,8 @@
         <legend>PictureModel</legend>
 
         <%: Html.HiddenFor(model => model.Id) %>
+        <%: Html.HiddenFor(model => model.CTime) %>
+        <%: Html.HiddenFor(model => model.File_name) %>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Name) %>
