@@ -350,6 +350,7 @@
     <Content Include="Views\Dashboard\CategoryDetails.aspx" />
     <Content Include="Views\Dashboard\CategoryEdit.aspx" />
     <Content Include="Views\Dashboard\CategoryIndex.aspx" />
+    <Content Include="Views\Dashboard\ImageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageEdit.aspx" />
     <Content Include="Views\Dashboard\ImageIndex.aspx" />
     <Content Include="Views\Dashboard\PageCreate.aspx" />

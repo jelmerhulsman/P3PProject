@@ -69,7 +69,7 @@
         <td>
             <%: Html.ActionLink("Edit", "ImageEdit", new { id=item.Id }) %> |
             <%: Html.ActionLink("Details", "Details", new { id=item.Id }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
+            <%: Html.ActionLink("Delete", "ImageDelete", new { id=item.Id }) %>
         </td>
     </tr>
 <% } %>

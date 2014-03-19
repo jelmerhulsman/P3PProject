@@ -238,6 +238,29 @@ namespace Jan_die_alles_kan.Controllers
         {
             return View(db2.Picture.ToList());
         }
+        [Authorize(Roles = "Admin")]
+        public ActionResult ImageDelete(int id = 0)
+        {
+            PictureModel Picturemodel = db2.Picture.Find(id);
+            if (Picturemodel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Picturemodel);
+        }
+        [HttpPost, ActionName("ImageDelete")]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ImageDeleteConfirmed(int id)
+        {
+            PictureModel Picturemodel = db2.Picture.Find(id);
+            string pad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/" + Picturemodel.File_name);
+           
+            System.IO.File.Delete(pad);
+            db2.Picture.Remove(Picturemodel);
+            db2.SaveChanges();
+            return RedirectToAction("Index");
+        }
 #endregion
         //private CategoryContext db = new CategoryContext();
 
@@ -362,6 +385,7 @@ namespace Jan_die_alles_kan.Controllers
             string pad = Server.MapPath("~/Images/Categories/" + category.Name);
 
             Directory.Delete(pad);
+            
             dbcategories.Categories.Remove(category);
             dbcategories.SaveChanges();
             return RedirectToAction("Index");
