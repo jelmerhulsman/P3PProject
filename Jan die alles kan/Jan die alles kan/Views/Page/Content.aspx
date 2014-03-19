@@ -28,14 +28,14 @@
                     <a href="javascript:void(0);"><img src="../../Images/Btn/btn_shoppingcart.png" alt="" /><span>3 Photos</span></a>
                 </div>
                 <div class="login">
-                    <a href="#">Login &gt;</a>
+                    <a href="http://localhost:52802/Account/Login">Login &gt;</a>
                 </div>
             </div>
         </div> 
-        <a href="" id="sticker"><img src="../../Images/sticker.png" alt="sign in" /></a>
+        <a href="http://localhost:52802/Account/Register" id="sticker"><img src="../../Images/sticker.png" alt="sign up" /></a>
         <div id="content">            
             <div class="left">
-                <a href="" class="logo"><img src="../../Images/milanovLogoWhite.png" alt="Gerlof Productions" /></a>
+                <a href="http://localhost:52802/Page/Overview" class="logo"><img src="../../Images/milanovLogoWhite.png" alt="Gerlof Productions" /></a>
                 <ul>
                     <li><a href="">Pagina</a></li>
                     <li><a href="">Pagina</a></li>
@@ -45,8 +45,24 @@
                 </ul>
             </div>
             <div class="right">
-                <h1><%: ViewBag.Name %></h1>
-                <p><%: ViewBag.Content %></p>
+     <% string antiFogeryToken = Convert.ToString(AntiForgery.GetHtml());
+
+      for (int i = 0; i < ViewBag.Content.Length; i++)
+      {
+          if (((i + 5) <= ViewBag.Content.Length) && ViewBag.Content.Substring(i, 5) == "<form")
+          {
+              for (int ii = i + 5; ii < ViewBag.Content.Length; ii++)
+              {
+                  if (((ii + 7) <= ViewBag.Content.Length) && ViewBag.Content.Substring(ii, 7) == "</form>")
+                  {
+                      ViewBag.Content = ViewBag.Content.Insert(ii, antiFogeryToken);
+                      break;
+                  }
+              }
+          }
+      } %>
+                <h1><%= Server.HtmlDecode(ViewBag.Name)   %></h1>
+                <%= Server.HtmlDecode(ViewBag.Content)   %>
             </div>
         </div>
     </div>

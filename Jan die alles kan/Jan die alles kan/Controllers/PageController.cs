@@ -26,24 +26,34 @@ namespace Jan_die_alles_kan.Controllers
             return View(db_pictures.Picture.ToList());
         }
 
-        public ActionResult Content(int Id = 0)
+        public ActionResult Content(string Id)
         {
-            PagesModels pagemodel = db.Pages.Find(Id);
+            PagesModels pagemodel;
+            
+            var page = from p in db.Pages
+                       where p.Permalink == Id
+                       select p;
 
-            if (pagemodel == null)
+            try
+            {
+                pagemodel = page.ToArray().First();
+            }
+            catch
             {
                 return HttpNotFound();
             }
 
+            pagemodel.Content = Shortcodes.ShortSplitter.ShortReplace(pagemodel.Content);
+
             ViewBag.Name = pagemodel.Name;
             ViewBag.Content = pagemodel.Content;
 
-            return View();
+            return View(ViewBag);
         }
 
         public ActionResult BackToDashboard()
         {
-            return RedirectToAction("Dashboard/index");
+            return RedirectToAction("Dashboard/Index");
         }
 
         public ActionResult Details(int Id = 0)

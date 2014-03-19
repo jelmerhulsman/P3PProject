@@ -12,8 +12,7 @@
 
     <script src="~/Scripts/Global_Page/slideshow.js"></script>
 
-    <script src="~/Scripts/Landingpage_Page/footer.js"></script>
-    <script src="~/Scripts/Landingpage_Page/login.js"></script>
+    <script src="~/Scripts/Landingpage_Page/login-bar.js"></script>
     <script src="~/Scripts/Landingpage_Page/responsive-searchfield.js"></script>
 </head>
 <body>
@@ -37,9 +36,10 @@
         </div>
         <div id="left">
             <h1>Direct Login</h1>
-            <form id="loginForm" action="http://localhost:52802/Ajax/FormLogin" method="post">
+            <form id="loginForm" action="http://localhost:52802/Account/Login" method="post">
                 <input type="text" name="username" id="username" class="field" placeholder="Username" />
                 <input type="password" name="password" id="password" class="field" placeholder="Password" />
+                @Html.AntiForgeryToken()
                 <input type="submit" id="login" value="Login" />
             </form>
         </div>
@@ -49,7 +49,7 @@
 
         <div id="right">
             <img src="~/Images/sticker.png" />
-            <a href="~/Account/Register"></a>
+            <a href="http://localhost:52802/Account/Register"></a>
             <p>
                 New on
                 <br />
