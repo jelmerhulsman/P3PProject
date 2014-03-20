@@ -243,7 +243,7 @@
         function setCartText() {
             var cartButtonText = $("#shoppingCartBox ul li").length
 
-            if (cartButtonText < 1)
+            if (cartButtonText == 1)
                 cartButtonText += " Photo";
             else
                 cartButtonText += " Photos";
@@ -408,7 +408,11 @@
                     </div>
                 </div>
                 <div class="login">
+                    <% if(User.Identity.IsAuthenticated){ %>
+                    <a href="#">Welkom, <%: User.Identity.Name %> | <a href="http://localhost:52802/Account/LogOff">Uitloggen</a></a>
+                    <% } else { %>
                     <a href="#">Login &gt;</a>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -516,7 +520,11 @@
                 </div>
                 <div id="addCart">
                     <p class="price"></p>
+                    <% if(User.Identity.IsAuthenticated){ %>
                     <input id="addToCartButton" type="button" value="+ Add to cart" />
+                    <% } else { %>
+                    <a class="login" href="http://localhost:52802/Account/Login">Please login to order &gt;</a>
+                    <% } %>
                 </div>
              </div>
         </div>
