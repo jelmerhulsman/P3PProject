@@ -453,6 +453,11 @@
 
                     <li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">
                         <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />
+
+<!--
+                    <li class="<%: Class %>">
+                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+-->
                         <div class="description">
                             <h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>
                             <p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>
