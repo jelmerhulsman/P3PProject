@@ -80,8 +80,19 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult PhotoToCart(FormCollection collection)
         {
             int id = Convert.ToInt16(collection["id"]);
-            PicturesContext pContext = new PicturesContext();
+
+            // Foto ophalen
+            PicturesContext pContext = new PicturesContext();            
             PictureModel photo = pContext.Picture.Find(id);
+
+            // Ingelogde gebruiker ophalen
+            UserDataContext uContext = new UserDataContext();
+            UserData user;
+            string userName = User.Identity.Name;
+            var a = from x in uContext.DBUserData
+                    where x.Username == userName
+                    select x;
+            user = a.ToList().First();
 
             var order = Session["order"];
             if (order == null)
@@ -92,13 +103,75 @@ namespace Jan_die_alles_kan.Controllers
             {
                 Session["order"] = order + ", " + id;
             }
+            order = Session["order"];
+
+            user.Order = order.ToString();
+
+            try
+            {
+                uContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Json("Te system was unable to save your order");
+            }
 
             return Json(photo);
         }
 
+        [HttpPost]
+        public ActionResult RemoveFromCart(FormCollection collection) {
+            Session["order"] = collection["order"].ToString();
+
+            // Ingelogde gebruiker ophalen
+            UserDataContext uContext = new UserDataContext();
+            UserData user;
+            string userName = User.Identity.Name;
+            var a = from x in uContext.DBUserData
+                    where x.Username == userName
+                    select x;
+            user = a.ToList().First();
+
+            user.Order = Session["order"].ToString();
+
+            try
+            {
+                uContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Json("Te system was unable to save your order");
+            }
+
+            return Json(Session["order"]);
+        }
+
         public ActionResult GetOrder()
         {
-            var order = Session["order"];
+            var order = "";
+
+            // Ingelogde gebruiker ophalen
+            if (User.Identity.IsAuthenticated)
+            {
+                UserDataContext uContext = new UserDataContext();
+                UserData user;
+                string userName = User.Identity.Name;
+                var a = from x in uContext.DBUserData
+                        where x.Username == userName
+                        select x;
+                user = a.ToList().First();
+
+                
+                if (Session["order"] == null)
+                {
+                    order = user.Order;
+                    Session["order"] = order;
+                }
+                else
+                {
+                    order = Session["order"].ToString();
+                }
+            }
 
             return Json(order);
         }

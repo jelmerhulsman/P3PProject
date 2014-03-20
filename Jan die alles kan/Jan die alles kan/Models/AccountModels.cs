@@ -30,6 +30,7 @@ namespace Jan_die_alles_kan.Models
         public string HouseNumber { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
+        public string Order { get; set; }
     }
 
     public class RegisterExternalLoginModel
@@ -111,5 +112,12 @@ namespace Jan_die_alles_kan.Models
         [Required]
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
+    }
+
+    public class OrderModel
+    {
+        [Required]
+        [Display(Name = "Order")]
+        public string Order { get; set; }
     }
 }
