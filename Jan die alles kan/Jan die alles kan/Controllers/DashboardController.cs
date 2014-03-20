@@ -179,17 +179,17 @@ namespace Jan_die_alles_kan.Controllers
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
-            /*
+            
             var ratioX = (double)maxWidth / image.Width;
             var ratioY = (double)maxHeight / image.Height;
             var ratio = Math.Min(ratioX, ratioY);
 
             var newWidth = (int)(image.Width * ratio);
             var newHeight = (int)(image.Height * ratio);
-            */
-            //RATIO is uitgeschakeld, Wij willen 300*300 forceren namelijk Potverdikkie
-            var newImage = new Bitmap(maxWidth, maxHeight);
-            Graphics.FromImage(newImage).DrawImage(image, 0, 0, maxWidth, maxHeight);
+            
+            
+            var newImage = new Bitmap(newWidth, newHeight);
+            Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
             return newImage;
         }
 
