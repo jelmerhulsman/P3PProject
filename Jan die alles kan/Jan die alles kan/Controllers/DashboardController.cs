@@ -276,7 +276,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
             string pad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/" + Picturemodel.File_name);
-            string Thumbpad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/Thumbnail/" + Picturemodel.File_name);
+            string Thumbpad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/Thumbnails/" + Picturemodel.File_name);
             System.IO.File.Delete(pad);
             try
             {
