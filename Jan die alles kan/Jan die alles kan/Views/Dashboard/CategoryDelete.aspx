@@ -16,9 +16,9 @@
       numFiles = files.Length;
   
   if (numFiles == 1)
-      Response.Write("WARNING, This folder still contains " + numFiles + " image! Are you sure? ");
+      Response.Write("WARNING, This folder still contains " + numFiles + " image! Please remove it first! ");
   else if (numFiles > 1)
-      Response.Write("WARNING, This folder still contains " + numFiles + " images! Are you sure? ");
+      Response.Write("WARNING, This folder still contains " + numFiles + " images! Please remove them first! ");
   else
       Response.Write("Are you sure you want to delete this category?");
 %></h3>
@@ -27,7 +27,11 @@
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
     <p>
-        <input type="submit" value="Delete Category" /> |
+            <%  if( numFiles < 1) { %>
+        <input type="submit" value="Delete Category" />
+        <% } else { %>
+        <a href="/Dashboard/PageIndex"> Click here to remove the image(s) manually.</a>
+        <% } %>
         <%: Html.ActionLink("Back to List", "Index") %>
     </p>
 <% } %>

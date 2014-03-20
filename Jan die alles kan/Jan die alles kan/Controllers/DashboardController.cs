@@ -288,7 +288,7 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("Index");
         }
 #endregion
-        //private CategoryContext db = new CategoryContext();
+        
 
         //
         // GET: /Category/
@@ -336,43 +336,7 @@ namespace Jan_die_alles_kan.Controllers
 
             return View(category);
         }
-
-        ////
-        //// GET: /Category/CategoryEdit/5
-
-        //public ActionResult CategoryEdit(int id = 0)
-        //{
-        //    Category category = dbcategories.Categories.Find(id);
-        //    if (category == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(category);
-        //}
-
-        ////
-        //// POST: /Category/CategoryEdit/5
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult CategoryEdit(Category category)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Category previous = dbcategories.Categories.Find(category.ID);
-        //        dbcategories.Categories.Remove(previous);
-        //        dbcategories.Categories.Add(category);
-        //        dbcategories.SaveChanges();
-
-        //        string pad = Server.MapPath("~/Images/Categories/" + category.Name);
-        //        string oldPad = Server.MapPath("~/Images/Categories/" + previous.Name);
-        //        Directory.Move(oldPad, pad);
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(category);
-        //}
-
+            
         //
         // GET: /Category/CategoryDelete/5
 
