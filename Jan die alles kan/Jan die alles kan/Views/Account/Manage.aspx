@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.LocalPasswordModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/AccountSite.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.LocalPasswordModel>" %>
 
 <asp:Content ID="manageTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Manage Account
@@ -12,7 +12,7 @@
     <p class="message-success"><%: (string)ViewBag.StatusMessage %></p>
 
     <p>You're logged in as <strong><%: User.Identity.Name %></strong>.</p>
-
+    <br />
     <% if (ViewBag.HasLocalPassword) {
         Html.RenderPartial("_ChangePasswordPartial");
     } else {
