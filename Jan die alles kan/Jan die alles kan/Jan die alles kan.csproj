@@ -183,7 +183,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustSecurityController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -347,7 +346,6 @@
     <Content Include="Views\Account\Checkout.aspx" />
     <Content Include="Views\Dashboard\CategoryCreate.aspx" />
     <Content Include="Views\Dashboard\CategoryDelete.aspx" />
-    <Content Include="Views\Dashboard\CategoryEdit.aspx" />
     <Content Include="Views\Dashboard\CategoryIndex.aspx" />
     <Content Include="Views\Dashboard\ImageDelete.aspx" />
     <Content Include="Views\Dashboard\ImageEdit.aspx" />

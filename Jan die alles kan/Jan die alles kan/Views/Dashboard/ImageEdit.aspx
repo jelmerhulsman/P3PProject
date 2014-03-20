@@ -7,8 +7,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
-        <p><a href="/Dashboard/Index">Back to dashboard</a></p>
-<% using (Html.BeginForm()) { %>
+    <p><a href="/Dashboard/Index">Back to dashboard</a></p>
+    <% using (Html.BeginForm())
+       { %>
     <%: Html.AntiForgeryToken() %>
     <%: Html.ValidationSummary(true) %>
 
@@ -49,7 +50,7 @@
             <%: Html.LabelFor(model => model.Description) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Description) %>
+            <%: Html.TextAreaFor(model => model.Description) %>
             <%: Html.ValidationMessageFor(model => model.Description) %>
         </div>
 
@@ -65,11 +66,11 @@
             <input type="submit" value="Save" />
         </p>
     </fieldset>
-<% } %>
+    <% } %>
 
-<div>
-    <%: Html.ActionLink("Back to List", "Index") %>
-</div>
+    <div>
+        <%: Html.ActionLink("Back to List", "ImageIndex") %>
+    </div>
 
 </asp:Content>
 
