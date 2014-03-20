@@ -177,21 +177,42 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("../Dashboard/Index");
         }
 
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            /*
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+            */
+            //RATIO is uitgeschakeld, Wij willen 300*300 forceren namelijk Potverdikkie
+            var newImage = new Bitmap(maxWidth, maxHeight);
+            Graphics.FromImage(newImage).DrawImage(image, 0, 0, maxWidth, maxHeight);
+            return newImage;
+        }
+
         private Image makeThumb(HttpPostedFileBase file)
         {
-            Image image = Image.FromStream(file.InputStream, true, true);
+            Image inputimage = Image.FromStream(file.InputStream, true, true);
             Image logo = Image.FromFile(Server.MapPath("~/Images/milanovLogo.png"));
+            Image image = ScaleImage(inputimage, 300, 300);
             Graphics g = System.Drawing.Graphics.FromImage(image);
+
+            
             Bitmap TransparentLogo = new Bitmap(image.Width, image.Height);
-            TransparentLogo.SetResolution(image.HorizontalResolution / 2, image.VerticalResolution / 2);
+            
+            
             Graphics TGraphics = Graphics.FromImage(TransparentLogo);
             ColorMatrix ColorMatrix = new ColorMatrix();
             ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
             ImageAttributes ImgAttributes = new ImageAttributes();
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2), 0, 0, TransparentLogo.Width/2, TransparentLogo.Height/2, GraphicsUnit.Pixel, ImgAttributes);
+            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, 300, 300, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, (image.Width/2) - (TransparentLogo.Width/2), (image.Height / 2) - (TransparentLogo.Height/4));
+            g.DrawImage(TransparentLogo, (image.Width/8) , (image.Height / 4));
+
             return image;
         }
 
@@ -255,8 +276,13 @@ namespace Jan_die_alles_kan.Controllers
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
             string pad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/" + Picturemodel.File_name);
-           
+            string Thumbpad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/Thumbnail/" + Picturemodel.File_name);
             System.IO.File.Delete(pad);
+            try
+            {
+                System.IO.File.Delete(Thumbpad);
+            }
+            catch { }
             db2.Picture.Remove(Picturemodel);
             db2.SaveChanges();
             return RedirectToAction("Index");
