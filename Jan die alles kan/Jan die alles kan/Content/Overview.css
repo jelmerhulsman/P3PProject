@@ -592,6 +592,12 @@ body {
     overflow: auto;
 }
 
+#boxOverlay .login {
+    float: right;
+    color: #000;
+    text-decoration: none;
+}
+
 #imageDescription {
 }
 
@@ -645,6 +651,8 @@ body {
     font-size: 21px;
     cursor: pointer;
 }
+
+
 
 #shoppingCartOverlay {
     position: absolute;
