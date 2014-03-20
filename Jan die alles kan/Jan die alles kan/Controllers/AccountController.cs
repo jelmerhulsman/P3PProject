@@ -29,6 +29,22 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        public ActionResult Checkout()
+        {
+           
+            return View("Checkout");
+        }
+        [HttpPost]
+        public ActionResult CheckoutConfirmed(FormCollection form)
+        {
+            string PaymentOption = form["paymentmethod"];
+            string urlredirect = "https://www.paypal.com/";
+            if (PaymentOption == "Ideal")
+                urlredirect = "http://www.ideal.nl";
+
+            return Redirect(urlredirect);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

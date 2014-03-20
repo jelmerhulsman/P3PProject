@@ -404,7 +404,9 @@
                                 </p>
                                 <div class="clear"></div>
                             </div>
-                            <a href="#" id="cartCheckOut">Check out</a>
+                            
+                           <a href="/Account/Checkout" id="cartCheckOut">Check out</a>
+                              
                         </div>
                     </div>
                 </div>
