@@ -13,15 +13,16 @@ using System.Web.Mvc;
 
 namespace Jan_die_alles_kan.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
-        [Authorize(Roles = "Admin")]
+
         public ActionResult Index()
         {
             return View("Index");
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult SendMail()
         {
             return View("SendMail");
@@ -51,31 +52,23 @@ namespace Jan_die_alles_kan.Controllers
             client.Send(Mail);
             return Redirect("../Dashboard/Index");
         }
-#region pages LOGIC
+
+        #region pages LOGIC
+
         private PagesContext db = new PagesContext();
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult Upload()
-        {
-            return View("Upload");
-        }
-
-        [Authorize(Roles = "Admin")]
         public ActionResult PageIndex()
         {
-            //PagesModels pagemodel = db.Pages.ToList();
             ViewBag.Content = "content";
             return View(db.Pages.ToList());
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult PageCreate()
         {
             return View();
         }
-        //[ValidateAntiForgeryToken]
+
         [HttpPost]
-        [Authorize (Roles="Admin")]
         [ValidateInput(false)]
         public ActionResult PageCreate(PagesModels pagesmodels)
         {
@@ -83,13 +76,12 @@ namespace Jan_die_alles_kan.Controllers
             {
                 db.Pages.Add(pagesmodels);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("PageIndex");
             }
 
             return View(pagesmodels);
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult PageEdit(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -100,9 +92,7 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        //[ValidateAntiForgeryToken]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult PageEdit(PagesModels pagesmodels)
         {
@@ -110,12 +100,11 @@ namespace Jan_die_alles_kan.Controllers
             {
                 db.Entry(pagesmodels).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("PageIndex");
             }
             return View(pagesmodels);
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult PageDelete(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -126,22 +115,21 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("PageDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult PageDeleteConfirmed(int id)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
             db.Pages.Remove(pagesmodels);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("PageIndex");
         }
-#endregion
-        
+        #endregion
+
         private PicturesContext db2 = new PicturesContext();
         private CategoryContext dbcategories = new CategoryContext();
-#region Image LOGIC
-        [Authorize(Roles = "Admin")]
+
+        #region Image LOGIC
         public ActionResult ImageUpload()
         {
 
@@ -150,9 +138,8 @@ namespace Jan_die_alles_kan.Controllers
 
         }
 
-        
+
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
         {
@@ -174,20 +161,20 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Picture.Add(p_model);
                 db2.SaveChanges();
             }
-            return RedirectToAction("../Dashboard/Index");
+            return RedirectToAction("ImageIndex");
         }
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
-            
+
             var ratioX = (double)maxWidth / image.Width;
             var ratioY = (double)maxHeight / image.Height;
             var ratio = Math.Min(ratioX, ratioY);
 
             var newWidth = (int)(image.Width * ratio);
             var newHeight = (int)(image.Height * ratio);
-            
-            
+
+
             var newImage = new Bitmap(newWidth, newHeight);
             Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
             return newImage;
@@ -200,10 +187,10 @@ namespace Jan_die_alles_kan.Controllers
             Image image = ScaleImage(inputimage, 300, 300);
             Graphics g = System.Drawing.Graphics.FromImage(image);
 
-            
+
             Bitmap TransparentLogo = new Bitmap(image.Width, image.Height);
-            
-            
+
+
             Graphics TGraphics = Graphics.FromImage(TransparentLogo);
             ColorMatrix ColorMatrix = new ColorMatrix();
             ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
@@ -211,31 +198,25 @@ namespace Jan_die_alles_kan.Controllers
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, 300, 300, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, (image.Width/8) , (image.Height / 4));
+            g.DrawImage(TransparentLogo, (image.Width / 8), (image.Height / 4));
 
             return image;
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult ImageEdit(int id = 0)
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
-            var categorieContext = new CategoryContext();
-            var query = categorieContext.Categories.Where(c => c.Name == Picturemodel.Category);
+
             if (Picturemodel == null)
             {
                 return HttpNotFound();
             }
 
-            ViewData["Photo"] = Picturemodel;
-            ViewData["Categorie"] = query;
-
-            return View();
+            return View(Picturemodel);
         }
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult ImageEdit(PictureModel p_model)
         {
@@ -248,29 +229,28 @@ namespace Jan_die_alles_kan.Controllers
                 db2.Entry(p_model).State = EntityState.Modified;
                 //db2.Picture.Add(p_model);
                 db2.SaveChanges();
-                return RedirectToAction("../Dashboard/Index");
+                return RedirectToAction("ImageIndex");
             }
             return View(p_model);
-        
+
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult ImageIndex()
         {
             return View(db2.Picture.ToList());
         }
-        [Authorize(Roles = "Admin")]
+
         public ActionResult ImageDelete(int id = 0)
         {
-            PictureModel Picturemodel = db2.Picture.Find(id);
-            if (Picturemodel == null)
+            PictureModel picturemodel = db2.Picture.Find(id);
+            if (picturemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(Picturemodel);
+            return View(picturemodel);
         }
+
         [HttpPost, ActionName("ImageDelete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult ImageDeleteConfirmed(int id)
         {
@@ -285,15 +265,13 @@ namespace Jan_die_alles_kan.Controllers
             catch { }
             db2.Picture.Remove(Picturemodel);
             db2.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ImageIndex");
         }
-#endregion
-        
+        #endregion
 
         //
         // GET: /Category/
 
-        [Authorize(Roles = "Admin")]
         public ActionResult CategoryIndex()
         {
             return View(dbcategories.Categories.ToList());
@@ -303,7 +281,6 @@ namespace Jan_die_alles_kan.Controllers
         //
         // GET: /Category/CategoryCreate
 
-        [Authorize(Roles = "Admin")]
         public ActionResult CategoryCreate()
         {
             return View();
@@ -313,7 +290,6 @@ namespace Jan_die_alles_kan.Controllers
         // POST: /Category/CategoryCreate
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryCreate(Category category)
         {
@@ -330,17 +306,16 @@ namespace Jan_die_alles_kan.Controllers
                     Directory.CreateDirectory(pad);
                 }
 
-                return RedirectToAction("/CategoryIndex");
+                return RedirectToAction("CategoryIndex");
 
             }
 
             return View(category);
         }
-            
-        //
-        // GET: /Category/CategoryDelete/5
 
-        [Authorize(Roles = "Admin")]
+        //
+        // GET: /Category/CategoryDelete
+
         public ActionResult CategoryDelete(int id = 0)
         {
             Category category = dbcategories.Categories.Find(id);
@@ -352,10 +327,9 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         //
-        // POST: /Category/CategoryDelete/5
+        // POST: /Category/CategoryDelete
 
         [HttpPost, ActionName("CategoryDelete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryDeleteConfirmed(int id)
         {
@@ -370,7 +344,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             dbcategories.Categories.Remove(category);
             dbcategories.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CategoryIndex");
         }
     }
 }
