@@ -64,8 +64,6 @@ namespace Jan_die_alles_kan.Controllers
             return View("~/Views/Account/Login.aspx", model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();

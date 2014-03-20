@@ -37,11 +37,9 @@
             <div class="left">
                 <a href="http://localhost:52802/Page/Overview" class="logo"><img src="../../Images/milanovLogoWhite.png" alt="Gerlof Productions" /></a>
                 <ul>
-                    <li><a href="">Pagina</a></li>
-                    <li><a href="">Pagina</a></li>
-                    <li><a href="">Pagina</a></li>
-                    <li><a href="">Pagina</a></li>
-                    <li><a href="">Pagina</a></li>
+                    <% foreach(var page in ViewBag.Pages){ %>
+                    <li><a href="http://localhost:52802/Page/Content/<%: page.Permalink %>"><%: page.Name %></a></li>                    
+                    <% } %>
                 </ul>
             </div>
             <div class="right">

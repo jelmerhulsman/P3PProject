@@ -86,28 +86,6 @@
                 event.stopPropagation();
             });
 
-            if ($("#shoppingCartBox ul li").length > 0) {
-                $("#shoppingCartBox ul li:even").css("background-color", "rgba(0,0,0,0.6)");
-            }
-            if ($("#shoppingCartBox ul li").length > 1) {
-                $("#shoppingCartBox ul li:odd").css("background-color", "none");
-            }
-
-            $(".removeItem").click(function () {
-                $(this).parent("li").fadeOut(function () {
-                    $(this).remove();
-
-                    setCartText();
-
-                    if ($("#shoppingCartBox ul li").length > 0) {
-                        $("#shoppingCartBox ul li:even").css("background-color", "rgba(0,0,0,0.6)");
-                    }
-                    if ($("#shoppingCartBox ul li").length > 1) {
-                        $("#shoppingCartBox ul li:odd").css("background-color", "none");
-                    }
-                });
-            });
-
             $('btn.search').click(function () {
                 $.post("http://localhost:52802/Ajax/Filter", null, function (data) {
                     console.log(data);
@@ -121,6 +99,55 @@
                     $(this).addClass('portrait');
                 }
             })
+
+            // Foto openen in overlay
+            $('#photos li.photo').click(function () {
+                $.post("http://localhost:52802/Ajax/PhotoInfo", { id: $(this).attr('id') }, function (data) {
+                    // Data van foto plaatsen in overlay
+                    $('#overlay .title').html(data.Name);
+                    $('#overlay .description').html(data.Description);
+                    $('#overlay .price').html('&euro; ' + data.Price);
+                    $('#addToCartButton').attr('class', data.Id);
+                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />');
+
+                    // Bepalen of de foto landscape of portrait is
+                    // Afbeelding hoogte bepalen en blok, met informatie, hoogte bepalen
+                    if ($('#imageOverlay img').height() < $('#imageOverlay img').width()) {
+                        $('#imageOverlay img').addClass('landscape');
+                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
+                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
+                    }
+                    else {
+                        $('#imageOverlay img').addClass('portrait');
+                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
+                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
+                    }
+
+                    $('#imageOverlay img').height($('#imageOverlay').height());
+                });
+                $('#overlay').fadeIn();
+            })
+
+            // Foto toevoegen aan winkelkarretje
+            $('#addToCartButton').click(function () {
+                var id = $(this).attr('class');
+                $.post("http://localhost:52802/Ajax/PhotoToCart", { id: id }, function (data) {
+                    if ($('#slidePhoto').length == 1) {
+                        $('#slidePhoto').remove();
+                    }
+                    $('#main').append('<div id="slidePhoto"></div>');
+                    var imgPosition = $('#imageOverlay img').position();
+                    var boxPosition = $('#boxOverlay').position();
+                    $('#slidePhoto').append($('#imageOverlay img'));
+                    $('#slidePhoto').css({ left: imgPosition.left + boxPosition.left, top: imgPosition.top + boxPosition.top, position: 'fixed', zIndex: 20 });
+                    $('#overlay').fadeOut();
+                    $('#slidePhoto').delay(300).animate({ top: -$('#slidePhoto img').height(), opacity: 0 }, 300);
+
+                    updateCart();
+                });
+            });
+
+            updateCart();
         });
 
         $(window).resize(function () {
@@ -129,18 +156,126 @@
 
             $('#filtersContainer').css("height", $('body').height());
             $('.stroke').css("height", $('body').height());
+
+            if ($('#imageOverlay img').hasClass('landscape')) {
+                $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
+                $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
+            } else {
+                $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
+                $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
+            }
+
+            $('#imageOverlay img').height($('#imageOverlay').height());
         });
 
-        function setCartText() {
-            var cartButtonText = $("#shoppingCartBox ul li").length
+        function updateCart() {
+            $('#shoppingCartBox ul li').each(function () {
+                $(this).remove();
+            })
+            $.post("http://localhost:52802/Ajax/GetOrder", {}, function (data) {
+                console.log("LALALA");
+                var order = data;
 
-            if (cartButtonText < 1)
+                if (order.indexOf(',') == -1) {
+                    $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                        $('#shoppingCartBox ul').prepend(
+                            '<li class="' + data.Id + '">' +
+                                '<div class="cartImage">' +
+                                    '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
+                                '</div>' +
+                                '<div class="cartDescription">' +
+                                    '<p>' + data.Name + '</p>' +
+                                    '<p>' + data.Category + '</p>' +
+                                    '<p class="price">€ ' + data.Price + '</p>' +
+                                '</div>' +
+                                '<p class="removeItem ' + data.Id + '"></p>' +
+                                '<div class="clear"></div>' +
+                            '</li>'
+                        );
+                        if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
+                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
+                        }
+                        else {
+                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
+                        }
+                        setCartText();
+                        addRemoveFunctionality();
+                        updatePrice();
+                    });
+                } else {
+                    var orders = order.split(',');
+                    orders.forEach(function (order) {
+                        $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                            $('#shoppingCartBox ul').prepend(
+                                '<li>' +
+                                    '<div class="cartImage">' +
+                                        '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
+                                    '</div>' +
+                                    '<div class="cartDescription">' +
+                                        '<p>' + data.Name + '</p>' +
+                                        '<p>' + data.Category + '</p>' +
+                                        '<p class="price">€ ' + data.Price + '</p>' +
+                                    '</div>' +
+                                    '<p class="removeItem ' + data.Id + '"></p>' +
+                                    '<div class="clear"></div>' +
+                                '</li>'
+                            );
+                            setCartText();
+                            addRemoveFunctionality();
+                            updatePrice();
+                        });
+                    });
+                }
+            });
+        }
+
+        function setCartText() {
+            var cartButtonText = $("#shoppingCartBox ul li").length;
+
+            if (cartButtonText == 0) {
+                $('#cartPrice').prev().css({ paddingBottom: 0, marginBottom: 0, borderBottom: 0 });
+                $('#cartPrice').css({ paddingBottom: '15px' });
+                $('#cartPrice').html('<p>No photos selected.</p>');
+                $('#cartCheckOut').hide();
+            } else {
+                $('#cartPrice').prev().removeAttr("style");
+                $('#cartPrice').removeAttr("style");
+                $('#cartPrice').html('<p>Sub total<br />Discount<br />Total</p><p class="prices">€ 00,00<br />10%<br />€ 00,00</p><div class="clear"></div>');
+                $('#cartCheckOut').show();
+            }
+
+            if (cartButtonText == 1)
                 cartButtonText += " Photo";
             else
                 cartButtonText += " Photos";
 
 
             $(".shopping a span").html(cartButtonText);
+        }
+
+        function updatePrice() {
+            var price = 0;
+            $('#shoppingCartBox ul .price').each(function () {
+                var pPrice = parseInt($(this).text().replace('€', ''));
+                pPrice = pPrice;
+                price += pPrice;
+            })
+
+            var discount = 0.10;
+            var totalPrice = price * discount;
+            totalPrice = price - totalPrice;
+            console.log(totalPrice);
+            $('#shoppingCartBox #cartPrice .prices').html('&euro; ' + price + '<br/>' + discount * 100 + '%<br/>&euro; ' + totalPrice);
+        }
+
+        function addRemoveFunctionality() {
+            $(".removeItem").click(function () {
+                $(this).parent("li").fadeOut(function () {
+                    $(this).remove();
+                    setCartText();
+                    updatePrice();
+                });
+            });
         }
     </script>
 </head>
@@ -255,28 +390,6 @@
                         <span></span>
                         <div id="shoppingCartBox">
                             <ul>
-                                <li>
-                                    <div class="cartImage">
-                                    </div>
-                                    <div class="cartDescription">
-                                        <p>Title here</p>
-                                        <p>Category</p>
-                                        <p>€ 00,00</p>
-                                    </div>
-                                    <p class="removeItem"></p>
-                                    <div class="clear"></div>
-                                </li>
-                                <li>
-                                    <div class="cartImage">
-                                    </div>
-                                    <div class="cartDescription">
-                                        <p>Title2 here</p>
-                                        <p>Category2</p>
-                                        <p>€ 00,00</p>
-                                    </div>
-                                    <p class="removeItem"></p>
-                                    <div class="clear"></div>
-                                </li>
                             </ul>
                             <div id="cartPrice">
                                 <p>
@@ -284,7 +397,7 @@
                                     Discount<br />
                                     Total
                                 </p>
-                                <p>
+                                <p class="prices">
                                     € 00,00<br />
                                     10%<br />
                                     € 00,00
@@ -296,7 +409,11 @@
                     </div>
                 </div>
                 <div class="login">
+                    <% if(User.Identity.IsAuthenticated){ %>
+                    <a href="#">Welkom, <%: User.Identity.Name %> | <a href="http://localhost:52802/Account/LogOff">Uitloggen</a></a>
+                    <% } else { %>
                     <a href="#">Login &gt;</a>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -338,8 +455,14 @@
                                 bulCounter += 4;
                             }
                     %>
+
+                    <li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">
+                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />
+
+<!--
                     <li class="<%: Class %>">
                         <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+-->
                         <div class="description">
                             <h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>
                             <p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>
@@ -377,15 +500,9 @@
         <div class="bottom">
             <div class="inner">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a>
-                        <ul>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Eco photos</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" class="special">Sign up, it's free!</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <% foreach(var page in ViewBag.Pages){ %>
+                    <li><a href="http://localhost:52802/Page/Content/<%: page.Permalink %>"><%: page.Name %></a></li>                    
+                    <% } %>
                 </ul>
                 <div class="clear"></div>
             </div>
@@ -397,14 +514,20 @@
             </div>
             <div id="imageOverlay">
             </div>
-            <div id="imageDescription">
-                <h2>Titel hier invoeren</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt arcu vel tortor accumsan, nec sodales purus blandit. Donec convallis nibh a odio pretium pellentesque. Proin vestibulum enim nisi, nec fringilla magna adipiscing non.</p>
-            </div>
-            <div id="addCart">
-                <p>€ 00,00 </p>
-                <input id="addToCartButton" type="button" value="+ Add to cart" />
-            </div>
+            <div class="bottom">
+                <div id="imageDescription">
+                    <h2 class="title"></h2>
+                    <div class="description"></div>
+                </div>
+                <div id="addCart">
+                    <p class="price"></p>
+                    <% if(User.Identity.IsAuthenticated){ %>
+                    <input id="addToCartButton" type="button" value="+ Add to cart" />
+                    <% } else { %>
+                    <a class="login" href="http://localhost:52802/Account/Login">Please login to order &gt;</a>
+                    <% } %>
+                </div>
+             </div>
         </div>
     </div>
 </body>

@@ -469,7 +469,7 @@ body {
 
     #pagination a {
         display: inline-block;
-        padding: 5px 12px;
+        padding: 4px 12px;
         background: url(../Images/Btn/btn_bg_blue.jpg) repeat-x;
         border-radius: 8px;
         color: #fff;
@@ -502,7 +502,7 @@ body {
         text-align: right;
     }
 
-.bottom {
+#main .bottom {
     width: 100%;
     position: relative;
     background: #A4A4A4 url(../Images/bg_bottom.jpg) repeat-x;
@@ -511,27 +511,27 @@ body {
     overflow: hidden;
 }
 
-    .bottom .inner {
+    #main .bottom .inner {
         position: relative;
         width: 100%;
         padding-left: 20px;
     }
 
-    .bottom li {
+    #main .bottom li {
         float: left;
         list-style: none;
     }
 
-        .bottom li li {
+        #main .bottom li li {
             float: none;
         }
 
-            .bottom li li a {
+            #main .bottom li li a {
                 font-size: 12px;
                 font-weight: normal;
             }
 
-        .bottom li a {
+        #main .bottom li a {
             display: block;
             padding: 4px 6px;
             color: #fff;
@@ -541,16 +541,16 @@ body {
             font-family: 'Khmer UI', Arial;
         }
 
-            .bottom li a.special {
+            #main .bottom li a.special {
                 color: #02477A;
             }
 
-            .bottom li a:hover {
+            #main .bottom li a:hover {
                 text-decoration: underline;
             }
 
 #overlay {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -561,6 +561,8 @@ body {
 
 #boxOverlay {
     width: 71%;
+    height: 71%;
+    min-width: 320px;
     position: absolute;
     background: White;
     border: 0;
@@ -574,8 +576,26 @@ body {
 
 #imageOverlay {
     width: 100%;
-    height: 300px;
-    background: Gray;
+    background: transparent;
+    text-align: center;
+}
+
+#imageOverlay img {
+    max-width: 100%;
+}
+
+#boxOverlay .bottom {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 0px 2%;
+    overflow: auto;
+}
+
+#boxOverlay .login {
+    float: right;
+    color: #000;
+    text-decoration: none;
 }
 
 #imageDescription {
@@ -607,6 +627,7 @@ body {
 #addCart {
     font-size: 18px;
     font-weight: bold;
+    padding-bottom: 5px;
 }
 
     #addCart p {
@@ -628,7 +649,10 @@ body {
     float: right;
     font-weight: bold;
     font-size: 21px;
+    cursor: pointer;
 }
+
+
 
 #shoppingCartOverlay {
     position: absolute;
@@ -671,12 +695,37 @@ body {
             position: relative;
         }
 
+        #shoppingCartBox ul li:nth-child(odd) {
+            background: rgba(50, 50, 50, 0.6);
+        }
+        #shoppingCartBox ul li:nth-child(even) {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        #shoppingCartBox ul li:nth-child(odd):hover,
+        #shoppingCartBox ul li:nth-child(even):hover {
+            background: rgba(100, 100, 100, 0.6);
+        }
+
 .cartImage {
     width: 75px;
     height: 75px;
     float: left;
-    background-color: blue;
+    background-color: transparent;
+    overflow: hidden;
 }
+
+    .cartImage img.landscape {
+        height: 75px;
+        width: 175px;
+        margin-left: -50px;
+    }
+
+    .cartImage img {
+        height: 100px;
+        width: 75px;
+        margin-top: -12px;
+    }
 
 .cartDescription {
     padding-left: 15px;
@@ -686,7 +735,7 @@ body {
 }
 
     .cartDescription p:nth-child(1) {
-        text-decoration: underline;
+        text-decoration: none;
         font-size: 21px;
     }
 
@@ -765,9 +814,11 @@ body {
         position: relative;
         margin: 0 auto;
         left: 0px;
+        height: 530px !important;
     }
 
     #addCart {
+        position: relative;
     }
 
         #addCart p {

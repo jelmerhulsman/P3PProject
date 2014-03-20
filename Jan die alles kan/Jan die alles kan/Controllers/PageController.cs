@@ -23,13 +23,14 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Overview()
         {
+            ViewData["pages"] = db.Pages.ToList();
             return View(db_pictures.Picture.ToList());
         }
 
-        public ActionResult Content(string Id)
+        public ActionResult Content(string Id = "")
         {
             PagesModels pagemodel;
-            
+
             var page = from p in db.Pages
                        where p.Permalink == Id
                        select p;
@@ -47,7 +48,7 @@ namespace Jan_die_alles_kan.Controllers
 
             ViewBag.Name = pagemodel.Name;
             ViewBag.Content = pagemodel.Content;
-
+            ViewData["pages"] = db.Pages.ToList();
             return View(ViewBag);
         }
 
