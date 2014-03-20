@@ -95,5 +95,12 @@ namespace Jan_die_alles_kan.Controllers
 
             return Json(photo);
         }
+
+        public ActionResult GetOrder()
+        {
+            var order = Session["order"];
+
+            return Json(order);
+        }
     }
 }

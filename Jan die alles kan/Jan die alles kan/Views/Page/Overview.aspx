@@ -171,77 +171,78 @@
         function updateCart() {
             $('#shoppingCartBox ul li').each(function () {
                 $(this).remove();
-            });
-            <%
-            var orderSession = Session["order"];
-            if (orderSession != null) {
-                var order = orderSession.ToString();
-                if (order.IndexOf(',') == -1) 
-                {
-            %>
+            })
+            $.post("http://localhost:52802/Ajax/GetOrder", {}, function (data) {
+                console.log("LALALA");
+                var order = data;
 
-            $.post("http://localhost:52802/Ajax/PhotoInfo", { id: '<%: order %>' }, function (data) {
-                $('#shoppingCartBox ul').prepend(
-                    '<li class="' + data.Id + '">' +
-                        '<div class="cartImage">' +
-                            '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
-                        '</div>' +
-                        '<div class="cartDescription">' +
-                            '<p>' + data.Name + '</p>' +
-                            '<p>' + data.Category + '</p>' +
-                            '<p class="price">€ ' + data.Price + '</p>' +
-                        '</div>' +
-                        '<p class="removeItem ' + data.Id + '"></p>' +
-                        '<div class="clear"></div>' +
-                    '</li>'
-                );
-                if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
-                    $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
+                if (order.indexOf(',') == -1) {
+                    $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                        $('#shoppingCartBox ul').prepend(
+                            '<li class="' + data.Id + '">' +
+                                '<div class="cartImage">' +
+                                    '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
+                                '</div>' +
+                                '<div class="cartDescription">' +
+                                    '<p>' + data.Name + '</p>' +
+                                    '<p>' + data.Category + '</p>' +
+                                    '<p class="price">€ ' + data.Price + '</p>' +
+                                '</div>' +
+                                '<p class="removeItem ' + data.Id + '"></p>' +
+                                '<div class="clear"></div>' +
+                            '</li>'
+                        );
+                        if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
+                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
+                        }
+                        else {
+                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
+                        }
+                        setCartText();
+                        addRemoveFunctionality();
+                        updatePrice();
+                    });
+                } else {
+                    var orders = order.split(',');
+                    orders.forEach(function (order) {
+                        $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                            $('#shoppingCartBox ul').prepend(
+                                '<li>' +
+                                    '<div class="cartImage">' +
+                                        '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
+                                    '</div>' +
+                                    '<div class="cartDescription">' +
+                                        '<p>' + data.Name + '</p>' +
+                                        '<p>' + data.Category + '</p>' +
+                                        '<p class="price">€ ' + data.Price + '</p>' +
+                                    '</div>' +
+                                    '<p class="removeItem ' + data.Id + '"></p>' +
+                                    '<div class="clear"></div>' +
+                                '</li>'
+                            );
+                            setCartText();
+                            addRemoveFunctionality();
+                            updatePrice();
+                        });
+                    });
                 }
-                else {
-                    $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
-                }
-                setCartText();
-                addRemoveFunctionality();
-                updatePrice();
             });
-
-            <%
-                }
-                else
-                {
-                    var orders = order.Split(',');
-                    foreach (var o in orders) { 
-            %>
-
-            $.post("http://localhost:52802/Ajax/PhotoInfo", { id: '<%: o %>' }, function (data) {
-                $('#shoppingCartBox ul').prepend(
-                    '<li>' +
-                        '<div class="cartImage">' +
-                            '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
-                        '</div>' +
-                        '<div class="cartDescription">' +
-                            '<p>' + data.Name + '</p>' +
-                            '<p>' + data.Category + '</p>' +
-                            '<p class="price">€ ' + data.Price + '</p>' +
-                        '</div>' +
-                        '<p class="removeItem ' + data.Id + '"></p>' +
-                        '<div class="clear"></div>' +
-                    '</li>'
-                );
-                setCartText();
-                addRemoveFunctionality();
-                updatePrice();
-            });
-            <%                    
-                    }
-                }
-            }                                
-            %>
         }
 
         function setCartText() {
-            var cartButtonText = $("#shoppingCartBox ul li").length
+            var cartButtonText = $("#shoppingCartBox ul li").length;
+
+            if (cartButtonText == 0) {
+                $('#cartPrice').prev().css({ paddingBottom: 0, marginBottom: 0, borderBottom: 0 });
+                $('#cartPrice').css({ paddingBottom: '15px' });
+                $('#cartPrice').html('<p>No photos selected.</p>');
+                $('#cartCheckOut').hide();
+            } else {
+                $('#cartPrice').prev().removeAttr("style");
+                $('#cartPrice').removeAttr("style");
+                $('#cartPrice').html('<p>Sub total<br />Discount<br />Total</p><p class="prices">€ 00,00<br />10%<br />€ 00,00</p><div class="clear"></div>');
+                $('#cartCheckOut').show();
+            }
 
             if (cartButtonText == 1)
                 cartButtonText += " Photo";
