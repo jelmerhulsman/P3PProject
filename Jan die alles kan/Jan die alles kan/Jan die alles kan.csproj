@@ -356,7 +356,6 @@
     <Content Include="Views\Dashboard\ImageUpload.aspx" />
     <Content Include="Views\Dashboard\SendMail.aspx" />
     <Content Include="Views\Page\Content.aspx" />
-    <Content Include="Views\Page\Details.aspx" />
     <Content Include="Views\Dashboard\PageEdit.aspx" />
     <Content Include="Views\Dashboard\PageIndex.aspx" />
     <Content Include="Views\Page\_unused\Landingpage_old.aspx" />
@@ -381,7 +380,7 @@
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\_LoginPartial.aspx" />
-    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Shared\DashboardSite.Master" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Page\Landingpage.cshtml">
       <BrowseToURL>~/Page/Landingpage</BrowseToURL>
@@ -396,6 +395,7 @@
     <Content Include="tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Views\Page\_unused\Content_old.cshtml" />
+    <Content Include="Views\Shared\AccountSite.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

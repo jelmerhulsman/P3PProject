@@ -37,14 +37,10 @@ namespace Jan_die_alles_kan.Controllers
             CustSecurityController Secure = new CustSecurityController();
             WebSecurity.Logout();
 
-            //Is niet helemaal correct, moet even een aparte functie plus model voor worden gemaakt zodat je niet inlogt om nog je
-            //ip te checken.
+            //IP Check
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                WebSecurity.Logout();
-                WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe);
-                
-                if (User.IsInRole("Admin"))
+                if (Roles.IsUserInRole(model.UserName, "Admin"))
                 {
                     if (CustSecurity.IPCheck(Secure.Details(model.UserName), Request.UserHostAddress))
                     {
@@ -55,18 +51,17 @@ namespace Jan_die_alles_kan.Controllers
                         WebSecurity.Logout();
                         Secure.createIPVerification(new IPProfile(model.UserName, Request.UserHostAddress));
                         ModelState.AddModelError("", "IP is not certified, an email has been sent to your account");
-                        return View(model);
+                        return View("~/Views/Account/Login.aspx", model);
                     }
                 }
-                else
-                {
-                    return RedirectToAction("Overview", "Page");
-                }
+
+                // If we got this far, admin login failed, so you are just regular user
+                return RedirectToAction("Overview", "Page");
             }
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            return View(model);
+            return View("~/Views/Account/Login.aspx", model);
         }
 
         public ActionResult LogOff()
@@ -106,11 +101,9 @@ namespace Jan_die_alles_kan.Controllers
                         db.DBUserData.Add(dataProfile);
                         db.SaveChanges();
 
-                        /*
                         Secure.Create(new IPProfile(model.UserName, Request.UserHostAddress));
                         WebSecurity.Login(model.UserName, model.Password);
-                        return RedirectToAction("Index", "Page");
-                        */
+                        return RedirectToAction("Overview", "Page");
                     }
                     else
                     {
