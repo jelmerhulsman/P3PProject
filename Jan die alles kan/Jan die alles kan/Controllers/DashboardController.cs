@@ -25,6 +25,9 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult SendMail()
         {
+            UserDataContext db = new UserDataContext();
+            var username = from user in db.DBUserData select user.Email;
+            ViewBag.username = username;
             return View("SendMail");
         }
 
