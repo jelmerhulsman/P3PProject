@@ -6,32 +6,34 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Add or remove a category</h2>
+    <h2>Add or remove a category</h2>
+    <p>
+        <%: Html.ActionLink("Back to dashboard", "Index") %>
+    </p>
+    <p>
+        <%: Html.ActionLink("Create New", "CategoryCreate") %>
+    </p>
+    <table>
+        <tr>
+            <th>
+                <%: Html.DisplayNameFor(model => model.Name) %>
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    <%: Html.ActionLink("Create New", "CategoryCreate") %>
-</p>
-<table>
-    <tr>
-        <th>
-            <%: Html.DisplayNameFor(model => model.Name) %>
-        </th>
-        <th></th>
-    </tr>
+        <% foreach (var item in Model)
+           { %>
+        <tr>
+            <td>
+                <%: Html.DisplayFor(modelItem => item.Name) %>
+            </td>
+            <td>
+                <%: Html.ActionLink("Delete", "CategoryDelete", new { id=item.ID }) %>
 
-<% foreach (var item in Model) { %>
-    <tr>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.Name) %>
-        </td>
-        <td>
-            <%: Html.ActionLink("Delete", "CategoryDelete", new { id=item.ID }) %>
-
-        </td>
-    </tr>
-<% } %>
-
-</table>
+            </td>
+        </tr>
+        <% } %>
+    </table>
 
 </asp:Content>
 

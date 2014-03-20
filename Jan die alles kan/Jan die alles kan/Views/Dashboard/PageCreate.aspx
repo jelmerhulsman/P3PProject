@@ -6,9 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Create a page</h2>
-        <p><a href="/Dashboard/Index">Back to dashboard</a></p>
-<% using (Html.BeginForm()) { %>
+    <h2>Create a page</h2>
+    <p>
+        <%: Html.ActionLink("Back to dashboard", "Index") %>
+    </p>
+    <% using (Html.BeginForm())
+       { %>
     <%: Html.AntiForgeryToken() %>
     <%: Html.ValidationSummary(true) %>
 
@@ -23,29 +26,29 @@
             <%: Html.ValidationMessageFor(model => model.Name) %>
         </div>
 
-                <div class="editor-label">
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Permalink) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Permalink) %>
             <%: Html.ValidationMessageFor(model => model.Permalink) %>
         </div>
-                        <div class="editor-label">
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Content) %>
         </div>
         <div class="editor-field">
             <%: Html.TextAreaFor(model => model.Content) %>
             <%: Html.ValidationMessageFor(model => model.Content) %>
         </div>
-         
+
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Status) %>
-            </div>
-                <div class="editor-field">
+        </div>
+        <div class="editor-field">
             <%: Html.EditorFor(model => model.Status) %>
             <%: Html.ValidationMessageFor(model => model.Status) %>
         </div>
-                        <div class="editor-label">
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Pageposition) %>
         </div>
         <div class="editor-field">
@@ -57,11 +60,11 @@
             <input type="submit" value="Create" />
         </p>
     </fieldset>
-<% } %>
+    <% } %>
 
-<div>
-    <%: Html.ActionLink("Back to List", "PageIndex") %>
-</div>
+    <div>
+        <%: Html.ActionLink("Back to List", "PageIndex") %>
+    </div>
 
 </asp:Content>
 

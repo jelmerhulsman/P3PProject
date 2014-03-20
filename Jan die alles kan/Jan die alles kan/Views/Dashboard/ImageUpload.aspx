@@ -4,27 +4,28 @@
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <p><a href="/Dashboard/Index">Back to dashboard</a></p>
-
+    <p>
+        <%: Html.ActionLink("Back to dashboard", "Index") %>
+    </p>
     <% using (Html.BeginForm("ImageUpload", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
        { %>
    File:<br>
-    <input type="file" name="File"/><br>
+    <input type="file" name="File" /><br>
     Name:<br>
-    <input type="text" name="Name"/><br>
+    <input type="text" name="Name" /><br>
     Category:<br>
     <select name="Category">
         <% foreach (var item in Model)
            {%>
 
-            <option value="<%: item.Name  %>"><%: item.Name  %></option>
+        <option value="<%: item.Name  %>"><%: item.Name  %></option>
 
-            <%}
+        <%}
         %>
     </select><br>
-        <p> <%: Html.ActionLink("Add/Remove a Category","CategoryIndex") %> </p>
+    <p><%: Html.ActionLink("Add/Remove a Category","CategoryIndex") %> </p>
     Price:<br>
-    <input type="number" name="Price"/><br>
+    <input type="number" name="Price" /><br>
     Color:<br>
     <select name="Color">
         <option value="">None specific</option>
