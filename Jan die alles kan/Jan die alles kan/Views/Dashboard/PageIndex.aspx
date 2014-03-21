@@ -16,24 +16,25 @@
     <table>
         <tr>
             <th>
-                <%: Html.DisplayNameFor(model => model.Name) %>
-            </th>
-            <th>Controls
+                Name
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Permalink) %>
+                Controls
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Status) %>
+                Permalink
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Pageposition) %>
+                Status
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Seokey) %>
+                Page Position
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Seodescription) %>
+                SEO Key
+            </th>
+            <th>
+                SEO Description
             </th>
             <th></th>
         </tr>
@@ -46,8 +47,8 @@
             </td>
             <td>
                 <a href="PageEdit/<%:item.Id %>">Edit Page</a> |
-            <a href="../Page/Details/<%:item.Id %>">Show Page</a> |
-            <a href="PageDelete/<%:item.Id %>">Delete Page</a>
+                <a href="PageShow/<%:item.Permalink %>">Show Page</a> |
+                <a href="PageDelete/<%:item.Id %>">Delete Page</a>
             </td>
             <td>
                 <%: Html.DisplayFor(modelItem => item.Permalink) %>

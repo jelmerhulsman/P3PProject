@@ -35,7 +35,7 @@
         <option value="green">Green</option>
         <option value="cyan">Cyan</option>
         <option value="blue">Blue</option>
-        <option value="purpke">Purple</option>
+        <option value="purple">Purple</option>
         <option value="pink">Pink</option>
         <option value="white">White</option>
         <option value="grey">Grey</option>
