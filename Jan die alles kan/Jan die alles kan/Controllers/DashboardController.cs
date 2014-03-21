@@ -97,6 +97,17 @@ namespace Jan_die_alles_kan.Controllers
         {
             if (ModelState.IsValid)
             {
+                string edit = pagesmodels.Permalink;
+
+                edit = char.ToUpper(edit[0]) + edit.Substring(1).ToLower();
+                edit = edit.Trim();
+                edit.Replace(" ", string.Empty);
+
+                pagesmodels.Permalink = edit;
+
+                if (pagesmodels.Content == null)
+                    pagesmodels.Content = " ";
+
                 db.Pages.Add(pagesmodels);
                 db.SaveChanges();
                 return RedirectToAction("PageIndex");
@@ -119,6 +130,13 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateInput(false)]
         public ActionResult PageEdit(PagesModels pagesmodels)
         {
+            string edit = pagesmodels.Permalink;
+
+            edit = char.ToUpper(edit[0]) + edit.Substring(1).ToLower();
+            edit = edit.Trim();
+            edit.Replace(" ", string.Empty);
+
+            pagesmodels.Permalink = edit;
             if (ModelState.IsValid)
             {
                 db.Entry(pagesmodels).State = EntityState.Modified;
@@ -126,6 +144,11 @@ namespace Jan_die_alles_kan.Controllers
                 return RedirectToAction("PageIndex");
             }
             return View(pagesmodels);
+        }
+
+        public ActionResult PageShow(string Id = "")
+        {
+            return RedirectToAction("../Page/Content/" + Id);
         }
 
         public ActionResult PageDelete(int id = 0)

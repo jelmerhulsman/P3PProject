@@ -37,9 +37,10 @@
         <div id="left">
             <h1>Direct Login</h1>
             <form id="loginForm" action="http://localhost:52802/Account/Login" method="post">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
                 <input type="text" name="username" id="username" class="field" placeholder="Username" />
                 <input type="password" name="password" id="password" class="field" placeholder="Password" />
-                @Html.AntiForgeryToken()
                 <input type="submit" id="login" value="Login" />
             </form>
         </div>

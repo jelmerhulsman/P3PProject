@@ -21,7 +21,7 @@
         <%: Html.HiddenFor(model => model.Id) %>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Name) %>
+            Name
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Name) %>
@@ -29,14 +29,14 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Permalink) %>
+            Permalink
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Permalink) %>
             <%: Html.ValidationMessageFor(model => model.Permalink) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Content) %>
+            Content
         </div>
         <div class="editor-field">
             <%: Html.TextAreaFor(model => model.Content) %>
@@ -44,14 +44,15 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Status) %>
+            Satus
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Status) %>
             <%: Html.ValidationMessageFor(model => model.Status) %>
         </div>
+
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Pageposition) %>
+            Page Position
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Pageposition) %>

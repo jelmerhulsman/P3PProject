@@ -17,7 +17,7 @@
         <legend>Category</legend>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Name) %>
+            Name
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Name) %>

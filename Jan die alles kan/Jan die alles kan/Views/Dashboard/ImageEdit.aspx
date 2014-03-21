@@ -23,7 +23,7 @@
         <%: Html.HiddenFor(model => model.Category) %>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Name) %>
+            Name
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Name) %>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Category) %>
+            Category
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Category) %>
@@ -39,15 +39,30 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Color) %>
+            Color
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Color) %>
+            <select name="Color">
+                <option value="<%: Html.ValueFor(model => model.Color) %>">Current: <%: Html.ValueFor(model => model.Color) %></option>
+                <option value="">None Specific</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="cyan">Cyan</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="pink">Pink</option>
+                <option value="white">White</option>
+                <option value="grey">Grey</option>
+                <option value="black">Black</option>
+                <option value="brown">Brown</option>
+            </select><br>
             <%: Html.ValidationMessageFor(model => model.Color) %>
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Description) %>
+            Description
         </div>
         <div class="editor-field">
             <%: Html.TextAreaFor(model => model.Description) %>
@@ -55,7 +70,7 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Price) %>
+            Price
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Price) %>
