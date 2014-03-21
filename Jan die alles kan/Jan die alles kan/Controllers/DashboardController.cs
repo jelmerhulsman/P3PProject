@@ -153,6 +153,28 @@ namespace Jan_die_alles_kan.Controllers
         private CategoryContext dbcategories = new CategoryContext();
 
         #region Image LOGIC
+
+        //SPecial method to save jpg, this is to prevent errors
+        public static void SaveJpeg
+(string path, Image img)
+        {
+            
+            
+
+            System.IO.MemoryStream mss = new System.IO.MemoryStream();
+
+            System.IO.FileStream fs
+            = new System.IO.FileStream(path, System.IO.FileMode.Create
+            , System.IO.FileAccess.ReadWrite);
+
+            img.Save(mss, ImageFormat.Jpeg);
+            byte[] matriz = mss.ToArray();
+            fs.Write(matriz, 0, matriz.Length);
+
+            mss.Close();
+            fs.Close();
+        }
+
         public ActionResult ImageUpload()
         {
 
@@ -170,24 +192,39 @@ namespace Jan_die_alles_kan.Controllers
             if (picture.File.ContentLength > 0)
             {
                 var filename = Path.GetFileName(picture.File.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/"), filename);
-                string thumppad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/");
-                Directory.CreateDirectory(thumppad);
-                var ThumPath = Path.Combine(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"), filename);
+
+                //THUMBNAIL GENERATOR               
+                string thumbpad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/" + picture.File.FileName);
+                Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"));
+                Image Thumb = makeThumb(picture.File, true);
+                SaveJpeg(thumbpad, Thumb);
+                
+
+               
+                //PREVIEW GENERATOR
+                var PreviewPath = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/" + picture.File.FileName);
+                Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/"));
+                Image Preview = makeThumb(picture.File, false);
+                SaveJpeg(PreviewPath, Preview);
+                
 
                 p_model.File_name = filename;
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;
-                picture.File.SaveAs(path);
-                Image Thumb = makeThumb(picture.File);
-                Thumb.Save(ThumPath);
+
+                //Actual image upload
+                Image image = Image.FromStream(picture.File.InputStream,true,true);
+                var path = Server.MapPath("~/Images/Categories/" + p_model.Category + "/" + filename);
+                SaveJpeg(path, image);
+                
                 db2.Picture.Add(p_model);
-                db2.SaveChanges();
+                db2.SaveChanges(); 
             }
             return RedirectToAction("ImageIndex");
         }
 
-        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        //Method to scale an image, with a boolean for scaling
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight, bool bRatio)
         {
 
             var ratioX = (double)maxWidth / image.Width;
@@ -199,19 +236,35 @@ namespace Jan_die_alles_kan.Controllers
 
 
             var newImage = new Bitmap(newWidth, newHeight);
-            Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+            if (bRatio)
+                Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+            else
+            {
+                newImage = new Bitmap(maxWidth, maxHeight);
+                Graphics.FromImage(newImage).DrawImage(image, 0, 0, maxWidth, maxHeight);
+            }
             return newImage;
         }
 
-        private Image makeThumb(HttpPostedFileBase file)
+        //Method for making a thumbnail or a preview image. This method also puts in a watermark
+        private Image makeThumb(HttpPostedFileBase file, bool bIsThumb)
         {
             Image inputimage = Image.FromStream(file.InputStream, true, true);
             Image logo = Image.FromFile(Server.MapPath("~/Images/milanovLogo.png"));
-            Image image = ScaleImage(inputimage, 300, 300);
+            Image image = inputimage;
+
+            if (bIsThumb)
+            {
+                image = ScaleImage(inputimage, 300, 300,true);
+                logo = ScaleImage(logo, 300, 300,true);
+            }
+            else
+                logo = ScaleImage(logo, image.Width, image.Height,true);
+
             Graphics g = System.Drawing.Graphics.FromImage(image);
 
 
-            Bitmap TransparentLogo = new Bitmap(image.Width, image.Height);
+            Bitmap TransparentLogo = new Bitmap(image.Width, image.Height); //gebied waar het logo word geplaatst
 
 
             Graphics TGraphics = Graphics.FromImage(TransparentLogo);
@@ -219,9 +272,9 @@ namespace Jan_die_alles_kan.Controllers
             ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
             ImageAttributes ImgAttributes = new ImageAttributes();
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, 300, 300, GraphicsUnit.Pixel, ImgAttributes);
+            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, logo.Width, logo.Height, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, (image.Width / 8), (image.Height / 4));
+            g.DrawImage(TransparentLogo, (image.Width / 2) - (logo.Width /2 ), (image.Height / 2) - (logo.Height /2));
 
             return image;
         }
