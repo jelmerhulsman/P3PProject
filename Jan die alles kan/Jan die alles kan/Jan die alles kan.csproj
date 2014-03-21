@@ -343,6 +343,7 @@
     <Content Include="tinymce\skins\lightgray\skin.min.css" />
     <Content Include="tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce\tinymce.min.js" />
+    <Content Include="Views\Account\Checkout.aspx" />
     <Content Include="Views\Dashboard\CategoryCreate.aspx" />
     <Content Include="Views\Dashboard\CategoryDelete.aspx" />
     <Content Include="Views\Dashboard\CategoryIndex.aspx" />

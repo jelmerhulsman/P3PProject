@@ -25,6 +25,9 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult SendMail()
         {
+            UserDataContext db = new UserDataContext();
+            var username = from user in db.DBUserData select user.Username;
+            ViewBag.username = username;
             return View("SendMail");
         }
 
@@ -36,6 +39,7 @@ namespace Jan_die_alles_kan.Controllers
             string content = Request.Unvalidated.Form["content"];
             string emailFrom = "developdejong@gmail.com";
             string password = "darktranquillity";
+            email = getEmail(email);
             MailMessage Mail = new MailMessage(emailFrom, email);
             SmtpClient client = new SmtpClient();
             client.Port = 587;
@@ -52,7 +56,26 @@ namespace Jan_die_alles_kan.Controllers
             client.Send(Mail);
             return Redirect("../Dashboard/Index");
         }
+        private string getEmail(string userName)
+        {
+            string Email = "";
+            UserDataContext db = new UserDataContext();
+            var mail = from user in db.DBUserData
+                       where user.Username == userName
+                       select user.Email;
+            try
+            {
+                string adress = mail.ToList().First();
+                var addr = new System.Net.Mail.MailAddress(adress);
+                Email = adress;
+            }
+            catch
+            {
+                Email = "developdejong@gmail.com";
+            }
 
+            return Email;
+        }
         #region pages LOGIC
 
         private PagesContext db = new PagesContext();

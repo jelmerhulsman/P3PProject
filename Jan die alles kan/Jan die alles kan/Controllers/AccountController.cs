@@ -29,6 +29,22 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        public ActionResult Checkout()
+        {
+           
+            return View("Checkout");
+        }
+        [HttpPost]
+        public ActionResult CheckoutConfirmed(FormCollection form)
+        {
+            string PaymentOption = form["paymentmethod"];
+            string urlredirect = "https://www.paypal.com/";
+            if (PaymentOption == "Ideal")
+                urlredirect = "http://www.ideal.nl";
+
+            return Redirect(urlredirect);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -66,6 +82,26 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult LogOff()
         {
+            // Ingelogde gebruiker ophalen
+            UserDataContext uContext = new UserDataContext();
+            UserData user;
+            string userName = User.Identity.Name;
+            var a = from x in uContext.DBUserData
+                    where x.Username == userName
+                    select x;
+            user = a.ToList().First();
+
+            user.Order = null;
+
+            try
+            {
+                uContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Json("Te system was unable to save your order");
+            }
+
             WebSecurity.Logout();
 
             return RedirectToAction("Overview", "Page");
@@ -96,7 +132,7 @@ namespace Jan_die_alles_kan.Controllers
                         CustSecurityController Secure = new CustSecurityController();
                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
 
-                        UserData dataProfile = new UserData(model.UserName, model.Email, model.Street, model.HouseNumber, model.City, model.PostalCode);
+                        UserData dataProfile = new UserData(model.UserName, model.Email, model.Street, model.HouseNumber, model.City, model.PostalCode, null);
 
                         db.DBUserData.Add(dataProfile);
                         db.SaveChanges();

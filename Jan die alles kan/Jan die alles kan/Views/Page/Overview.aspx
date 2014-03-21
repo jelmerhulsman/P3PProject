@@ -173,41 +173,12 @@
                 $(this).remove();
             })
             $.post("http://localhost:52802/Ajax/GetOrder", {}, function (data) {
-                console.log("LALALA");
                 var order = data;
-
-                if (order.indexOf(',') == -1) {
-                    $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
-                        $('#shoppingCartBox ul').prepend(
-                            '<li class="' + data.Id + '">' +
-                                '<div class="cartImage">' +
-                                    '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
-                                '</div>' +
-                                '<div class="cartDescription">' +
-                                    '<p>' + data.Name + '</p>' +
-                                    '<p>' + data.Category + '</p>' +
-                                    '<p class="price">€ ' + data.Price + '</p>' +
-                                '</div>' +
-                                '<p class="removeItem ' + data.Id + '"></p>' +
-                                '<div class="clear"></div>' +
-                            '</li>'
-                        );
-                        if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
-                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
-                        }
-                        else {
-                            $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
-                        }
-                        setCartText();
-                        addRemoveFunctionality();
-                        updatePrice();
-                    });
-                } else {
-                    var orders = order.split(',');
-                    orders.forEach(function (order) {
+                if (data != "") {
+                    if (order.indexOf(',') == -1) {
                         $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
                             $('#shoppingCartBox ul').prepend(
-                                '<li>' +
+                                '<li class="' + data.Id + '">' +
                                     '<div class="cartImage">' +
                                         '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
                                     '</div>' +
@@ -220,11 +191,40 @@
                                     '<div class="clear"></div>' +
                                 '</li>'
                             );
+                            if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
+                                $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
+                            }
+                            else {
+                                $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
+                            }
                             setCartText();
                             addRemoveFunctionality();
                             updatePrice();
                         });
-                    });
+                    } else {
+                        var orders = order.split(',');
+                        orders.forEach(function (order) {
+                            $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                                $('#shoppingCartBox ul').prepend(
+                                    '<li class="' + data.Id + '">' +
+                                        '<div class="cartImage">' +
+                                            '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
+                                        '</div>' +
+                                        '<div class="cartDescription">' +
+                                            '<p>' + data.Name + '</p>' +
+                                            '<p>' + data.Category + '</p>' +
+                                            '<p class="price">€ ' + data.Price + '</p>' +
+                                        '</div>' +
+                                        '<p class="removeItem ' + data.Id + '"></p>' +
+                                        '<div class="clear"></div>' +
+                                    '</li>'
+                                );
+                                setCartText();
+                                addRemoveFunctionality();
+                                updatePrice();
+                            });
+                        });
+                    }
                 }
             });
         }
@@ -274,6 +274,19 @@
                     $(this).remove();
                     setCartText();
                     updatePrice();
+
+                    var order = "";
+                    var i = 0;
+                    $('#shoppingCartBox ul li').each(function () {
+                        if (i == 0) {
+                            order = $(this).attr("class");
+                            i++;
+                        } else {
+                            order = order + ', ' + $(this).attr("class");
+                        }                        
+                    });
+
+                    $.post("http://localhost:52802/Ajax/RemoveFromCart", { order: order }, function () { });
                 });
             });
         }
@@ -404,7 +417,9 @@
                                 </p>
                                 <div class="clear"></div>
                             </div>
-                            <a href="#" id="cartCheckOut">Check out</a>
+                            
+                           <a href="/Account/Checkout" id="cartCheckOut">Check out</a>
+                              
                         </div>
                     </div>
                 </div>

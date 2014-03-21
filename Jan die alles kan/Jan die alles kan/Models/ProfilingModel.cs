@@ -22,8 +22,9 @@ namespace Jan_die_alles_kan.Models
     [Table("UserData")]
     public class UserData
     {
-
-        public UserData(string username, string email, string street, string housenumber, string city, string postalcode)
+        public UserData() { 
+        }
+        public UserData(string username, string email, string street, string housenumber, string city, string postalcode, string order)
         {
             Username = username;
             Email = email;
@@ -31,6 +32,7 @@ namespace Jan_die_alles_kan.Models
             HouseNumber = housenumber;
             City = city;
             PostalCode = postalcode;
+            Order = order;
         }
 
         [Key]
@@ -42,6 +44,6 @@ namespace Jan_die_alles_kan.Models
         public string HouseNumber { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
-
+        public string Order { get; set; }
     }
 }
