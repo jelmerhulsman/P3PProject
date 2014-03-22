@@ -108,7 +108,7 @@
                     $('#overlay .description').html(data.Description);
                     $('#overlay .price').html('&euro; ' + data.Price);
                     $('#addToCartButton').attr('class', data.Id);
-                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />');
+                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />');
 
                     // Bepalen of de foto landscape of portrait is
                     // Afbeelding hoogte bepalen en blok, met informatie, hoogte bepalen
@@ -472,7 +472,7 @@
                     %>
 
                     <li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">
-                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />
+                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';" />
 
 <!--
                     <li class="<%: Class %>">

@@ -37,7 +37,7 @@ namespace Jan_die_alles_kan.Models
             public string Color { get; set; }
             public string Description { get; set; }
             public string File_name { get; set; }
-            public decimal Price { get; set; }
+            public string Price { get; set; }
         }
         public class CategoryContext : DbContext
         {

@@ -362,12 +362,15 @@ namespace Jan_die_alles_kan.Controllers
             PictureModel Picturemodel = db2.Picture.Find(id);
             string pad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/" + Picturemodel.File_name);
             string Thumbpad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/Thumbnails/" + Picturemodel.File_name);
-            System.IO.File.Delete(pad);
+            string Prevpad = Server.MapPath("~/Images/Categories/" + Picturemodel.Category + "/Previews/" + Picturemodel.File_name);
             try
             {
+                System.IO.File.Delete(Prevpad);
+                System.IO.File.Delete(pad);
                 System.IO.File.Delete(Thumbpad);
             }
-            catch { }
+            catch
+            {}
             db2.Picture.Remove(Picturemodel);
             db2.SaveChanges();
             return RedirectToAction("ImageIndex");
