@@ -211,10 +211,12 @@ namespace Jan_die_alles_kan.Controllers
         [ValidateInput(false)]
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
         {
-
-            if (picture.File.ContentLength > 0)
+            string fileExt = Path.GetExtension(picture.File.FileName);
+            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg"))
             {
+                
                 var filename = Path.GetFileName(picture.File.FileName);
+                
 
                 //THUMBNAIL GENERATOR               
                 string thumbpad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/" + picture.File.FileName);
@@ -242,6 +244,10 @@ namespace Jan_die_alles_kan.Controllers
                 
                 db2.Picture.Add(p_model);
                 db2.SaveChanges(); 
+            }
+            else
+            {
+                return Json("Error!");
             }
             return RedirectToAction("ImageIndex");
         }
