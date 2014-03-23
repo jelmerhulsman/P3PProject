@@ -22,16 +22,58 @@ namespace Jan_die_alles_kan.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        public ActionResult downloadpage()
+        public ActionResult DownloadPage()
         {
+            UserDataContext udc = new UserDataContext();
+            PicturesContext pc = new PicturesContext();
+            PictureModel pm = new PictureModel();
 
+            var a = from user in udc.DBUserData
+                    where user.Username == User.Identity.Name
+                    select user.Order;
+            char[] order = a.ToArray().First().ToArray();
+            string tempstr ="";
+            List<int> orderList = new List<int>();
+            for (int i = 0; i < order.Count(); i++)
+            {
+                
+                if (char.IsNumber(order[i]))
+                {
+                    
+                    string temp = Convert.ToString(order[i]);
+                    tempstr += temp;
+                }
+                else
+                {
+                    if (tempstr.Length > 0)
+                    {
+                      orderList.Add(Convert.ToInt32(tempstr));
+                    tempstr = "";  
+                    }
+                    
+
+                }
+                if (i+1 == null)
+                {
+                    orderList.Add(Convert.ToInt32(tempstr));
+                }
+            }
+            List<PictureModel> photoList = new List<PictureModel>();
+            foreach (int ID in orderList)
+            {
+                var photo = from x in pc.Picture
+                            where x.Id == ID
+                            select x;
+                photoList.Add(photo.ToList().First());
+            }
+            ViewData["photoList"] = photoList;
             return View("downloadpage");
         }
 
-        public FileResult FileDownloadPage()
+        public FileResult FileDownloadPage(string category, string file_name)
         {
             FileResult result;
-            string path = @"C:\Users\Bart Jan\Documents\GitHub\P3PProject\Jan die alles kan\Jan die alles kan\Content\Pictures\_MG_5002.jpg";
+            string path = Server.MapPath("~/Images/Categories/" + category + "/" +file_name);
             using (FileStream stream = System.IO.File.OpenRead(path))
             {
                 MemoryStream streamFile = GetFile(path);

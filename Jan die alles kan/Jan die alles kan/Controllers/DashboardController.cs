@@ -56,6 +56,7 @@ namespace Jan_die_alles_kan.Controllers
             client.Send(Mail);
             return Redirect("../Dashboard/Index");
         }
+
         private string getEmail(string userName)
         {
             string Email = "";
@@ -173,6 +174,7 @@ namespace Jan_die_alles_kan.Controllers
         #endregion
 
         private PicturesContext db2 = new PicturesContext();
+
         private CategoryContext dbcategories = new CategoryContext();
 
         #region Image LOGIC
