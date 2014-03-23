@@ -282,13 +282,7 @@ namespace Jan_die_alles_kan.Controllers
             Image logo = Image.FromFile(Server.MapPath("~/Images/milanovLogo.png"));
             Image image = inputimage;
 
-            if (bIsThumb)
-            {
-                image = ScaleImage(inputimage, 300, 300,true);
-                logo = ScaleImage(logo, 300, 300,true);
-            }
-            else
-                logo = ScaleImage(logo, image.Width, image.Height,true);
+            
 
             Graphics g = System.Drawing.Graphics.FromImage(image);
 
@@ -303,8 +297,14 @@ namespace Jan_die_alles_kan.Controllers
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, logo.Width, logo.Height, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, (image.Width / 2) - (logo.Width /2 ), (image.Height / 2) - (logo.Height /2));
-
+            g.DrawImage(TransparentLogo, 0/*(image.Width / 2) - (logo.Width /2 )*/, 0/*(image.Height / 2) - (logo.Height /2)*/);
+            if (bIsThumb)
+            {
+                image = ScaleImage(inputimage, 300, 300, true);
+                logo = ScaleImage(logo, 300, 300, true);
+            }
+            else
+                logo = ScaleImage(logo, image.Width, image.Height, true);
             return image;
         }
 
