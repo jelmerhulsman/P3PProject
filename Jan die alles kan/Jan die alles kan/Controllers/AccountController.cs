@@ -13,6 +13,7 @@ using Jan_die_alles_kan.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.IO;
 using System.Globalization;
 
 namespace Jan_die_alles_kan.Controllers
@@ -21,6 +22,43 @@ namespace Jan_die_alles_kan.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        public ActionResult downloadpage()
+        {
+
+            return View("downloadpage");
+        }
+
+        public FileResult FileDownloadPage()
+        {
+            FileResult result;
+            string path = @"C:\Users\Bart Jan\Documents\GitHub\P3PProject\Jan die alles kan\Jan die alles kan\Content\Pictures\_MG_5002.jpg";
+            using (FileStream stream = System.IO.File.OpenRead(path))
+            {
+                MemoryStream streamFile = GetFile(path);
+                result = new FileContentResult(streamFile.ToArray(), "image/jpeg");
+                result.FileDownloadName = "image.jpg";
+                
+            }
+            return result;
+        }
+
+        MemoryStream GetFile(string path)
+        {
+            byte[] buffer = new byte[4096];
+            FileStream fs;
+            MemoryStream streamFile = new MemoryStream();
+            using (fs = System.IO.File.OpenRead(path))
+            {
+                int sourceBytes;
+                do
+                {
+                    sourceBytes = fs.Read(buffer, 0, buffer.Length);
+   	                streamFile.Write(buffer,0,sourceBytes);
+	            } 
+                while (sourceBytes > 0);
+            }
+            return streamFile;
+        }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
