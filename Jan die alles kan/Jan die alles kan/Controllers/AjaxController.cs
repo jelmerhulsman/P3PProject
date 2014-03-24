@@ -23,9 +23,33 @@ namespace Jan_die_alles_kan.Controllers
         // GET: /Ajax/
 
         [HttpPost]
-        public ActionResult Filter()
+        public ActionResult Filter(FormCollection collection)
         {
-            return Json("ABC");
+            PicturesContext pContext = new PicturesContext();
+            List<string> aColors = new List<string>();
+            List<string> aCategories = new List<string>();
+            var pModel = pContext.Picture;
+
+            string sColors = collection["colors"]; // red, yellow
+            if (sColors != null)
+            {
+                aColors = sColors.Split(',').ToList();
+            }
+
+            string sCategories = collection["categorties"]; // a, b
+            if (sCategories != null)
+            {
+                aCategories = sCategories.Split(',').ToList();
+            }
+
+            string sPricerange = collection["priceRange"]; // €20 €30
+            var aPricerange = sPricerange.Split(',');
+
+            var pictures = from p in pModel
+                           where aColors.Contains(p.Color) && aCategories.Contains(p.Category)
+                           select p;
+
+            return Json(pictures);
         }
 
         [HttpPost]

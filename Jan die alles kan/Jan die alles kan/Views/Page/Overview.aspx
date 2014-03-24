@@ -86,11 +86,35 @@
                 event.stopPropagation();
             });
 
-            $('btn.search').click(function () {
-                $.post("http://localhost:52802/Ajax/Filter", null, function (data) {
+            $('button.search').click(function () {
+                var filterColors = "";
+                $('.colorHolder li .color').each(function () {
+                    if ($(this).hasClass('clicked')) {
+                        var color = $(this).attr('class');
+                        color = color.split(' ');
+                        color = color[1];
+                        filterColors += color + ",";
+                    };
+                });
+                filterColors = filterColors.substr(0, filterColors.length - 1);
+
+                var filterCategories = "";
+                $('.categoryHolder li .checkbox').each(function () {
+                    if ($(this).hasClass('clicked')) {
+                        filterCategories += $(this).next().text() + ",";
+                    };
+                });
+                filterCategories = filterCategories.substr(0, filterCategories.length - 1);
+
+                var priceRange = $("#min").text().replace('€', '') + "," + $("#max").text().replace('€', '');
+
+                console.log(filterColors);
+                console.log(filterCategories);
+                console.log(priceRange);
+                $.post("http://localhost:52802/Ajax/Filter", { colors: filterColors, catergories: filterCategories, pricerange: priceRange }, function (data) {
                     console.log(data);
                 });
-            })
+            });
 
             $('#photos li').each(function () {
                 if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
@@ -148,6 +172,7 @@
             });
 
             updateCart();
+            buildOverview();
         });
 
         $(window).resize(function () {
@@ -283,12 +308,64 @@
                             i++;
                         } else {
                             order = order + ', ' + $(this).attr("class");
-                        }                        
+                        }
                     });
 
                     $.post("http://localhost:52802/Ajax/RemoveFromCart", { order: order }, function () { });
                 });
             });
+        }
+
+        function buildOverview(pictures) {
+            pictures = typeof pictures !== 'undefined' ? pictures : "<%: ViewBag.pictures %>";
+            console.log(pictures);
+            var html = '';
+                        <% 
+                        int pCounter = 1; // Photo counter
+                        int bulCounter = 1; // begin ul counter
+                        int eulCounter = 4; // end ul counter
+                        string Class = "";
+                        foreach(var item in Model){
+                            Class = item.Color;
+                    
+                            if (pCounter % 4 == 0)
+                            {
+                                Class += " last";
+                            }
+
+                            if (pCounter <= 4)
+                            { 
+                                Class += " toprow";
+                            }
+
+                            if (pCounter == bulCounter)
+                            { 
+                                %> html += '<ul>' <%
+                                bulCounter += 4;
+                            }
+                    %>
+            html += '<li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">';
+            html += '<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />';
+
+            //<li class="<%: Class %>">
+            //<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+
+            html += '<div class="description">';
+            html += '<h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>';
+                                html += '<p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>';
+            html += '<span class="price">&euro; <%: Html.DisplayFor(modelItem => item.Price) %></span>';
+            html += '</div>';
+            html += ' </li>';
+                        <% 
+                            if (pCounter == eulCounter)
+                            { 
+                                %> html += '</ul><li class="clear"></li>'; <%
+                                eulCounter += 4;
+                            }
+                            pCounter++;
+                        } 
+                    %>
+            $('#photos ul').append(html);
         }
     </script>
 </head>
@@ -445,54 +522,6 @@
             </div>
             <div id="photos">
                 <ul>
-                    <% 
-                        int pCounter = 1; // Photo counter
-                        int bulCounter = 1; // begin ul counter
-                        int eulCounter = 4; // end ul counter
-                        string Class = "";
-                        foreach(var item in Model){
-                            if (pCounter % 4 == 0)
-                            {
-                                Class = "last";
-                            }
-                            else {
-                                Class = "";
-                            }
-
-                            if (pCounter <= 4)
-                            { 
-                                Class += " toprow";
-                            }
-
-                            if (pCounter == bulCounter)
-                            { 
-                                %> <ul> <%
-                                bulCounter += 4;
-                            }
-                    %>
-
-                    <li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">
-                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';" />
-
-<!--
-                    <li class="<%: Class %>">
-                        <img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
--->
-                        <div class="description">
-                            <h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>
-                            <p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>
-                            <span class="price">&euro; <%: Html.DisplayFor(modelItem => item.Price) %></span>
-                        </div>
-                    </li>
-                    <% 
-                            if (pCounter == eulCounter)
-                            { 
-                                %> </ul><li class="clear"></li> <%
-                                eulCounter += 4;
-                            }
-                            pCounter++;
-                        } 
-                    %>                    
                 </ul>
                 <div class="clear"></div>
             </div>
