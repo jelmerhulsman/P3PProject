@@ -9,8 +9,10 @@
 <h2>Checkout</h2>
     <% using (Html.BeginForm("CheckoutConfirmed", "Account", FormMethod.Post)) { %>
     <div><b>Select Payment method</b>
-        <%= Html.RadioButton("paymentmethod", "Paypal") %> Paypal
-        <%= Html.RadioButton("paymentmethod", "Ideal") %> Ideal
+        <br />
+        <%= Html.RadioButton("paymentmethod", "Paypal") %> <img src="../../Images/Btn/paypal-button.png" />
+        <br />
+        <%= Html.RadioButton("paymentmethod", "Ideal") %> <img src="../../Images/Btn/ideal-button.png" />
 
         <br />
         <input type="submit" value="Submit!" />

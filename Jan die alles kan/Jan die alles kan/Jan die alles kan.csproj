@@ -210,6 +210,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\Btn\ideal-button.png" />
+    <Content Include="Images\Btn\paypal-button.png" />
     <Content Include="Images\Categories\Band\band overload.jpg" />
     <Content Include="Images\Categories\Band\Band view ExitLight.jpg" />
     <Content Include="Images\Categories\Bloem\bloem.jpg" />
