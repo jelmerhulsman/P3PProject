@@ -214,15 +214,13 @@
     <Content Include="Images\Btn\paypal-button.png" />
     <Content Include="Images\Categories\Band\band overload.jpg" />
     <Content Include="Images\Categories\Band\Band view ExitLight.jpg" />
-    <Content Include="Images\Categories\Bloem\bloem.jpg" />
-    <Content Include="Images\Categories\Drummer\drummer.jpg" />
-    <Content Include="Images\Categories\Gitaar\Esker.jpg" />
-    <Content Include="Images\Categories\Gitaar\exitlight Empire.jpg" />
-    <Content Include="Images\Categories\Landschap\dokkum.jpg" />
-    <Content Include="Images\Categories\Portret\kind.jpg" />
-    <Content Include="Images\Categories\Portret\rock.jpg" />
-    <Content Include="Images\Categories\Portret\Sjoerd Klaas.jpg" />
-    <Content Include="Images\Categories\Portret\straatfestival.jpg" />
+    <Content Include="Images\Categories\Nature\bloem.jpg" />
+    <Content Include="Images\Categories\Band\drummer.jpg" />
+    <Content Include="Images\Categories\Band\Esker.jpg" />
+    <Content Include="Images\Categories\Band\exitlight Empire.jpg" />
+    <Content Include="Images\Categories\Landscape\dokkum.jpg" />
+    <Content Include="Images\Categories\People\kind.jpg" />
+    <Content Include="Images\Categories\People\straatfestival.jpg" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\arrow_big.png" />
     <Content Include="Images\bg_top.jpg" />
@@ -403,8 +401,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Pictures\" />
     <Folder Include="Filters\" />
-    <Folder Include="Images\Categories\Gitaar\Thumbnails\" />
-    <Folder Include="Images\Categories\sdgs\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ namespace Jan_die_alles_kan.Controllers
 
         private PagesContext db = new PagesContext();
         private PicturesContext db_pictures = new PicturesContext();
-
+        private CategoryContext db_category = new CategoryContext();
        
         public ActionResult Landingpage()
         {
@@ -25,6 +25,11 @@ namespace Jan_die_alles_kan.Controllers
         {
             ViewData["pages"] = db.Pages.ToList();
             ViewData["pictures"] = db_pictures.Picture.ToList();
+            var categories = from c in db_category.Categories
+                             orderby c.Name
+                             select c;
+            ViewData["categories"] = categories.ToList();
+
             return View();
         }
 
