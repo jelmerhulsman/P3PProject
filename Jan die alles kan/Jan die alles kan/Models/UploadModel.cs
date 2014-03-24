@@ -38,6 +38,7 @@ namespace Jan_die_alles_kan.Models
             public string Description { get; set; }
             public string File_name { get; set; }
             public int Price { get; set; }
+            public string Orientation { get; set; }
         }
         public class CategoryContext : DbContext
         {

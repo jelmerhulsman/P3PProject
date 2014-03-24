@@ -22,9 +22,26 @@ namespace Jan_die_alles_kan.Controllers
     {
         //
         // GET: /Ajax/
-        public ActionResult GetPhotos() {
+        [HttpPost]
+        public ActionResult GetPhotos(FormCollection collection) {
             PicturesContext pContext = new PicturesContext();
-            return Json(pContext.Picture.ToList());
+            
+            string searchTerm = collection["searchTerm"];
+            if (collection["searchTerm"] != "")
+            {
+                var pictures = from p in pContext.Picture
+                               where p.Name.Contains(searchTerm)
+                               orderby p.Id descending
+                               select p;
+                return Json(pictures.ToList());
+            }
+            else
+            {
+                var pictures = from p in pContext.Picture
+                               orderby p.Id descending
+                               select p;
+                return Json(pictures.ToList());
+            }
         }
 
         [HttpPost]
@@ -32,6 +49,7 @@ namespace Jan_die_alles_kan.Controllers
         {
             PicturesContext pContext = new PicturesContext();
             List<string> aColors = new List<string>();
+            List<string> aOrientation = new List<string>();
             List<string> aCategories = new List<string>();
             var pModel = pContext.Picture;
 
@@ -39,6 +57,12 @@ namespace Jan_die_alles_kan.Controllers
             if (sColors != "")
             {
                 aColors = sColors.Split(',').ToList();
+            }
+
+            string sOrientation = collection["orientation"]; // a, b
+            if (sOrientation != "")
+            {
+                aOrientation = sOrientation.Split(',').ToList();
             }
 
             string sCategories = collection["categories"]; // a, b
@@ -56,9 +80,25 @@ namespace Jan_die_alles_kan.Controllers
                            where p.Price >= priceMin && p.Price <= priceMax
                            select p;
             
-            if (sColors != "") {
+            string sName = collection["name"];
+            if (sName != "")
+            {
+                pictures = from p in pictures
+                           where p.Name.Contains(sName)
+                           select p;
+            }
+
+            if (sColors != "") 
+            {
                 pictures = from p in pictures
                            where aColors.Contains(p.Color)
+                           select p;
+            }
+
+            if (sOrientation != "")
+            {
+                pictures = from p in pictures
+                           where aOrientation.Contains(p.Orientation)
                            select p;
             }
 
@@ -70,44 +110,6 @@ namespace Jan_die_alles_kan.Controllers
             }
 
             return Json(pictures);
-        }
-
-        [HttpPost]
-        public string FormLogin(FormCollection collection)
-        {
-            CustSecurityController Secure = new CustSecurityController();
-
-            try
-            {
-                WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-            }
-            catch { }
-
-            WebSecurity.Logout();
-
-            if (WebSecurity.Login(collection["username"], collection["password"], persistCookie: false))
-            {
-                if (User.IsInRole("Admin"))
-                {
-                    if (CustSecurity.IPCheck(Secure.Details(collection["username"]), Request.UserHostAddress))
-                    {
-                        return "ad";
-                    }
-                    else
-                    {
-                        WebSecurity.Logout();
-                        Secure.createIPVerification(new IPProfile(collection["username"], Request.UserHostAddress));
-                        return "de";
-                    }
-                }
-                else
-                {
-                    return "us";
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return "fa";
         }
 
         [HttpPost]

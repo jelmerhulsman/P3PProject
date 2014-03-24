@@ -254,6 +254,7 @@
     <Content Include="Images\tooltip.png" />
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\Content_Page\resize-blocks.js" />
+    <Content Include="Scripts\Global_Page\cart-function.js" />
     <Content Include="Scripts\Global_Page\slideshow.js" />
     <Content Include="Scripts\Landingpage_Page\login-bar.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -271,7 +272,10 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\Landingpage_Page\responsive-searchfield.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Overview_Page\Overview_Page.js" />
+    <Content Include="Scripts\Overview_Page\build-overview.js" />
+    <Content Include="Scripts\Overview_Page\filter-function.js" />
+    <Content Include="Scripts\Overview_Page\photo-overlay.js" />
+    <Content Include="Scripts\Overview_Page\style-fix.js" />
     <Content Include="tinymce\license.txt" />
     <Content Include="tinymce\plugins\advlist\plugin.min.js" />
     <Content Include="tinymce\plugins\anchor\plugin.min.js" />

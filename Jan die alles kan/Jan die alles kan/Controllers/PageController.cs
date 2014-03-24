@@ -21,6 +21,29 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Overview(FormCollection collection)
+        {
+            ViewData["pages"] = db.Pages.ToList();
+            ViewData["pictures"] = db_pictures.Picture.ToList();
+
+            string searchTerm = collection["search"].ToString();
+            if (searchTerm != null)
+            {
+                var picture = from x in db_pictures.Picture
+                              where x.Name.Contains(searchTerm)
+                              select x;
+                ViewData["pictures"] = picture;
+            }           
+
+            var categories = from c in db_category.Categories
+                             orderby c.Name
+                             select c;
+            ViewData["categories"] = categories.ToList();
+
+            return View();
+        }
+
         public ActionResult Overview()
         {
             ViewData["pages"] = db.Pages.ToList();

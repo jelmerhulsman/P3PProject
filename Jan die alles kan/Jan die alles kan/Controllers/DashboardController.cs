@@ -183,9 +183,6 @@ namespace Jan_die_alles_kan.Controllers
         public static void SaveJpeg
 (string path, Image img)
         {
-            
-            
-
             System.IO.MemoryStream mss = new System.IO.MemoryStream();
 
             System.IO.FileStream fs
@@ -221,18 +218,12 @@ namespace Jan_die_alles_kan.Controllers
             
             if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg") && DatabaseFilename == false)
             {
-                
-                
-                
-
                 //THUMBNAIL GENERATOR               
                 string thumbpad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/" + picture.File.FileName);
                 Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"));
                 Image Thumb = makeThumb(picture.File, true);
                 SaveJpeg(thumbpad, Thumb);
-                
 
-               
                 //PREVIEW GENERATOR
                 var PreviewPath = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/" + picture.File.FileName);
                 Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/"));
@@ -243,6 +234,11 @@ namespace Jan_die_alles_kan.Controllers
                 p_model.File_name = filename;
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;
+
+                if (Preview.Width >= Preview.Width)
+                    p_model.Orientation = "horizontal";
+                else
+                    p_model.Orientation = "vertical";
 
                 //Actual image upload
                 Image image = Image.FromStream(picture.File.InputStream,true,true);
