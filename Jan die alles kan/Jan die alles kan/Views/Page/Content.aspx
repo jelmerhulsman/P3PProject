@@ -12,13 +12,15 @@
     <script src="../../Scripts/backstretch.js"></script>
 
     <script src="../../Scripts/Global_Page/slideshow.js"></script>
+    <script src="../../Scripts/Global_Page/cart-function.js"></script>
+    <script src="../../Scripts/Global_Page/photo-overlay.js"></script>
 
     <script src="../../Scripts/Content_Page/resize-blocks.js"></script>
 </head>
 
 <body>
     <div id="main">
-        <div id="top">
+        <div class="top">
             <div class="inner">
                 <div class="languages">
                     <a href="#">
@@ -28,10 +30,37 @@
                 </div>
                 <div class="shopping">
                     <a href="javascript:void(0);">
-                        <img src="../../Images/Btn/btn_shoppingcart.png" alt="" /><span>3 Photos</span></a>
+                        <img src="../../Images/Btn/btn_shoppingcart.png" alt="" /><span>... Photos</span></a>
+                    <div id="shoppingCartOverlay">
+                        <span></span>
+                        <div id="shoppingCartBox">
+                            <ul>
+                            </ul>
+                            <div id="cartPrice">
+                                <p>
+                                    Sub total<br />
+                                    Discount<br />
+                                    Total
+                                </p>
+                                <p class="prices">
+                                    € 00,00<br />
+                                    10%<br />
+                                    € 00,00
+                                </p>
+                                <div class="clear"></div>
+                            </div>
+                            
+                           <a href="/Account/Checkout" id="cartCheckOut">Check out</a>
+                              
+                        </div>
+                    </div>
                 </div>
                 <div class="login">
+                    <% if(User.Identity.IsAuthenticated){ %>
+                    <a href="#">Welcome, <%: User.Identity.Name %>! | <a href="http://localhost:52802/Account/LogOff">Log off</a></a>
+                    <% } else { %>
                     <a href="http://localhost:52802/Account/Login">Login &gt;</a>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -65,7 +94,7 @@
                            }
                        }
                    } %>
-                <h1><%= Server.HtmlDecode(ViewBag.Name)   %></h1>
+                <!-- <h1>< %= Server.HtmlDecode(ViewBag.Name)   %></h1> -->
                 <%= Server.HtmlDecode(ViewBag.Content)   %>
             </div>
         </div>

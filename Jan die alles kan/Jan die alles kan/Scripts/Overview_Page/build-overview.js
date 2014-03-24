@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('select[name="sortBy"]').blur(function () {
+    $('select[name="sortBy"]').change(function () {
         var pictures = "";
         $('#photoOverview li').each(function () {
             if (typeof($(this).attr('id')) != 'undefined') {
@@ -10,7 +10,11 @@
         pictures = pictures.substr(0, pictures.length - 1);
 
         $.post("http://localhost:52802/Ajax/OrderPhotos", { order: $(this).val(), pictures: pictures }, function (data) {
-            buildOverview(data);
+            if (!data) {
+                alert("There are no images to sort.");
+            } else {
+                buildOverview(data);
+            }
         });
     })
 
@@ -44,9 +48,91 @@
     }
 
     $.post("http://localhost:52802/Ajax/GetPhotos", { searchTerm: searchTerm }, function (data) {
-        buildOverview(data);
+        $('input[name="keyword"]').val(searchTerm);
+        console.log(data);
+        if (!data) {            
+            alert("No images were found with the provided search request. Please try again.");
+        } else {
+            buildOverview(data);
+        }
     });
 });
+
+function buildPagination() {
+    // Pagination
+    var maxInCollections = $('.collection_1').length;
+    var collections = Math.ceil($('.collection').length / maxInCollections);
+
+    // Show page 1
+    $('.pageIndicator').text('');
+    if ($('.collection_2').length != 0) {
+        $('.collection').each(function () {
+            if (!$(this).hasClass('collection_1')) {
+                $(this).hide();
+            }
+        })
+
+        // Create buttons
+        $('#pagination .left').append('<a class="paginationBtn_prev" href="javascript:void(0);">&lt;</a>');
+        for (var i = 1; i <= collections; i++) {
+            if (i == 1) {
+                $('#pagination .center').append('<a class="paginationBtn_' + i + ' active" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+            } else if (collections < 7) {
+                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+            } else if (i < 4) {
+                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+            } else if (i == 4) {
+                $('#pagination .center').append('<a class="paginationBtn_x" href="javascript:void(0);" onclick="jumpTo()">...</a>');
+            } else if (collections - 3 < i) {
+                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+            }
+        }
+        $('#pagination .right').append('<a class="paginationBtn_next" onclick="showPage(2)" href="javascript:void(0);">&gt;</a>');
+
+        $('.pageIndicator').text('Pagina: 1 / ' + collections);
+
+        $('#paginationBtns').append($('.resultsPerPage'));
+    }
+
+    // Results per page functionality
+    $('.resultsPerPage').hover(function () {
+        $('.resultsPerPage li').toggle();
+    }, function () {
+        $('.resultsPerPage li').toggle();
+    });
+}
+
+// Paginations buttons function
+function showPage(page) {
+    if (!$('.paginationBtn_' + page).hasClass('active')) {
+
+        $('.active').removeClass('active');
+        $('.paginationBtn_' + page).addClass('active');
+
+        if (page - 1 != -1) {
+            var check = page;
+            if (check - 1 == 0) {
+                $('.paginationBtn_prev').attr('onclick', 'showPage(1)');
+            } else {
+                $('.paginationBtn_prev').attr('onclick', 'showPage(' + Math.ceil(page - 1) + ')');
+            }
+        }
+
+        var maxInCollections = $('.collection_1').length;
+        var collections = Math.ceil($('.collection').length / maxInCollections);
+
+        if (page != collections) {
+            $('.paginationBtn_next').attr('onclick', 'showPage(' + Math.ceil(page + 1) + ')');
+        }
+
+        $('.collection').hide();
+        $('.collection_' + page).show();
+
+        $('.pageIndicator').text('Pagina: ' + page + ' / ' + collections);
+
+        FixThumbnails();
+    }
+}
 
 function buildOverview(pictures) {
     if ($('#photoOverview').length == 1) {
@@ -55,25 +141,38 @@ function buildOverview(pictures) {
 
     var html = '<ul id="photoOverview">';
     var pCounter = 1; // Photo counter
+    var pInCollection = 12;
+    var collection = 1;
+    var pOnRow = 4; // Photos on row
     var bulCounter = 1; // begin ul counter
-    var eulCounter = 4; // end ul counter
+    var eulCounter = pOnRow; // end ul counter    
     var Class = "";
+    var liClass = "";
     pictures.forEach(function (item) {
         Class = item.Color;
 
-        if (pCounter % 4 == 0) {
+        if (pCounter % pOnRow == 0) {
             Class += " last";
         }
 
-        if (pCounter <= 4) {
+        if (pCounter <= pOnRow) {
             Class += " toprow";
         }
 
-        if (pCounter == bulCounter) {
-            html += '<ul>';
-            bulCounter += 4;
+        if (pCounter == pInCollection + 1) {            
+            pInCollection += pInCollection;
+            collection++;
         }
-        html += '<li id="' + item.Id + '" class="photo ' + Class + '">';
+
+        if (pCounter == bulCounter) {
+            html += '<ul class="collection_' + collection + '">';
+            if (pCounter == pInCollection) {
+                collection++;
+                pInCollection += pInCollection;
+            }
+            bulCounter += pOnRow;
+        }
+        html += '<li id="' + item.Id + '" class="collection collection_' + collection + ' photo ' + Class + '">';
         html += '<img src="../../Images/Categories/' + item.Category + '/Thumbnails/' + item.File_name + '" alt="" />';
 
         //<li class="'+ Class +'">
@@ -87,8 +186,8 @@ function buildOverview(pictures) {
         html += ' </li>';
 
         if (pCounter == eulCounter) {
-            html += '</ul><li class="clear"></li>';
-            eulCounter += 4;
+            html += '</ul>';
+            eulCounter += pOnRow;
         }
         pCounter++;
     });
@@ -123,4 +222,5 @@ function buildOverview(pictures) {
 
     FixThumbnails();
     StyleLeftMenu();
+    buildPagination();
 }

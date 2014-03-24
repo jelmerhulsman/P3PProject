@@ -33,7 +33,13 @@ namespace Jan_die_alles_kan.Controllers
                                where p.Name.Contains(searchTerm)
                                orderby p.Id descending
                                select p;
-                return Json(pictures.ToList());
+                if (pictures.Count() == 0)
+                {
+                    return Json(false);
+                }
+                else {
+                    return Json(pictures.ToList());
+                }
             }
             else
             {
@@ -71,7 +77,7 @@ namespace Jan_die_alles_kan.Controllers
                 IEnumerable<PictureModel> orderedPictures = pictures;
 
                 switch (order)
-                {//IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
+                {
                     case "newest":
                         orderedPictures = pictures.OrderBy(PictureModel => PictureModel.Id);
                         break;
@@ -92,7 +98,7 @@ namespace Jan_die_alles_kan.Controllers
                 return Json(orderedPictures);
             }
 
-            return Json("");
+            return Json(false);
         }
 
         [HttpPost]
@@ -160,7 +166,16 @@ namespace Jan_die_alles_kan.Controllers
                            select p;
             }
 
-            return Json(pictures);
+            var countPictures = pictures.Count();
+
+            if (countPictures == 0)
+            {
+                return Json(false);
+            }
+            else
+            {
+                return Json(pictures);
+            }
         }
 
         [HttpPost]

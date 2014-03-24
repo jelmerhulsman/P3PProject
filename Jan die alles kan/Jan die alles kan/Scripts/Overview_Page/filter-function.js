@@ -82,7 +82,13 @@
         var priceRange = $("#min").text().replace('€', '') + "," + $("#max").text().replace('€', '');
 
         $.post("http://localhost:52802/Ajax/Filter", { name: filterName, colors: filterColors, orientation: filterOrientation, categories: filterCategories, pricerange: priceRange }, function (data) {
-            buildOverview(data);
+            console.log(data);
+
+            if (!data) {
+                alert("No images were found with the provided filters. Please try another filter or combination of filters.");
+            } else {
+                buildOverview(data);
+            }
         });
     });
 

@@ -26,7 +26,7 @@ function updateCart() {
     })
     $.post("http://localhost:52802/Ajax/GetOrder", {}, function (data) {
         var order = data;
-        if (data != "") {
+        if (data != "" && data != null) {
             if (order.indexOf(',') == -1) {
                 $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
                     $('#shoppingCartBox ul').prepend(
@@ -77,13 +77,14 @@ function updateCart() {
                     });
                 });
             }
+        } else {
+            setCartText();
         }
     });
 }
 
 function setCartText() {
     var cartButtonText = $("#shoppingCartBox ul li").length;
-
     if (cartButtonText == 0) {
         $('#cartPrice').prev().css({ paddingBottom: 0, marginBottom: 0, borderBottom: 0 });
         $('#cartPrice').css({ paddingBottom: '15px' });

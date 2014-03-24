@@ -13,10 +13,10 @@
     <script src="../../Scripts/jquery-ui-1.8.24.min.js"></script>
 
     <script src="../../Scripts/Global_Page/cart-function.js"></script>
+    <script src="../../Scripts/Global_Page/photo-overlay.js"></script>
 
     <script src="../../Scripts/Overview_Page/build-overview.js"></script>
-    <script src="../../Scripts/Overview_Page/filter-function.js"></script>
-    <script src="../../Scripts/Overview_Page/photo-overlay.js"></script>
+    <script src="../../Scripts/Overview_Page/filter-function.js"></script>    
     <script src="../../Scripts/Overview_Page/style-fix.js"></script>
 </head>
 <body oncontextmenu="">
@@ -170,21 +170,17 @@
                         <option value="priceHL">Price Descending</option>
                     </select>
                 </form>
+                <span class="pageIndicator""></span>
             </div>
             <div id="photos">
                 <div class="clear"></div>
             </div>
             <div id="pagination">
                 <div class="left">
-                    <a class="disabled" href="#">&lt;</a>
                 </div>
                 <div class="center">
-                    <a class="disabled" href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
                 </div>
                 <div class="right">
-                    <a href="#">&gt;</a>
                 </div>
                 <div class="clear"></div>
             </div>

@@ -364,6 +364,10 @@ body {
     z-index: 9;
 }
 
+    #topMenu form {
+        display: inline-block;
+    }
+
     #topMenu select {
         height: 30px;
         padding: 6px 6px;
@@ -373,6 +377,15 @@ body {
         #topMenu select option {
             padding: 4px 6px;
         }
+
+    #topMenu .pageIndicator {
+        float: right;
+        color: #fff;
+        font-weight: 14px;
+        font-family: 'Khmer UI', Arial;
+        font-weight: bold;
+        padding: 8px;
+    }
 
 #photos {
     background: #eee;
@@ -478,7 +491,7 @@ body {
         font-family: 'Khmer UI', Arial;
     }
 
-        #pagination a.disabled, #pagination a:hover {
+        #pagination a.active, #pagination a:hover {
             background: url(../Images/Btn/btn_bg_grey.jpg) repeat-x;
         }
 

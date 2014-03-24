@@ -274,7 +274,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Overview_Page\build-overview.js" />
     <Content Include="Scripts\Overview_Page\filter-function.js" />
-    <Content Include="Scripts\Overview_Page\photo-overlay.js" />
+    <Content Include="Scripts\Global_Page\photo-overlay.js" />
     <Content Include="Scripts\Overview_Page\style-fix.js" />
     <Content Include="tinymce\license.txt" />
     <Content Include="tinymce\plugins\advlist\plugin.min.js" />
