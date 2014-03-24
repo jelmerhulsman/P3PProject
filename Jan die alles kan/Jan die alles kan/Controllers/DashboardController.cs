@@ -183,9 +183,6 @@ namespace Jan_die_alles_kan.Controllers
         public static void SaveJpeg
 (string path, Image img)
         {
-            
-            
-
             System.IO.MemoryStream mss = new System.IO.MemoryStream();
 
             System.IO.FileStream fs
@@ -214,20 +211,19 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
         {
             string fileExt = Path.GetExtension(picture.File.FileName);
-            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg"))
+            var filename = Path.GetFileName(picture.File.FileName);
+            bool DatabaseFilename = (from name in db2.Picture
+                                   where name.File_name == filename
+                                   select name).Any();
+            
+            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg") && DatabaseFilename == false)
             {
-                
-                var filename = Path.GetFileName(picture.File.FileName);
-                
-
                 //THUMBNAIL GENERATOR               
                 string thumbpad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/" + picture.File.FileName);
                 Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/"));
                 Image Thumb = makeThumb(picture.File, true);
                 SaveJpeg(thumbpad, Thumb);
-                
 
-               
                 //PREVIEW GENERATOR
                 var PreviewPath = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/" + picture.File.FileName);
                 Directory.CreateDirectory(Server.MapPath("~/Images/Categories/" + p_model.Category + "/Previews/"));
@@ -239,6 +235,11 @@ namespace Jan_die_alles_kan.Controllers
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;
 
+                if (Preview.Width >= Preview.Width)
+                    p_model.Orientation = "horizontal";
+                else
+                    p_model.Orientation = "vertical";
+
                 //Actual image upload
                 Image image = Image.FromStream(picture.File.InputStream,true,true);
                 var path = Server.MapPath("~/Images/Categories/" + p_model.Category + "/" + filename);
@@ -249,7 +250,9 @@ namespace Jan_die_alles_kan.Controllers
             }
             else
             {
-                return Json("Error!");
+                if (DatabaseFilename == true)
+                    return Json("The filename " + filename + " is already used. Please provide an other filename.");
+                return Json("There was an error processing your file, please only upload JPG and JPEG images.");
             }
             return RedirectToAction("ImageIndex");
         }
@@ -372,7 +375,9 @@ namespace Jan_die_alles_kan.Controllers
                 System.IO.File.Delete(Thumbpad);
             }
             catch
-            {}
+            {
+                return Json("The system was unable to delete the image/thumbnail/preview");
+            }
             db2.Picture.Remove(Picturemodel);
             db2.SaveChanges();
             return RedirectToAction("ImageIndex");
@@ -451,6 +456,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             catch
             {
+                Json("The system was unable to delete the category: " + category.Name);
             }
             dbcategories.Categories.Remove(category);
             dbcategories.SaveChanges();

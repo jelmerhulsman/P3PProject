@@ -8,366 +8,16 @@
     <title>Gerlof Productions</title>
     <link href="../../Content/Overview.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    
     <script src="../../Scripts/jquery-1.8.2.min.js"></script>
     <script src="../../Scripts/jquery-ui-1.8.24.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.handler.close').click(function () {
-                if ($(this).hasClass('open')) {
-                    $($(this)[0].parentNode).animate({ height: '17px' }, 300);
-                    $(this).next().fadeOut(300);
-                    $(this).addClass('close').removeClass('open');
-                } else {
-                    $($(this)[0].parentNode).animate({ height: $($(this)[0].parentNode).height() + $(this).next().height() + 20 }, 300);
-                    $(this).next().fadeIn(300);
-                    $(this).addClass('open').removeClass('close');
-                }
-            });
+    <script src="../../Scripts/Global_Page/cart-function.js"></script>
 
-            $('#filtersContainer').css("height", $('body').height());
-            $('.stroke').css("height", $('body').height());
-
-            $('.color').hover(function () {
-                $(this).prev().stop().show().animate({ opacity: 1 }, 300);
-            }, function () {
-                $(this).prev().stop().hide().animate({ opacity: 0 }, 300);
-            });
-
-            $('.color').click(function () {
-                $(this).toggleClass('clicked');
-            })
-
-            $('.tooltip').hide();
-
-            $('.categoryHolder .checkbox, .categoryHolder .label, .orientationHolder .checkbox, .orientationHolder .label').click(function () {
-                if ($(this).hasClass('label')) {
-                    $(this).prev().toggleClass('clicked');
-                } else {
-                    $(this).toggleClass('clicked');
-                }
-            })
-
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 30,
-                values: [0, 15],
-                slide: function (event, ui) {
-                    $("#min").text("€" + ui.values[0]);
-                    $("#max").text("€" + ui.values[1]);
-                }
-            });
-
-            $("#min").text("€" + $("#slider-range").slider("values", 0));
-            $("#max").text("€" + $("#slider-range").slider("values", 1));
-
-            $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
-
-            $("#overlay").hide();
-
-            $("#overlay, #closeOverlay").click(function () {
-                $("#overlay").fadeOut();
-            });
-
-            $("#boxOverlay").click(function (event) {
-                event.stopPropagation();
-            });
-
-            setCartText();
-
-            $("#shoppingCartOverlay").hide();
-
-            $(".shopping").click(function () {
-                $("#shoppingCartOverlay").slideToggle();
-            });
-
-            $("#shoppingCartOverlay").click(function (event) {
-                event.stopPropagation();
-            });
-
-            $('button.search').click(function () {
-                var filterColors = "";
-                $('.colorHolder li .color').each(function () {
-                    if ($(this).hasClass('clicked')) {
-                        var color = $(this).attr('class');
-                        color = color.split(' ');
-                        color = color[1];
-                        filterColors += color + ",";
-                    };
-                });
-                filterColors = filterColors.substr(0, filterColors.length - 1);
-
-                var filterCategories = "";
-                $('.categoryHolder li .checkbox').each(function () {
-                    if ($(this).hasClass('clicked')) {
-                        filterCategories += $(this).next().text() + ",";
-                    };
-                });
-                filterCategories = filterCategories.substr(0, filterCategories.length - 1);
-
-                var priceRange = $("#min").text().replace('€', '') + "," + $("#max").text().replace('€', '');
-
-                console.log(filterColors);
-                console.log(filterCategories);
-                console.log(priceRange);
-                $.post("http://localhost:52802/Ajax/Filter", { colors: filterColors, catergories: filterCategories, pricerange: priceRange }, function (data) {
-                    console.log(data);
-                });
-            });
-
-            $('#photos li').each(function () {
-                if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
-                    $(this).addClass('landscape');
-                } else {
-                    $(this).addClass('portrait');
-                }
-            })
-
-            // Foto openen in overlay
-            $('#photos li.photo').click(function () {
-                $.post("http://localhost:52802/Ajax/PhotoInfo", { id: $(this).attr('id') }, function (data) {
-                    // Data van foto plaatsen in overlay
-                    $('#overlay .title').html(data.Name);
-                    $('#overlay .description').html(data.Description);
-                    $('#overlay .price').html('&euro; ' + data.Price);
-                    $('#addToCartButton').attr('class', data.Id);
-                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />');
-
-                    // Bepalen of de foto landscape of portrait is
-                    // Afbeelding hoogte bepalen en blok, met informatie, hoogte bepalen
-                    if ($('#imageOverlay img').height() < $('#imageOverlay img').width()) {
-                        $('#imageOverlay img').addClass('landscape');
-                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
-                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
-                    }
-                    else {
-                        $('#imageOverlay img').addClass('portrait');
-                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
-                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
-                    }
-
-                    $('#imageOverlay img').height($('#imageOverlay').height());
-                });
-                $('#overlay').fadeIn();
-            })
-
-            // Foto toevoegen aan winkelkarretje
-            $('#addToCartButton').click(function () {
-                var id = $(this).attr('class');
-                $.post("http://localhost:52802/Ajax/PhotoToCart", { id: id }, function (data) {
-                    if ($('#slidePhoto').length == 1) {
-                        $('#slidePhoto').remove();
-                    }
-                    $('#main').append('<div id="slidePhoto"></div>');
-                    var imgPosition = $('#imageOverlay img').position();
-                    var boxPosition = $('#boxOverlay').position();
-                    $('#slidePhoto').append($('#imageOverlay img'));
-                    $('#slidePhoto').css({ left: imgPosition.left + boxPosition.left, top: imgPosition.top + boxPosition.top, position: 'fixed', zIndex: 20 });
-                    $('#overlay').fadeOut();
-                    $('#slidePhoto').delay(300).animate({ top: -$('#slidePhoto img').height(), opacity: 0 }, 300);
-
-                    updateCart();
-                });
-            });
-
-            updateCart();
-            buildOverview();
-        });
-
-        $(window).resize(function () {
-            //$('#main .top').css('max-width', $(window).width() - 260);
-            $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
-
-            $('#filtersContainer').css("height", $('body').height());
-            $('.stroke').css("height", $('body').height());
-
-            if ($('#imageOverlay img').hasClass('landscape')) {
-                $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
-                $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
-            } else {
-                $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
-                $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
-            }
-
-            $('#imageOverlay img').height($('#imageOverlay').height());
-        });
-
-        function updateCart() {
-            $('#shoppingCartBox ul li').each(function () {
-                $(this).remove();
-            })
-            $.post("http://localhost:52802/Ajax/GetOrder", {}, function (data) {
-                var order = data;
-                if (data != "") {
-                    if (order.indexOf(',') == -1) {
-                        $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
-                            $('#shoppingCartBox ul').prepend(
-                                '<li class="' + data.Id + '">' +
-                                    '<div class="cartImage">' +
-                                        '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
-                                    '</div>' +
-                                    '<div class="cartDescription">' +
-                                        '<p>' + data.Name + '</p>' +
-                                        '<p>' + data.Category + '</p>' +
-                                        '<p class="price">€ ' + data.Price + '</p>' +
-                                    '</div>' +
-                                    '<p class="removeItem ' + data.Id + '"></p>' +
-                                    '<div class="clear"></div>' +
-                                '</li>'
-                            );
-                            if ($('#shoppingCartBox li.' + data.Id + ' img').height() < $('#shoppingCartBox li.' + data.Id + ' img').width()) {
-                                $('#shoppingCartBox li.' + data.Id + ' img').addClass('landscape');
-                            }
-                            else {
-                                $('#shoppingCartBox li.' + data.Id + ' img').addClass('portrait');
-                            }
-                            setCartText();
-                            addRemoveFunctionality();
-                            updatePrice();
-                        });
-                    } else {
-                        var orders = order.split(',');
-                        orders.forEach(function (order) {
-                            $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
-                                $('#shoppingCartBox ul').prepend(
-                                    '<li class="' + data.Id + '">' +
-                                        '<div class="cartImage">' +
-                                            '<img src="../../Images/Categories/' + data.Category + '/' + data.File_name + '" alt="" />' +
-                                        '</div>' +
-                                        '<div class="cartDescription">' +
-                                            '<p>' + data.Name + '</p>' +
-                                            '<p>' + data.Category + '</p>' +
-                                            '<p class="price">€ ' + data.Price + '</p>' +
-                                        '</div>' +
-                                        '<p class="removeItem ' + data.Id + '"></p>' +
-                                        '<div class="clear"></div>' +
-                                    '</li>'
-                                );
-                                setCartText();
-                                addRemoveFunctionality();
-                                updatePrice();
-                            });
-                        });
-                    }
-                }
-            });
-        }
-
-        function setCartText() {
-            var cartButtonText = $("#shoppingCartBox ul li").length;
-
-            if (cartButtonText == 0) {
-                $('#cartPrice').prev().css({ paddingBottom: 0, marginBottom: 0, borderBottom: 0 });
-                $('#cartPrice').css({ paddingBottom: '15px' });
-                $('#cartPrice').html('<p>No photos selected.</p>');
-                $('#cartCheckOut').hide();
-            } else {
-                $('#cartPrice').prev().removeAttr("style");
-                $('#cartPrice').removeAttr("style");
-                $('#cartPrice').html('<p>Sub total<br />Discount<br />Total</p><p class="prices">€ 00,00<br />10%<br />€ 00,00</p><div class="clear"></div>');
-                $('#cartCheckOut').show();
-            }
-
-            if (cartButtonText == 1)
-                cartButtonText += " Photo";
-            else
-                cartButtonText += " Photos";
-
-
-            $(".shopping a span").html(cartButtonText);
-        }
-
-        function updatePrice() {
-            var price = 0;
-            $('#shoppingCartBox ul .price').each(function () {
-                var pPrice = parseInt($(this).text().replace('€', ''));
-                pPrice = pPrice;
-                price += pPrice;
-            })
-
-            var discount = 0.10;
-            var totalPrice = price * discount;
-            totalPrice = price - totalPrice;
-            console.log(totalPrice);
-            $('#shoppingCartBox #cartPrice .prices').html('&euro; ' + price + '<br/>' + discount * 100 + '%<br/>&euro; ' + totalPrice);
-        }
-
-        function addRemoveFunctionality() {
-            $(".removeItem").click(function () {
-                $(this).parent("li").fadeOut(function () {
-                    $(this).remove();
-                    setCartText();
-                    updatePrice();
-
-                    var order = "";
-                    var i = 0;
-                    $('#shoppingCartBox ul li').each(function () {
-                        if (i == 0) {
-                            order = $(this).attr("class");
-                            i++;
-                        } else {
-                            order = order + ', ' + $(this).attr("class");
-                        }
-                    });
-
-                    $.post("http://localhost:52802/Ajax/RemoveFromCart", { order: order }, function () { });
-                });
-            });
-        }
-
-        function buildOverview(pictures) {
-            pictures = typeof pictures !== 'undefined' ? pictures : "<%: ViewBag.pictures %>";
-            console.log(pictures);
-            var html = '';
-                        <% 
-                        int pCounter = 1; // Photo counter
-                        int bulCounter = 1; // begin ul counter
-                        int eulCounter = 4; // end ul counter
-                        string Class = "";
-                        foreach(var item in Model){
-                            Class = item.Color;
-                    
-                            if (pCounter % 4 == 0)
-                            {
-                                Class += " last";
-                            }
-
-                            if (pCounter <= 4)
-                            { 
-                                Class += " toprow";
-                            }
-
-                            if (pCounter == bulCounter)
-                            { 
-                                %> html += '<ul>' <%
-                                bulCounter += 4;
-                            }
-                    %>
-            html += '<li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">';
-            html += '<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />';
-
-            //<li class="<%: Class %>">
-            //<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
-
-            html += '<div class="description">';
-            html += '<h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>';
-                                html += '<p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>';
-            html += '<span class="price">&euro; <%: Html.DisplayFor(modelItem => item.Price) %></span>';
-            html += '</div>';
-            html += ' </li>';
-                        <% 
-                            if (pCounter == eulCounter)
-                            { 
-                                %> html += '</ul><li class="clear"></li>'; <%
-                                eulCounter += 4;
-                            }
-                            pCounter++;
-                        } 
-                    %>
-            $('#photos ul').append(html);
-        }
-    </script>
+    <script src="../../Scripts/Overview_Page/build-overview.js"></script>
+    <script src="../../Scripts/Overview_Page/filter-function.js"></script>
+    <script src="../../Scripts/Overview_Page/photo-overlay.js"></script>
+    <script src="../../Scripts/Overview_Page/style-fix.js"></script>
 </head>
 <body oncontextmenu="">
     <!-- return false TERUG PLAATSEN -->
@@ -379,7 +29,7 @@
             <div id="filters">
                 <span class="title">Refine collection</span>
 
-                <form action="">
+                <form action="" method="get">
                     <input type="text" name="keyword" class="field" placeholder="Search..." />
                 </form>
 
@@ -441,9 +91,9 @@
                     <span>Category</span><span class="handler close"></span>
 
                     <ul class="categoryHolder">
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Abstract</span></li>
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Animals</span></li>
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">The Arts</span></li>
+                        <% foreach(var c in ViewBag.categories){ %>
+                        <li><span class="checkbox"><span class="inner"></span></span><span class="label"><%: c.Name %></span></li>
+                        <% } %>
                     </ul>
                 </div>
 
@@ -513,16 +163,15 @@
             <div id="topMenu">
                  <form action="" method="post">
                     <select name="sortBy">
-                        <option value="priceHL">Price Descending</option>
-                        <option value="priceLH">Price Ascending</option>
+                        <option value="newest">Newest</option>
                         <option value="nameAZ">Name A - Z</option>
                         <option value="nameZA">Name Z - A</option>
+                        <option value="priceLH">Price Ascending</option>
+                        <option value="priceHL">Price Descending</option>
                     </select>
                 </form>
             </div>
             <div id="photos">
-                <ul>
-                </ul>
                 <div class="clear"></div>
             </div>
             <div id="pagination">

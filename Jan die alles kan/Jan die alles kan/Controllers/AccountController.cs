@@ -53,7 +53,7 @@ namespace Jan_die_alles_kan.Controllers
                     
 
                 }
-                if (i+1 == null)
+                if (i+1 == order.Count())
                 {
                     orderList.Add(Convert.ToInt32(tempstr));
                 }
@@ -73,7 +73,7 @@ namespace Jan_die_alles_kan.Controllers
         public FileResult FileDownloadPage(string category, string file_name)
         {
             FileResult result;
-            string path = Server.MapPath("~/Images/Categories/" + category + "/" +file_name);
+            string path = Server.MapPath("~/Images/Categories/" + category + "/" +file_name+".jpg");
             using (FileStream stream = System.IO.File.OpenRead(path))
             {
                 MemoryStream streamFile = GetFile(path);
@@ -111,7 +111,49 @@ namespace Jan_die_alles_kan.Controllers
 
         public ActionResult Checkout()
         {
-           
+            UserDataContext udc = new UserDataContext();
+            PicturesContext pc = new PicturesContext();
+            PictureModel pm = new PictureModel();
+
+            var a = from user in udc.DBUserData
+                    where user.Username == User.Identity.Name
+                    select user.Order;
+            char[] order = a.ToArray().First().ToArray();
+            string tempstr = "";
+            List<int> orderList = new List<int>();
+            for (int i = 0; i < order.Count(); i++)
+            {
+
+                if (char.IsNumber(order[i]))
+                {
+
+                    string temp = Convert.ToString(order[i]);
+                    tempstr += temp;
+                }
+                else
+                {
+                    if (tempstr.Length > 0)
+                    {
+                        orderList.Add(Convert.ToInt32(tempstr));
+                        tempstr = "";
+                    }
+
+
+                }
+                if (i + 1 == null)
+                {
+                    orderList.Add(Convert.ToInt32(tempstr));
+                }
+            }
+            List<PictureModel> photoList = new List<PictureModel>();
+            foreach (int ID in orderList)
+            {
+                var photo = from x in pc.Picture
+                            where x.Id == ID
+                            select x;
+                photoList.Add(photo.ToList().First());
+            }
+            ViewData["photoList"] = photoList;
             return View("Checkout");
         }
         [HttpPost]

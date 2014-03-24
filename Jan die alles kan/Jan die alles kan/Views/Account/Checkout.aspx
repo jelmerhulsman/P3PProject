@@ -8,9 +8,23 @@
 
 <h2>Checkout</h2>
     <% using (Html.BeginForm("CheckoutConfirmed", "Account", FormMethod.Post)) { %>
+    <b>Your Items:</b>
+     <% foreach (var x in ViewBag.photoList)
+       {
+    %>
+    <p><%= x.Name%></p><br />  
+    <%     
+       } 
+    %>
+
+    <h3>Total price: <% foreach (var x in ViewBag.photoList) { %> <% double price = +Convert.ToDouble(x.Price); Response.Write(price); %> <% }  %>
+    </h3>
+
     <div><b>Select Payment method</b>
-        <%= Html.RadioButton("paymentmethod", "Paypal") %> Paypal
-        <%= Html.RadioButton("paymentmethod", "Ideal") %> Ideal
+        <br />
+        <%= Html.RadioButton("paymentmethod", "Paypal") %> <img src="../../Images/Btn/paypal-button.png" />
+        <br />
+        <%= Html.RadioButton("paymentmethod", "Ideal") %> <img src="../../Images/Btn/ideal-button.png" />
 
         <br />
         <input type="submit" value="Submit!" />

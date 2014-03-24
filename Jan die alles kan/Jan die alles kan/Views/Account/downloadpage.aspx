@@ -9,6 +9,14 @@
 <h2>downloadpage</h2>
     <% foreach (var x in ViewBag.photoList)
        {
+           for (int i = 0; i < x.File_name.Length; i++)
+           {
+               if (x.File_name[i] == '.')
+               {
+                   x.File_name = x.File_name.Substring(0, i);
+                   break;
+               }
+           }
     %>
     <a href="<%= Url.Content("/Account/FileDownloadPage/"+ x.Category +"/"+ x.File_name)%>"><%= x.File_name%> -> Download</a><br />  
     <%     
