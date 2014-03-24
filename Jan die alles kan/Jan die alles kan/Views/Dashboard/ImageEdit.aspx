@@ -73,7 +73,7 @@
             Price
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Price) %>
+            <input type="number" name="Price" min="1" max="30" step="1" value="<%: Html.ValueFor(model => model.Price) %>">
             <%: Html.ValidationMessageFor(model => model.Price) %>
         </div>
 
