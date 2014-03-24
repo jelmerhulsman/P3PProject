@@ -45,6 +45,57 @@ namespace Jan_die_alles_kan.Controllers
         }
 
         [HttpPost]
+        public ActionResult OrderPhotos(FormCollection collection)
+        {
+            PicturesContext pContext = new PicturesContext();
+
+            string sPicturesIds = collection["pictures"];
+            string order = collection["order"];
+
+            if (sPicturesIds != "")
+            {
+                List<string> aPicturesIds = sPicturesIds.Split(',').ToList();
+                List<PictureModel> pictures = new List<PictureModel>();
+
+                foreach (string i in aPicturesIds)
+                {
+                    int lookFor = Convert.ToInt32(i);
+
+                    var picture = from x in pContext.Picture
+                                  where x.Id == lookFor
+                                  select x;
+
+                    pictures.AddRange(picture);
+                }
+
+                IEnumerable<PictureModel> orderedPictures = pictures;
+
+                switch (order)
+                {//IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
+                    case "newest":
+                        orderedPictures = pictures.OrderBy(PictureModel => PictureModel.Id);
+                        break;
+                    case "nameAZ":
+                        orderedPictures = pictures.OrderBy(PictureModel => PictureModel.Name);
+                        break;
+                    case "nameZA":
+                        orderedPictures = pictures.OrderByDescending(PictureModel => PictureModel.Name);
+                        break;
+                    case "priceLH":
+                        orderedPictures = pictures.OrderBy(PictureModel => PictureModel.Price);
+                        break;
+                    case "priceHL":
+                        orderedPictures = pictures.OrderByDescending(PictureModel => PictureModel.Price);
+                        break;
+                }
+
+                return Json(orderedPictures);
+            }
+
+            return Json("");
+        }
+
+        [HttpPost]
         public ActionResult Filter(FormCollection collection)
         {
             PicturesContext pContext = new PicturesContext();

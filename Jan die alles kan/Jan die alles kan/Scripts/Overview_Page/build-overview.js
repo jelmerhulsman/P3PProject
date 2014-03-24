@@ -1,4 +1,19 @@
 ﻿$(document).ready(function () {
+    $('select[name="sortBy"]').blur(function () {
+        var pictures = "";
+        $('#photoOverview li').each(function () {
+            if (typeof($(this).attr('id')) != 'undefined') {
+                pictures += $(this).attr('id') + ',';
+            }
+        });
+
+        pictures = pictures.substr(0, pictures.length - 1);
+
+        $.post("http://localhost:52802/Ajax/OrderPhotos", { order: $(this).val(), pictures: pictures }, function (data) {
+            buildOverview(data);
+        });
+    })
+
     var QueryString = function () {
         // This function is anonymous, is executed immediately and 
         // the return value is assigned to QueryString!
