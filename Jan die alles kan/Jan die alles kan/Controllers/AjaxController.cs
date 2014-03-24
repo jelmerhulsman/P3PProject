@@ -113,6 +113,8 @@ namespace Jan_die_alles_kan.Controllers
         [HttpPost]
         public ActionResult PhotoInfo(FormCollection collection)
         {
+            if (collection["id"].Contains(","))
+                collection["id"].Remove(0, 1);
             int id = Convert.ToInt16(collection["id"]);
             PicturesContext pContext = new PicturesContext();
             PictureModel photo = pContext.Picture.Find(id);
@@ -123,6 +125,8 @@ namespace Jan_die_alles_kan.Controllers
         [HttpPost]
         public ActionResult PhotoToCart(FormCollection collection)
         {
+            if (collection["id"].Contains(',') == true)
+                collection["id"].Remove(0, 1);
             int id = Convert.ToInt16(collection["id"]);
 
             // Foto ophalen
@@ -157,7 +161,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             catch (Exception e)
             {
-                return Json("Te system was unable to save your order");
+                return Json("The system was unable to save your order");
             }
 
             return Json(photo);
@@ -184,7 +188,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             catch (Exception e)
             {
-                return Json("Te system was unable to save your order");
+                return Json("The system was unable to save your order");
             }
 
             return Json(Session["order"]);
