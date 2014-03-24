@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
+using System.Data.Objects.SqlClient;
 
 namespace Jan_die_alles_kan.Controllers
 {
@@ -44,10 +45,25 @@ namespace Jan_die_alles_kan.Controllers
 
             string sPricerange = collection["priceRange"]; // €20 €30
             var aPricerange = sPricerange.Split(',');
+            var priceMin = aPricerange[0];
+            var priceMax = aPricerange[1];
 
             var pictures = from p in pModel
-                           where aColors.Contains(p.Color) && aCategories.Contains(p.Category)
+                           where SqlFunctions.IsNumeric(p.Price) >= SqlFunctions.IsNumeric(priceMin) && SqlFunctions.IsNumeric(p.Price) <= SqlFunctions.IsNumeric(priceMax)
                            select p;
+            
+            if (sColors != null) {
+                pictures = from p in pictures
+                           where aColors.Contains(p.Color)
+                           select p;
+            }
+
+            if (sCategories != null)
+            {
+                pictures = from p in pictures
+                           where aCategories.Contains(p.Category)
+                           select p;
+            }
 
             return Json(pictures);
         }

@@ -116,42 +116,6 @@
                 });
             });
 
-            $('#photos li').each(function () {
-                if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
-                    $(this).addClass('landscape');
-                } else {
-                    $(this).addClass('portrait');
-                }
-            })
-
-            // Foto openen in overlay
-            $('#photos li.photo').click(function () {
-                $.post("http://localhost:52802/Ajax/PhotoInfo", { id: $(this).attr('id') }, function (data) {
-                    // Data van foto plaatsen in overlay
-                    $('#overlay .title').html(data.Name);
-                    $('#overlay .description').html(data.Description);
-                    $('#overlay .price').html('&euro; ' + data.Price);
-                    $('#addToCartButton').attr('class', data.Id);
-                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />');
-
-                    // Bepalen of de foto landscape of portrait is
-                    // Afbeelding hoogte bepalen en blok, met informatie, hoogte bepalen
-                    if ($('#imageOverlay img').height() < $('#imageOverlay img').width()) {
-                        $('#imageOverlay img').addClass('landscape');
-                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
-                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
-                    }
-                    else {
-                        $('#imageOverlay img').addClass('portrait');
-                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
-                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
-                    }
-
-                    $('#imageOverlay img').height($('#imageOverlay').height());
-                });
-                $('#overlay').fadeIn();
-            })
-
             // Foto toevoegen aan winkelkarretje
             $('#addToCartButton').click(function () {
                 var id = $(this).attr('class');
@@ -325,7 +289,8 @@
                         int bulCounter = 1; // begin ul counter
                         int eulCounter = 4; // end ul counter
                         string Class = "";
-                        foreach(var item in Model){
+                        foreach (var item in ViewBag.pictures)
+                        {
                             Class = item.Color;
                     
                             if (pCounter % 4 == 0)
@@ -344,16 +309,16 @@
                                 bulCounter += 4;
                             }
                     %>
-            html += '<li id="<%: Html.DisplayFor(modelItem => item.Id) %>" class="photo <%: Class %>">';
-            html += '<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="" />';
+            html += '<li id="<%: item.Id %>" class="photo <%: Class %>">';
+            html += '<img src="../../Images/Categories/<%: item.Category %>/<%: item.File_name %>" alt="" />';
 
             //<li class="<%: Class %>">
-            //<img src="../../Images/Categories/<%: Html.DisplayFor(modelItem => item.Category) %>/Thumbnails/<%: Html.DisplayFor(modelItem => item.File_name) %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+            //<img src="../../Images/Categories/<%: item.Category %>/Thumbnails/<%: item.File_name %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
 
             html += '<div class="description">';
-            html += '<h3><%: Html.DisplayFor(modelItem => item.Name) %></h3>';
-                                html += '<p>Category: <%: Html.DisplayFor(modelItem => item.Category) %></p>';
-            html += '<span class="price">&euro; <%: Html.DisplayFor(modelItem => item.Price) %></span>';
+            html += '<h3><%: item.Name %></h3>';
+                                html += '<p>Category: <%: item.Category %></p>';
+            html += '<span class="price">&euro; <%: item.Price %></span>';
             html += '</div>';
             html += ' </li>';
                         <% 
@@ -366,6 +331,42 @@
                         } 
                     %>
             $('#photos ul').append(html);
+
+            $('#photos li').each(function () {
+                if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
+                    $(this).addClass('landscape');
+                } else {
+                    $(this).addClass('portrait');
+                }
+            })
+
+            // Foto openen in overlay
+            $('#photos li.photo').click(function () {
+                $.post("http://localhost:52802/Ajax/PhotoInfo", { id: $(this).attr('id') }, function (data) {
+                    // Data van foto plaatsen in overlay
+                    $('#overlay .title').html(data.Name);
+                    $('#overlay .description').html(data.Description);
+                    $('#overlay .price').html('&euro; ' + data.Price);
+                    $('#addToCartButton').attr('class', data.Id);
+                    $('#imageOverlay').html('<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />');
+
+                    // Bepalen of de foto landscape of portrait is
+                    // Afbeelding hoogte bepalen en blok, met informatie, hoogte bepalen
+                    if ($('#imageOverlay img').height() < $('#imageOverlay img').width()) {
+                        $('#imageOverlay img').addClass('landscape');
+                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7 - 100);
+                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3 + 100);
+                    }
+                    else {
+                        $('#imageOverlay img').addClass('portrait');
+                        $('#imageOverlay').css('height', $('#boxOverlay').height() * 0.7);
+                        $('#boxOverlay .bottom').css('height', $('#boxOverlay').height() * 0.3);
+                    }
+
+                    $('#imageOverlay img').height($('#imageOverlay').height());
+                });
+                $('#overlay').fadeIn();
+            })
         }
     </script>
 </head>

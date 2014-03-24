@@ -24,7 +24,8 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult Overview()
         {
             ViewData["pages"] = db.Pages.ToList();
-            return View(db_pictures.Picture.ToList());
+            ViewData["pictures"] = db_pictures.Picture.ToList();
+            return View();
         }
 
         public ActionResult Content(string Id = "")
