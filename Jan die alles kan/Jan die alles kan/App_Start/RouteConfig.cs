@@ -11,16 +11,14 @@ namespace Jan_die_alles_kan
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //routes.MapRoute(
-            //  name: "Image",
-            //  url: "{controller}/{action}/{category}/{file_name}",
-            //  defaults: new
-            //  {
-            //      controller = "Account",
-            //      action = "FileDownloadPage",
-            //      category = UrlParameter.Optional,
-            //      file_name = UrlParameter.Optional
-            //  });
+            routes.MapRoute(
+              name: "Image",
+              url: "{controller}/{action}/{category}/{file_name}",
+              defaults: new
+              {
+                  controller = "Account",
+                  action = "FileDownloadPage",
+              });
 
             routes.MapRoute(
                 name: "Default",

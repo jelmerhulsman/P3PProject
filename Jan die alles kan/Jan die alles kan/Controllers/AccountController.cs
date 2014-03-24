@@ -53,7 +53,7 @@ namespace Jan_die_alles_kan.Controllers
                     
 
                 }
-                if (i+1 == null)
+                if (i+1 == order.Count())
                 {
                     orderList.Add(Convert.ToInt32(tempstr));
                 }
@@ -73,7 +73,7 @@ namespace Jan_die_alles_kan.Controllers
         public FileResult FileDownloadPage(string category, string file_name)
         {
             FileResult result;
-            string path = Server.MapPath("~/Images/Categories/" + category + "/" +file_name);
+            string path = Server.MapPath("~/Images/Categories/" + category + "/" +file_name+".jpg");
             using (FileStream stream = System.IO.File.OpenRead(path))
             {
                 MemoryStream streamFile = GetFile(path);
