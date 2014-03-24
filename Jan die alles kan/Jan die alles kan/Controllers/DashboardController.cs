@@ -214,10 +214,15 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
         {
             string fileExt = Path.GetExtension(picture.File.FileName);
-            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg"))
+            var filename = Path.GetFileName(picture.File.FileName);
+            bool DatabaseFilename = (from name in db2.Picture
+                                   where name.File_name == filename
+                                   select name).Any();
+            
+            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg") && DatabaseFilename == false)
             {
                 
-                var filename = Path.GetFileName(picture.File.FileName);
+                
                 
 
                 //THUMBNAIL GENERATOR               
@@ -249,7 +254,9 @@ namespace Jan_die_alles_kan.Controllers
             }
             else
             {
-                return Json("Error!");
+                if (DatabaseFilename == true)
+                    return Json("The filename " + filename + " is already used. Please provide an other filename.");
+                return Json("There was an error processing your file, please only upload JPG and JPEG images.");
             }
             return RedirectToAction("ImageIndex");
         }
@@ -372,7 +379,9 @@ namespace Jan_die_alles_kan.Controllers
                 System.IO.File.Delete(Thumbpad);
             }
             catch
-            {}
+            {
+                return Json("The system was unable to delete the image/thumbnail/preview");
+            }
             db2.Picture.Remove(Picturemodel);
             db2.SaveChanges();
             return RedirectToAction("ImageIndex");
@@ -451,6 +460,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             catch
             {
+                Json("The system was unable to delete the category: " + category.Name);
             }
             dbcategories.Categories.Remove(category);
             dbcategories.SaveChanges();
