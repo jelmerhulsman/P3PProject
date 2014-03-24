@@ -425,9 +425,9 @@
                 </div>
                 <div class="login">
                     <% if(User.Identity.IsAuthenticated){ %>
-                    <a href="#">Welkom, <%: User.Identity.Name %> | <a href="http://localhost:52802/Account/LogOff">Uitloggen</a></a>
+                    <a href="#">Welcome, <%: User.Identity.Name %>! | <a href="http://localhost:52802/Account/LogOff">Log off</a></a>
                     <% } else { %>
-                    <a href="#">Login &gt;</a>
+                    <a href="http://localhost:52802/Account/Login">Login &gt;</a>
                     <% } %>
                 </div>
             </div>
@@ -436,10 +436,10 @@
             <div id="topMenu">
                  <form action="" method="post">
                     <select name="sortBy">
-                        <option value="priceHL">Prijs hoog - laag</option>
-                        <option value="priceLH">Prijs laag - hoog</option>
-                        <option value="nameAZ">Naam A - Z</option>
-                        <option value="nameZA">Naam Z - A</option>
+                        <option value="priceHL">Price Descending</option>
+                        <option value="priceLH">Price Ascending</option>
+                        <option value="nameAZ">Name A - Z</option>
+                        <option value="nameZA">Name Z - A</option>
                     </select>
                 </form>
             </div>
