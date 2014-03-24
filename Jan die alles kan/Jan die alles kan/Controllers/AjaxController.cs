@@ -22,6 +22,10 @@ namespace Jan_die_alles_kan.Controllers
     {
         //
         // GET: /Ajax/
+        public ActionResult GetPhotos() {
+            PicturesContext pContext = new PicturesContext();
+            return Json(pContext.Picture.ToList());
+        }
 
         [HttpPost]
         public ActionResult Filter(FormCollection collection)
@@ -32,33 +36,33 @@ namespace Jan_die_alles_kan.Controllers
             var pModel = pContext.Picture;
 
             string sColors = collection["colors"]; // red, yellow
-            if (sColors != null)
+            if (sColors != "")
             {
                 aColors = sColors.Split(',').ToList();
             }
 
-            string sCategories = collection["categorties"]; // a, b
-            if (sCategories != null)
+            string sCategories = collection["categories"]; // a, b
+            if (sCategories != "")
             {
                 aCategories = sCategories.Split(',').ToList();
             }
 
             string sPricerange = collection["priceRange"]; // €20 €30
             var aPricerange = sPricerange.Split(',');
-            var priceMin = aPricerange[0];
-            var priceMax = aPricerange[1];
+            int priceMin = Convert.ToInt32(aPricerange[0]);
+            int priceMax = Convert.ToInt32(aPricerange[1]);
 
             var pictures = from p in pModel
-                           where SqlFunctions.IsNumeric(p.Price) >= SqlFunctions.IsNumeric(priceMin) && SqlFunctions.IsNumeric(p.Price) <= SqlFunctions.IsNumeric(priceMax)
+                           where p.Price >= priceMin && p.Price <= priceMax
                            select p;
             
-            if (sColors != null) {
+            if (sColors != "") {
                 pictures = from p in pictures
                            where aColors.Contains(p.Color)
                            select p;
             }
 
-            if (sCategories != null)
+            if (sCategories != "")
             {
                 pictures = from p in pictures
                            where aCategories.Contains(p.Category)

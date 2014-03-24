@@ -111,8 +111,9 @@
                 console.log(filterColors);
                 console.log(filterCategories);
                 console.log(priceRange);
-                $.post("http://localhost:52802/Ajax/Filter", { colors: filterColors, catergories: filterCategories, pricerange: priceRange }, function (data) {
-                    console.log(data);
+                $.post("http://localhost:52802/Ajax/Filter", { colors: filterColors, categories: filterCategories, pricerange: priceRange }, function (data) {
+                    //console.log(data);
+                    buildOverview(data);
                 });
             });
 
@@ -136,7 +137,9 @@
             });
 
             updateCart();
-            buildOverview();
+            $.post("http://localhost:52802/Ajax/GetPhotos", null, function (data) {
+                buildOverview(data);
+            });
         });
 
         $(window).resize(function () {
@@ -281,56 +284,52 @@
         }
 
         function buildOverview(pictures) {
-            pictures = typeof pictures !== 'undefined' ? pictures : "<%: ViewBag.pictures %>";
+            if ($('#photoOverview').length == 1) {
+                $('#photoOverview').remove();
+            }
             console.log(pictures);
-            var html = '';
-                        <% 
-                        int pCounter = 1; // Photo counter
-                        int bulCounter = 1; // begin ul counter
-                        int eulCounter = 4; // end ul counter
-                        string Class = "";
-                        foreach (var item in ViewBag.pictures)
-                        {
-                            Class = item.Color;
-                    
-                            if (pCounter % 4 == 0)
-                            {
-                                Class += " last";
-                            }
+            var html = '<ul id="photoOverview">'; 
+            var pCounter = 1; // Photo counter
+            var bulCounter = 1; // begin ul counter
+            var eulCounter = 4; // end ul counter
+            var Class = "";
+            pictures.forEach(function (item) {
+                console.log(pCounter);
+                Class = item.Color;
 
-                            if (pCounter <= 4)
-                            { 
-                                Class += " toprow";
-                            }
+                if (pCounter % 4 == 0) {
+                    Class += " last";
+                }
 
-                            if (pCounter == bulCounter)
-                            { 
-                                %> html += '<ul>' <%
-                                bulCounter += 4;
-                            }
-                    %>
-            html += '<li id="<%: item.Id %>" class="photo <%: Class %>">';
-            html += '<img src="../../Images/Categories/<%: item.Category %>/<%: item.File_name %>" alt="" />';
+                if (pCounter <= 4) {
+                    Class += " toprow";
+                }
 
-            //<li class="<%: Class %>">
-            //<img src="../../Images/Categories/<%: item.Category %>/Thumbnails/<%: item.File_name %>" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+                if (pCounter == bulCounter) {
+                    html += '<ul>';
+                    bulCounter += 4;
+                }
+                html += '<li id="' + item.Id + '" class="photo ' + Class + '">';
+                html += '<img src="../../Images/Categories/' + item.Category + '/' + item.File_name + '" alt="" />';
 
-            html += '<div class="description">';
-            html += '<h3><%: item.Name %></h3>';
-                                html += '<p>Category: <%: item.Category %></p>';
-            html += '<span class="price">&euro; <%: item.Price %></span>';
-            html += '</div>';
-            html += ' </li>';
-                        <% 
-                            if (pCounter == eulCounter)
-                            { 
-                                %> html += '</ul><li class="clear"></li>'; <%
-                                eulCounter += 4;
-                            }
-                            pCounter++;
-                        } 
-                    %>
-            $('#photos ul').append(html);
+                //<li class="'+ Class +'">
+                //<img src="../../Images/Categories/'+ item.Category +'/Thumbnails/'+ item.File_name +'" alt="Image not Found" onError="this.onerror=null;this.src='../../Images/imageNotFound.jpg';"/>
+
+                html += '<div class="description">';
+                html += '<h3>' + item.Name + '</h3>';
+                html += '<p>Category: ' + item.Category + '</p>';
+                html += '<span class="price">&euro; ' + item.Price + '</span>';
+                html += '</div>';
+                html += ' </li>';
+
+                if (pCounter == eulCounter) {
+                    html += '</ul><li class="clear"></li>';
+                    eulCounter += 4;
+                }
+                pCounter++;
+            });
+
+            $('#photos').prepend(html + '</ul>');
 
             $('#photos li').each(function () {
                 if ($($(this)[0].children[0]).height() < $($(this)[0].children[0]).width()) {
@@ -442,9 +441,9 @@
                     <span>Category</span><span class="handler close"></span>
 
                     <ul class="categoryHolder">
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Abstract</span></li>
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">Animals</span></li>
-                        <li><span class="checkbox"><span class="inner"></span></span><span class="label">The Arts</span></li>
+                        <% foreach(var c in ViewBag.categories){ %>
+                        <li><span class="checkbox"><span class="inner"></span></span><span class="label"><%: c.Name %></span></li>
+                        <% } %>
                     </ul>
                 </div>
 
@@ -522,8 +521,6 @@
                 </form>
             </div>
             <div id="photos">
-                <ul>
-                </ul>
                 <div class="clear"></div>
             </div>
             <div id="pagination">
