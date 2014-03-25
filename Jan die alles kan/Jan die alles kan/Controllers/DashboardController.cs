@@ -13,16 +13,22 @@ using System.Web.Mvc;
 
 namespace Jan_die_alles_kan.Controllers
 {
-
+    /// <summary>
+    /// Class that holds all, only by admin autherized functions.
+    /// </summary>
     [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
 
+        /// <returns> Dashboard function index page </returns>
         public ActionResult Index()
         {
             return View("Index");
         }
-
+        /// <summary>
+        /// Gets all users for select in sendto mail 
+        /// </summary>
+        /// <returns>mail page</returns>
         public ActionResult SendMail()
         {
             UserDataContext db = new UserDataContext();
@@ -30,7 +36,10 @@ namespace Jan_die_alles_kan.Controllers
             ViewBag.username = username;
             return View("SendMail");
         }
-
+        /// <summary>
+        /// handles the mail function 
+        /// </summary>
+        /// <returns> mail to users email</returns>
         [ValidateInput(false)]
         public ActionResult SendMail2()
         {
@@ -56,7 +65,11 @@ namespace Jan_die_alles_kan.Controllers
             client.Send(Mail);
             return Redirect("../Dashboard/Index");
         }
-
+        /// <summary>
+        ///  gets the list of users
+        /// </summary>
+        /// <param name="userName">user`s email</param>
+        /// <returns>Mail</returns>
         private string getEmail(string userName)
         {
             string Email = "";
@@ -77,21 +90,33 @@ namespace Jan_die_alles_kan.Controllers
 
             return Email;
         }
+        
         #region pages LOGIC
 
         private PagesContext db = new PagesContext();
-
+        /// <summary>
+        /// PageIndex for dashboard 
+        /// shows all pages for the admin in table
+        /// </summary>
+        /// <returns>page</returns>
         public ActionResult PageIndex()
         {
             ViewBag.Content = "content";
             return View(db.Pages.ToList());
         }
-
+        /// <summary>
+        /// makes the page create
+        /// </summary>
+        /// <returns>page</returns>
         public ActionResult PageCreate()
         {
             return View();
         }
-
+        /// <summary>
+        /// handles the saving of pagecreate data
+        /// </summary>
+        /// <param name="pagesmodels">page input data</param>
+        /// <returns>save to DB</returns>
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult PageCreate(PagesModels pagesmodels)
@@ -116,7 +141,12 @@ namespace Jan_die_alles_kan.Controllers
 
             return View(pagesmodels);
         }
-
+        /// <summary>
+        /// page edit
+        /// gets data from DB as placeholders in inputfields
+        /// </summary>
+        /// <param name="id">Gets ID from route in URL</param>
+        /// <returns>page</returns>
         public ActionResult PageEdit(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -126,7 +156,11 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(pagesmodels);
         }
-
+        /// <summary>
+        /// handles the page edit saving
+        /// </summary>
+        /// <param name="pagesmodels">data fom database</param>
+        /// <returns>page</returns>
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult PageEdit(PagesModels pagesmodels)
@@ -147,11 +181,20 @@ namespace Jan_die_alles_kan.Controllers
             return View(pagesmodels);
         }
 
+        /// <summary>
+        /// Shows the page
+        /// </summary>
+        /// <param name="Id">gets the id of the page</param>
+        /// <returns>return page</returns>
         public ActionResult PageShow(string Id = "")
         {
             return RedirectToAction("../Page/Content/" + Id);
         }
-
+        /// <summary>
+        /// Page delete
+        /// </summary>
+        /// <param name="id">gets the ID of the page</param>
+        /// <returns>page</returns>
         public ActionResult PageDelete(int id = 0)
         {
             PagesModels pagesmodels = db.Pages.Find(id);
@@ -161,7 +204,11 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(pagesmodels);
         }
-
+        /// <summary>
+        /// PageDelete saving for the database
+        /// </summary>
+        /// <param name="id">Page</param>
+        /// <returns>savepage</returns>
         [HttpPost, ActionName("PageDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult PageDeleteConfirmed(int id)
@@ -180,8 +227,7 @@ namespace Jan_die_alles_kan.Controllers
         #region Image LOGIC
 
         //SPecial method to save jpg, this is to prevent errors
-        public static void SaveJpeg
-(string path, Image img)
+        public static void SaveJpeg(string path, Image img)
         {
             System.IO.MemoryStream mss = new System.IO.MemoryStream();
 
@@ -196,16 +242,22 @@ namespace Jan_die_alles_kan.Controllers
             mss.Close();
             fs.Close();
         }
-
+        /// <summary>
+        /// shows a list of categories for the imageupload.
+        /// </summary>
+        /// <returns>List in ImageUpload</returns>
         public ActionResult ImageUpload()
         {
-
             Category c = new Category();
             return View(dbcategories.Categories.ToList());
-
         }
-
-
+        /// <summary>
+        /// saves the data from the input fields in database
+        /// </summary>
+        /// <param name="picture">File</param>
+        /// <param name="p_model">Picture Table</param>
+        /// <param name="c_model">Category Table</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ImageUpload(UploadModel picture, PictureModel p_model, Category c_model)
@@ -313,6 +365,11 @@ namespace Jan_die_alles_kan.Controllers
             return image;
         }
 
+        /// <summary>
+        /// shows page for image edit 
+        /// </summary>
+        /// <param name="id">id of page</param>
+        /// <returns>page</returns>
         public ActionResult ImageEdit(int id = 0)
         {
             PictureModel Picturemodel = db2.Picture.Find(id);
@@ -325,7 +382,11 @@ namespace Jan_die_alles_kan.Controllers
             return View(Picturemodel);
         }
 
-
+        /// <summary>
+        /// Saves data from the inputfields
+        /// </summary>
+        /// <param name="p_model">Image</param>
+        /// <returns>saves data</returns>
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ImageEdit(PictureModel p_model)
@@ -344,12 +405,19 @@ namespace Jan_die_alles_kan.Controllers
             return View(p_model);
 
         }
-        
+        /// <summary>
+        /// index of all Images for dashboard
+        /// </summary>
+        /// <returns>Listpage</returns>
         public ActionResult ImageIndex()
         {
             return View(db2.Picture.ToList());
         }
-
+        /// <summary>
+        /// Deletes the Image
+        /// </summary>
+        /// <param name="id">ID of the page</param>
+        /// <returns>Page</returns>
         public ActionResult ImageDelete(int id = 0)
         {
             PictureModel picturemodel = db2.Picture.Find(id);
@@ -359,7 +427,12 @@ namespace Jan_die_alles_kan.Controllers
             }
             return View(picturemodel);
         }
-
+        /// <summary>
+        /// makes diffrerent directories
+        /// normal picture for download
+        /// thumb picture for showing on overview
+        /// </summary>
+        /// <param name="id">ID of Image</param>
         [HttpPost, ActionName("ImageDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult ImageDeleteConfirmed(int id)
@@ -384,26 +457,30 @@ namespace Jan_die_alles_kan.Controllers
         }
         #endregion
 
-        //
-        // GET: /Category/
-
+        /// <summary>
+        /// Shows index for all categories
+        /// on categoryindex page
+        /// </summary>
+        /// <returns>Page</returns>
         public ActionResult CategoryIndex()
         {
             return View(dbcategories.Categories.ToList());
         }
 
-
-        //
-        // GET: /Category/CategoryCreate
-
+        /// <summary>
+        /// CategoryCreate Page
+        /// </summary>
+        /// <returns>returns Page</returns>
         public ActionResult CategoryCreate()
         {
             return View();
         }
 
-        //
-        // POST: /Category/CategoryCreate
-
+        /// <summary>
+        /// Saves the name of the category
+        /// </summary>
+        /// <param name="category">data from the input fields</param>
+        /// <returns>return data to DB</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryCreate(Category category)
@@ -428,9 +505,12 @@ namespace Jan_die_alles_kan.Controllers
             return View(category);
         }
 
-        //
-        // GET: /Category/CategoryDelete
 
+        /// <summary>
+        /// Deletes the category by ID
+        /// </summary>
+        /// <param name="id">gets ID form URL</param>
+        /// <returns>Page</returns>
         public ActionResult CategoryDelete(int id = 0)
         {
             Category category = dbcategories.Categories.Find(id);
@@ -442,9 +522,12 @@ namespace Jan_die_alles_kan.Controllers
             return View(category);
         }
 
-        //
-        // POST: /Category/CategoryDelete
-
+        /// <summary>
+        /// category delete post action
+        /// deletes the category in database and deletes the directory
+        /// </summary>
+        /// <param name="id"> ID from URL</param>
+        /// <returns>database save and delete directories</returns>
         [HttpPost, ActionName("CategoryDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryDeleteConfirmed(int id)
