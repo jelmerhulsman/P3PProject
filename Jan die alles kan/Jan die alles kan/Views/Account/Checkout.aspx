@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/AccountSite.Master" Inherits="System.Web.Mvc.ViewPage<Jan_die_alles_kan.Models.CartModels>" %>
 
-<style type="text/css">
-    input[type]
-</style>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Checkout
 </asp:Content>
@@ -18,7 +14,7 @@
              <td><b>Preview</b></td>
              <td><b>Name of Product</b></td>
              <td><b>Category</b></td>
-             <td aling="right"><b>Price</b></td>
+             <td align="right"><b>Price</b></td>
         </tr>
      <% foreach (var x in ViewBag.photoList)
        {
