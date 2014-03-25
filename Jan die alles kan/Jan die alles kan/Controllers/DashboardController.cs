@@ -355,7 +355,7 @@ namespace Jan_die_alles_kan.Controllers
 
             Graphics TGraphics = Graphics.FromImage(TransparentLogo);
             ColorMatrix ColorMatrix = new ColorMatrix();
-            ColorMatrix.Matrix33 = 0.20F; //transparantie watermerk
+            ColorMatrix.Matrix33 = 0.40F; //transparantie watermerk
             ImageAttributes ImgAttributes = new ImageAttributes();
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, logo.Width, logo.Height, GraphicsUnit.Pixel, ImgAttributes);
