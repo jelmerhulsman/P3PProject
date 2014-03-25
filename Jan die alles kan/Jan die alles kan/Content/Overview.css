@@ -79,10 +79,10 @@ body {
             }
 
 .stroke {
-    width: 1px;
+    width: 2px;
     height: 100%;
     position: absolute;
-    left: 263px;
+    left: 262px;
     top: 0px;
     background: #02477a;
 }
@@ -602,6 +602,7 @@ body {
     left: 0px;
     padding: 0px 2%;
     overflow: auto;
+    width: 96%;
 }
 
 #boxOverlay .login {
@@ -749,6 +750,7 @@ body {
     .cartDescription p:nth-child(1) {
         text-decoration: none;
         font-size: 21px;
+        max-width: 210px;
     }
 
     .cartDescription p:nth-child(2) {

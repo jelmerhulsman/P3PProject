@@ -169,6 +169,7 @@ namespace Jan_die_alles_kan.Controllers
                 var photo = from x in pc.Picture
                             where x.Id == ID
                             select x;
+                if(photo.Any())
                 photoList.Add(photo.ToList().First());
             }
             ViewData["photoList"] = photoList;
@@ -255,6 +256,8 @@ namespace Jan_die_alles_kan.Controllers
             {
                 return Json("The system was unable to save your order");
             }
+
+            Session["order"] = null;
 
             WebSecurity.Logout();
 
