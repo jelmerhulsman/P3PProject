@@ -300,9 +300,9 @@ namespace Jan_die_alles_kan.Controllers
             ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
             ImageAttributes ImgAttributes = new ImageAttributes();
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, logo.Width, logo.Height, GraphicsUnit.Pixel, ImgAttributes);
+            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
-            g.DrawImage(TransparentLogo, 0/*(image.Width / 2) - (logo.Width /2 )*/, 0/*(image.Height / 2) - (logo.Height /2)*/);
+            g.DrawImage(TransparentLogo, (image.Width / 4) - (logo.Width /2 ), (image.Height / 4) - (logo.Height /2));
             if (bIsThumb)
             {
                 image = ScaleImage(inputimage, 300, 300, true);
