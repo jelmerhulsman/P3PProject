@@ -1,20 +1,31 @@
-﻿using System;
+﻿using Jan_die_alles_kan.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Net;
 using System.Net.Mail;
-using Jan_die_alles_kan.Models;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Jan_die_alles_kan.Controllers
 {
     public class MailController : Controller
     {
-        
-        
-        
+        [ValidateInput(false)]
+        public ActionResult contactMail()
+        {
+            string Name = Request.Form["Name"];
+            string Message = Request.Form["Message"];
+            string Email = Request.Form["Email"];
 
+            SendMailInner("Admin", "Contactmail van " + Name, "Dit schreef " + Name + ":\n" + Message + "\n" + "Mail terug op: " + Email);
+            return Redirect("/");
+        }
+        
         public static void SendMailInner(string username, string subj, string content)
         {
             UserDataContext db = new UserDataContext();
@@ -26,7 +37,7 @@ namespace Jan_die_alles_kan.Controllers
             string email = EmailAddress.ToList().First();
             string subject = subj;
             string emailFrom = "developdejong@gmail.com";
-            string password = "darktranquillity";
+            string password = "hahaHenk82$$";
             MailMessage Mail = new MailMessage(emailFrom, email);
             SmtpClient client = new SmtpClient();
             client.Port = 587;

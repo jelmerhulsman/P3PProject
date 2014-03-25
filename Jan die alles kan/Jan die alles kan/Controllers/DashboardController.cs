@@ -47,7 +47,7 @@ namespace Jan_die_alles_kan.Controllers
             string subject = Request.Form["subject"];
             string content = Request.Unvalidated.Form["content"];
             string emailFrom = "developdejong@gmail.com";
-            string password = "darktranquillity";
+            string password = "hahaHenk82$$";
             email = getEmail(email);
             MailMessage Mail = new MailMessage(emailFrom, email);
             SmtpClient client = new SmtpClient();
@@ -268,7 +268,7 @@ namespace Jan_die_alles_kan.Controllers
                                    where name.File_name == filename
                                    select name).Any();
             
-            if (picture.File.ContentLength > 0 && (fileExt == "jpeg." || fileExt == ".jpg") && DatabaseFilename == false)
+            if (picture.File.ContentLength > 0 &&picture.File.ContentLength < 204800 && (fileExt == "jpeg." || fileExt == ".jpg") && DatabaseFilename == false)
             {
                 //THUMBNAIL GENERATOR               
                 string thumbpad = Server.MapPath("~/Images/Categories/" + p_model.Category + "/Thumbnails/" + picture.File.FileName);
