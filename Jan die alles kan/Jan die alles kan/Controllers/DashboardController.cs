@@ -287,7 +287,7 @@ namespace Jan_die_alles_kan.Controllers
                 p_model.CTime = DateTime.Now;
                 p_model.MTime = DateTime.Now;
 
-                if (Preview.Width >= Preview.Width)
+                if (Preview.Width >= Preview.Height)
                     p_model.Orientation = "horizontal";
                 else
                     p_model.Orientation = "vertical";
