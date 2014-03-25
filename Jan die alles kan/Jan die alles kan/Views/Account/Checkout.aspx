@@ -9,15 +9,20 @@
 <h2>Checkout</h2>
     <% using (Html.BeginForm("CheckoutConfirmed", "Account", FormMethod.Post)) { %>
     <b>Your Items:</b>
+    <table>
+         <tr><td><b>Name of Product</b></td>           <td><b>Category</b></td>   <td><b>Price</b></td>
      <% foreach (var x in ViewBag.photoList)
        {
     %>
-    <p><%= x.Name%></p><br />  
+    
+    <tr><td><%= x.Name%></td>           <td><%= x.Category %></td>   <td>€<%= x.Price %></td><br />  
+        </tr>
     <%     
        } 
     %>
-
-    <h3>Total price: <% foreach (var x in ViewBag.photoList) { %> <% double price = +Convert.ToDouble(x.Price); Response.Write(price); %> <% }  %>
+    </table>
+    <h3>Total price: €<%double price = 0; foreach (var x in ViewBag.photoList)
+                       { %> <% price += Convert.ToDouble(x.Price);  %> <% } Response.Write(price);  %>
     </h3>
 
     <div><b>Select Payment method</b>
@@ -30,8 +35,10 @@
         <input type="submit" value="Submit!" />
     </div>
     <% } %>
+
+    <a href="downloadpage">Next step</a>
 </asp:Content>
-    
+   
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 

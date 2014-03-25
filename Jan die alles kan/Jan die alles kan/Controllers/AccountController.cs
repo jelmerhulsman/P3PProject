@@ -140,7 +140,7 @@ namespace Jan_die_alles_kan.Controllers
 
 
                 }
-                if (i + 1 == null)
+                if (i + 1 == order.Count())
                 {
                     orderList.Add(Convert.ToInt32(tempstr));
                 }
