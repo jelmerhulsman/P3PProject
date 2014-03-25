@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+html {
+    height: 100%;
+}
+
 .clear {
     clear: both;
 }
@@ -48,7 +52,7 @@
             position: absolute;
             top: 0;
             left: 50%;
-            margin-left: -131px;
+            margin-left: -65px;
             width: 121px;
         }
 
