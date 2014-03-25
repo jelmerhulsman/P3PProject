@@ -70,7 +70,12 @@ namespace Jan_die_alles_kan.Shortcodes
         static char[] HtilN = { 'H', 'I', 'J', 'K', 'L', 'M', 'N' };
         static char[] OtilT = { 'O', 'P', 'Q', 'R', 'S', 'T' };
         static char[] UtilZ = { 'U', 'V', 'W', 'X', 'Y', 'Z' };
-        
+
+        /// <summary>
+        /// This functions checks if a shortcode which was found is correct and returns the string the code should be changed into
+        /// </summary>
+        /// <param name="text">The shortcode found by the program</param>
+        /// <returns>The text the shortcode stands for</returns>
         public static string ReturnShortText(string text)
         {
             if (AtilG.Contains<char>(text[0]))
