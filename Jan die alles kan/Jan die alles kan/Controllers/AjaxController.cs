@@ -178,11 +178,16 @@ namespace Jan_die_alles_kan.Controllers
             }
         }
 
+        /// <summary>
+        /// Informatie ophalen van de 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult PhotoInfo(FormCollection collection)
         {
-            if (collection["id"].Contains(","))
-                collection["id"].Remove(0, 1);
+            //if (collection["id"].Contains(","))
+            //    collection["id"].Remove(0, 1);
             int id = Convert.ToInt16(collection["id"]);
             PicturesContext pContext = new PicturesContext();
             PictureModel photo = pContext.Picture.Find(id);

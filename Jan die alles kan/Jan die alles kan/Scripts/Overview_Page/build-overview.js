@@ -59,6 +59,8 @@
 });
 
 function buildPagination() {
+    $('#pagination .left, #pagination .center, #pagination .right').remove();
+    $('#pagination').append('<div class="left"></div><div class="center"></div><div class="right"></div>');
     // Pagination
     var maxInCollections = $('.collection_1').length;
     var collections = Math.ceil($('.collection').length / maxInCollections);
@@ -73,22 +75,26 @@ function buildPagination() {
         })
 
         // Create buttons
-        $('#pagination .left').append('<a class="paginationBtn_prev" href="javascript:void(0);">&lt;</a>');
-        for (var i = 1; i <= collections; i++) {
-            if (i == 1) {
-                $('#pagination .center').append('<a class="paginationBtn_' + i + ' active" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
-            } else if (collections < 7) {
-                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
-            } else if (i < 4) {
-                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
-            } else if (i == 4) {
-                $('#pagination .center').append('<a class="paginationBtn_x" href="javascript:void(0);" onclick="jumpTo()">...</a>');
-            } else if (collections - 3 < i) {
-                $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
-            }
+        if ($('.paginationBtn_prev').length == 0) {
+            $('#pagination .left').append('<a class="paginationBtn_prev" href="javascript:void(0);">&lt;</a>');
         }
-        $('#pagination .right').append('<a class="paginationBtn_next" onclick="showPage(2)" href="javascript:void(0);">&gt;</a>');
-
+        for (var i = 1; i <= collections; i++) {
+                if (i == 1) {
+                    $('#pagination .center').append('<a class="paginationBtn_' + i + ' active" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+                } else if (collections < 7) {
+                    $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+                } else if (i < 4) {
+                    $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+                } else if (i == 4) {
+                    $('.paginationBtn_x').remove();
+                    $('#pagination .center').append('<a class="paginationBtn_x" href="javascript:void(0);" onclick="jumpTo()">...</a>');
+                } else if (collections - 3 < i) {
+                    $('#pagination .center').append('<a class="paginationBtn_' + i + '" href="javascript:void(0);" onclick="showPage(' + i + ')">' + i + '</a>');
+                }
+        }
+        if ($('.paginationBtn_next').length == 0) {
+            $('#pagination .right').append('<a class="paginationBtn_next" onclick="showPage(2)" href="javascript:void(0);">&gt;</a>');
+        }
         $('.pageIndicator').text('Pagina: 1 / ' + collections);
 
         $('#paginationBtns').append($('.resultsPerPage'));
@@ -128,9 +134,23 @@ function showPage(page) {
         $('.collection').hide();
         $('.collection_' + page).show();
 
-        $('.pageIndicator').text('Pagina: ' + page + ' / ' + collections);
+        $('.pageIndicator').text('Pagina: ' + page + ' / ' + collections);        
+    }
+    FixThumbnails();
+}
 
-        FixThumbnails();
+// Pagination jump to page
+function jumpTo() {
+    var maxInCollections = $('.collection_1').length;
+    var collections = Math.ceil($('.collection').length / maxInCollections);
+    var to = prompt('Spring naar pagina:');
+
+    if (to != null) {
+        if (to > collections || to < 1) {
+            alert('Deze pagina bestaat niet.');
+        } else {
+            showPage(parseInt(to));
+        }
     }
 }
 
@@ -153,7 +173,7 @@ function buildOverview(pictures) {
 
         if (pCounter % pOnRow == 0) {
             Class += " last";
-        }
+            }
 
         if (pCounter <= pOnRow) {
             Class += " toprow";

@@ -56,25 +56,27 @@ function updateCart() {
             } else {
                 var orders = order.split(',');
                 orders.forEach(function (order) {
-                    $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
-                        $('#shoppingCartBox ul').prepend(
-                            '<li class="' + data.Id + '">' +
-                                '<div class="cartImage">' +
-                                    '<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />' +
-                                '</div>' +
-                                '<div class="cartDescription">' +
-                                    '<p>' + data.Name + '</p>' +
-                                    '<p>' + data.Category + '</p>' +
-                                    '<p class="price">€ ' + data.Price + '</p>' +
-                                '</div>' +
-                                '<p class="removeItem ' + data.Id + '"></p>' +
-                                '<div class="clear"></div>' +
-                            '</li>'
-                        );
-                        setCartText();
-                        addRemoveFunctionality();
-                        updatePrice();
-                    });
+                    if(order != ""){
+                        $.post("http://localhost:52802/Ajax/PhotoInfo", { id: order }, function (data) {
+                            $('#shoppingCartBox ul').prepend(
+                                '<li class="' + data.Id + '">' +
+                                    '<div class="cartImage">' +
+                                        '<img src="../../Images/Categories/' + data.Category + '/Previews/' + data.File_name + '" alt="" />' +
+                                    '</div>' +
+                                    '<div class="cartDescription">' +
+                                        '<p>' + data.Name + '</p>' +
+                                        '<p>' + data.Category + '</p>' +
+                                        '<p class="price">€ ' + data.Price + '</p>' +
+                                    '</div>' +
+                                    '<p class="removeItem ' + data.Id + '"></p>' +
+                                    '<div class="clear"></div>' +
+                                '</li>'
+                            );
+                            setCartText();
+                            addRemoveFunctionality();
+                            updatePrice();
+                        });
+                    }
                 });
             }
         } else {
