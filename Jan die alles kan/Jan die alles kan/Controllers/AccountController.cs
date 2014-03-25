@@ -22,6 +22,10 @@ namespace Jan_die_alles_kan.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        /// <summary>
+        /// Haalt data op vanuit database en vult de pagina hiermee, dit correspondeert met de gebruiker die ingelogd is.
+        /// </summary>
+        /// <returns>The modified view</returns>
         public ActionResult DownloadPage()
         {
             UserDataContext udc = new UserDataContext();
@@ -70,6 +74,12 @@ namespace Jan_die_alles_kan.Controllers
             return View("downloadpage");
         }
 
+        /// <summary>
+        /// The image download function
+        /// </summary>
+        /// <param name="category">The category of the image</param>
+        /// <param name="file_name">The filename you're downloading</param>
+        /// <returns>A image download</returns>
         public FileResult FileDownloadPage(string category, string file_name)
         {
             FileResult result;
@@ -84,6 +94,11 @@ namespace Jan_die_alles_kan.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Gets the information of the file so it can be downloaded
+        /// </summary>
+        /// <param name="path">Path of the file</param>
+        /// <returns>A memorystream for file downloading</returns>
         MemoryStream GetFile(string path)
         {
             byte[] buffer = new byte[4096];
@@ -108,7 +123,10 @@ namespace Jan_die_alles_kan.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
+        /// <summary>
+        /// Fills the checkout page with data from the user' cart.
+        /// </summary>
+        /// <returns>The modifed checkout view</returns>
         public ActionResult Checkout()
         {
             UserDataContext udc = new UserDataContext();
@@ -156,6 +174,11 @@ namespace Jan_die_alles_kan.Controllers
             ViewData["photoList"] = photoList;
             return View("Checkout");
         }
+        /// <summary>
+        /// When the "Buy" button is clicked, it will redirect to either paypal or ideal.
+        /// </summary>
+        /// <param name="form">The form information that is being passed in</param>
+        /// <returns>A redirect to either paypal or ideal</returns>
         [HttpPost]
         public ActionResult CheckoutConfirmed(FormCollection form)
         {
@@ -167,6 +190,11 @@ namespace Jan_die_alles_kan.Controllers
             return Redirect(urlredirect);
         }
 
+        /// <summary>
+        /// The holy grail of our login system, when clicked on "login" it will authorize the user and logs the user in.
+        /// </summary>
+        /// <param name="model">The model what we're working with</param>
+        /// <returns>This will login the user</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -202,6 +230,10 @@ namespace Jan_die_alles_kan.Controllers
             return View("~/Views/Account/Login.aspx", model);
         }
 
+        /// <summary>
+        /// Simply, logs the user off.
+        /// </summary>
+        /// <returns>""</returns>
         public ActionResult LogOff()
         {
             // Ingelogde gebruiker ophalen
@@ -221,7 +253,7 @@ namespace Jan_die_alles_kan.Controllers
             }
             catch (Exception e)
             {
-                return Json("Te system was unable to save your order");
+                return Json("The system was unable to save your order");
             }
 
             WebSecurity.Logout();
@@ -235,6 +267,11 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        /// <summary>
+        /// When clicked on the "register" button, it will execute this method. Which will register the user with the data he has provided in the database.
+        /// </summary>
+        /// <param name="model">The model what we're working with</param>
+        /// <returns>The normal overview page / error message</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -277,7 +314,12 @@ namespace Jan_die_alles_kan.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        /// <summary>
+        /// Used to disassociate the user with the website
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="providerUserId"></param>
+        /// <returns>The manage account screen</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
@@ -304,6 +346,11 @@ namespace Jan_die_alles_kan.Controllers
             return RedirectToAction("Manage", new { Message = message });
         }
 
+        /// <summary>
+        /// Fills the manage page with data so it can be used to change password of the current user.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>The modified view</returns>
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -316,6 +363,11 @@ namespace Jan_die_alles_kan.Controllers
             return View();
         }
 
+        /// <summary>
+        /// When clicked on "submit" it will execute this method, which will check if all the data which is being filled in by the user is correct and if so, will change the password of the user.
+        /// </summary>
+        /// <param name="model">The model what we're working with</param>
+        /// <returns>Either the same view with errors displayed, or it will redirect back to the manage screen.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
