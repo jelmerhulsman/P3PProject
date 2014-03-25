@@ -79,10 +79,10 @@ body {
             }
 
 .stroke {
-    width: 1px;
+    width: 2px;
     height: 100%;
     position: absolute;
-    left: 263px;
+    left: 262px;
     top: 0px;
     background: #02477a;
 }
