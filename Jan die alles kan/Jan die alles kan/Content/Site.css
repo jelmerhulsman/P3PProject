@@ -138,6 +138,9 @@ h5, h6 {
     padding-bottom: 40px;
 }
 
+.clear {
+    clear: both;
+}
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
@@ -166,8 +169,43 @@ ul#menu {
             }
 
 
-/* page elements
-----------------------------------------------------------*/
+/* page elements */
+span.row {
+    width: 100px;
+    float: left;
+    display: inline-block;
+    margin-right: 50px;
+}
+
+span.row.last {
+    float: right;
+    margin-right: 0px;
+}
+
+    span.row input[type="radio"] {
+        width: 8px;
+        display: inline-block;
+        float: left;
+        margin: 18px 0px;
+    }
+
+span.row img {
+   max-width: 75px;
+   float: right;
+   display: inline-block;
+}
+
+table.orderList {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+table.orderList tr td {
+    border-bottom: 1px solid #000;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+}
+/*----------------------------------------------------------*/
 /* page titles */
 hgroup.title {
     padding-top: 20px;

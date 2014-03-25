@@ -9,7 +9,7 @@
 <h2>Checkout</h2>
     <% using (Html.BeginForm("CheckoutConfirmed", "Account", FormMethod.Post)) { %>
     <b>Your Items:</b>
-    <table>
+    <table class="orderList" cellspacing="0" cellpadding="0">
          <tr>
              <td><b>Preview</b></td>
              <td><b>Name of Product</b></td>
@@ -35,13 +35,21 @@
         </tr>
     </table>
 
-    <div><b>Select Payment method</b>
-        <br />
-        <%= Html.RadioButton("paymentmethod", "Paypal") %> <img src="../../Images/Btn/paypal-button.png" />
-        <br />
-        <%= Html.RadioButton("paymentmethod", "Ideal") %> <img src="../../Images/Btn/ideal-button.png" />
-
-        <br />
+    <div>
+        <span class="row">
+            <b>Select Payment method</b>
+        </span>
+        <span class="row">
+            <!-- < %= Html.RadioButton("paymentmethod", "Paypal", true, "id='paypal'") %> -->
+            <input name="paymentmethod" id="Paypal" type="radio" value="Paypal" />
+            <label for="Paypal"><img src="../../Images/Btn/paypal-button.png" /></label>
+        </span>
+        <span class="row last">
+            <!-- < %= Html.RadioButton("paymentmethod", "Ideal", false, "id='ideal'") %> -->
+            <input name="paymentmethod" id="Ideal" type="radio" value="Ideal" />
+            <label for="Ideal"><img src="../../Images/Btn/ideal-button.png" /></label>
+        </span>
+        <div class="clear"></div>
         <input type="submit" value="Buy" />
     </div>
     <% } %>
