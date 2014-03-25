@@ -11,7 +11,7 @@
         <%: Html.ActionLink("Back to dashboard", "Index") %>
     </p>
     <p>
-        <%: Html.ActionLink("Create New", "CategoryCreate") %>
+        <%: Html.ActionLink("Create a new category", "CategoryCreate") %>
     </p>
     <table>
         <tr>
@@ -28,7 +28,7 @@
                 <%: Html.DisplayFor(modelItem => item.Name) %>
             </td>
             <td>
-                <%: Html.ActionLink("Delete", "CategoryDelete", new { id=item.ID }) %>
+                <%: Html.ActionLink("Delete Category", "CategoryDelete", new { id=item.ID }) %>
 
             </td>
         </tr>

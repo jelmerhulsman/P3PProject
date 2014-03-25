@@ -16,9 +16,9 @@
             numFiles = files.Length;
 
             if (numFiles == 1)
-                Response.Write("WARNING, This folder still contains " + numFiles + " image! Are you sure? ");
+                Response.Write("WARNING, This folder still contains " + numFiles + " image! Please remove it manually. ");
             else if (numFiles > 1)
-                Response.Write("WARNING, This folder still contains " + numFiles + " images! Are you sure? ");
+                Response.Write("WARNING, This folder still contains " + numFiles + " images! Please remove them manually. ");
             else
                 Response.Write("Are you sure you want to delete this category?");
     %></h3>

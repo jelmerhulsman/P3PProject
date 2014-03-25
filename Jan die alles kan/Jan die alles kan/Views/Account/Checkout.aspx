@@ -32,7 +32,7 @@
         <%= Html.RadioButton("paymentmethod", "Ideal") %> <img src="../../Images/Btn/ideal-button.png" />
 
         <br />
-        <input type="submit" value="Submit!" />
+        <input type="submit" value="Buy" />
     </div>
     <% } %>
 
