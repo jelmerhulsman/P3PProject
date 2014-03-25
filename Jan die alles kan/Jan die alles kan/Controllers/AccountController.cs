@@ -256,6 +256,8 @@ namespace Jan_die_alles_kan.Controllers
                 return Json("The system was unable to save your order");
             }
 
+            Session["order"] = null;
+
             WebSecurity.Logout();
 
             return RedirectToAction("Overview", "Page");
