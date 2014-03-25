@@ -169,6 +169,7 @@ namespace Jan_die_alles_kan.Controllers
                 var photo = from x in pc.Picture
                             where x.Id == ID
                             select x;
+                if(photo.Any())
                 photoList.Add(photo.ToList().First());
             }
             ViewData["photoList"] = photoList;

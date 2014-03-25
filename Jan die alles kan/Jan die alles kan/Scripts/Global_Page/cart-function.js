@@ -116,7 +116,7 @@ function updatePrice() {
         price += pPrice;
     })
 
-    var discount = 0.10;
+    var discount = 0;
     var totalPrice = price * discount;
     totalPrice = price - totalPrice;
     console.log(totalPrice);
