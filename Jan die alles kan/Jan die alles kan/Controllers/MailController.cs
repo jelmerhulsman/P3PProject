@@ -10,11 +10,13 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Jan_die_alles_kan.Controllers
 {
     public class MailController : Controller
     {
+        [HttpPost]
         [ValidateInput(false)]
         public ActionResult contactMail()
         {
@@ -22,7 +24,12 @@ namespace Jan_die_alles_kan.Controllers
             string Message = Request.Form["Message"];
             string Email = Request.Form["Email"];
 
-            SendMailInner("Admin", "Contactmail van " + Name, "Dit schreef " + Name + ":\n" + Message + "\n" + "Mail terug op: " + Email);
+            EmailAddressAttribute emailCheck = new EmailAddressAttribute();
+
+            if (emailCheck.IsValid(Email))
+            {
+                SendMailInner("Admin", "Contactmail van " + Name, "Dit schreef " + Name + ":\n" + Message + "\n" + "Mail terug op: " + Email);
+            }
             return Redirect("/");
         }
         
