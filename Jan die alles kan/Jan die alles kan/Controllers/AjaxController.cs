@@ -226,7 +226,14 @@ namespace Jan_die_alles_kan.Controllers
             var a = from x in uContext.DBUserData
                     where x.Username == userName
                     select x;
-            user = a.ToList().First();
+            if (a.Any())
+            {
+                user = a.ToList().First();
+            }
+            else
+            {
+                return Json("The system was unable to save your order"); ;
+            }
 
             var order = Session["order"];
             if (order == null)
