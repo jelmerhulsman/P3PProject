@@ -602,6 +602,7 @@ body {
     left: 0px;
     padding: 0px 2%;
     overflow: auto;
+    width: 96%;
 }
 
 #boxOverlay .login {

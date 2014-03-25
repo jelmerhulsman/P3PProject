@@ -23,10 +23,19 @@ function FixThumbnails() {
         $(this).height(heightImgBox);
         if ($('#photoOverview li').width() < $(this).width()) {
             $(this).css('margin-left', -($(this).width() - $('#photoOverview li').width()) / 2);
+        } else if ($('#photoOverview li').width() > $(this).width()) {
+           	            $(this).css('margin', '0 auto').css('display', 'block');
         } else {
-            $(this).width($('#photoOverview li').width());
-            $(this).css('height', 'auto');
-        }
+            	            $(this).css('margin', 'auto');
+            	        }
+        	
+        	        if ($('#photoOverview li').width() < $(this).width()) {
+            	        }
+        	        /*{
+ 	            $(this).width($('#photoOverview li').width());
+ 	            $(this).css('height', 'auto');
+-	        }
++	        }*/
     })
 }
 
