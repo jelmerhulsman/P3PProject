@@ -32,7 +32,7 @@
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>
     <footer>
-        <p>&copy; <%: DateTime.Now.Year %> - Jelmer's ASP.NET MVC Application</p>
+        <p>&copy; <%: DateTime.Now.Year %> - Gerlof Productions</p>
     </footer>
 
     <%: Scripts.Render("~/bundles/jquery") %>

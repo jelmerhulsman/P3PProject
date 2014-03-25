@@ -195,15 +195,27 @@ span.row img {
    display: inline-block;
 }
 
-table.orderList {
+table.listTable {
     margin-bottom: 5px;
     width: 100%;
 }
 
-table.orderList tr td {
+table.listTable tr td {
     border-bottom: 1px solid #000;
     margin-bottom: 5px;
     padding: 5px 5px;
+}
+
+a.btnDownload {
+    display: block;
+    padding: 0px 20px;
+    height: 22px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 16px;
+    border-radius: 6px;
+    background: url("../images/Btn/btn_green.png") repeat-x;
 }
 /*----------------------------------------------------------*/
 /* page titles */

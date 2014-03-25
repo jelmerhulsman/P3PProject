@@ -62,15 +62,18 @@ namespace Jan_die_alles_kan.Controllers
                     orderList.Add(Convert.ToInt32(tempstr));
                 }
             }
-            List<PictureModel> photoList = new List<PictureModel>();
-            foreach (int ID in orderList)
+            if (a.Any())
             {
-                var photo = from x in pc.Picture
-                            where x.Id == ID
-                            select x;
-                photoList.Add(photo.ToList().First());
+                List<PictureModel> photoList = new List<PictureModel>();
+                foreach (int ID in orderList)
+                {
+                    var photo = from x in pc.Picture
+                                where x.Id == ID
+                                select x;
+                    photoList.Add(photo.ToList().First());
+                }
+                ViewData["photoList"] = photoList;
             }
-            ViewData["photoList"] = photoList;
             return View("downloadpage");
         }
 
@@ -430,6 +433,7 @@ namespace Jan_die_alles_kan.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {

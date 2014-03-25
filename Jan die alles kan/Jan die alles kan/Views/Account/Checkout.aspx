@@ -9,7 +9,7 @@
 <h2>Checkout</h2>
     <% using (Html.BeginForm("CheckoutConfirmed", "Account", FormMethod.Post)) { %>
     <b>Your Items:</b>
-    <table class="orderList" cellspacing="0" cellpadding="0">
+    <table class="listTable" cellspacing="0" cellpadding="0">
          <tr>
              <td><b>Preview</b></td>
              <td><b>Name of Product</b></td>
