@@ -342,7 +342,13 @@ namespace Jan_die_alles_kan.Controllers
             
 
             Graphics g = System.Drawing.Graphics.FromImage(image);
-
+            if (bIsThumb)
+            {
+                image = ScaleImage(inputimage, 300, 300, true);
+                logo = ScaleImage(logo, 300, 300, true);
+            }
+            else
+                logo = ScaleImage(logo, image.Width, image.Height, true);
 
             Bitmap TransparentLogo = new Bitmap(image.Width, image.Height); //gebied waar het logo word geplaatst
 
@@ -352,16 +358,10 @@ namespace Jan_die_alles_kan.Controllers
             ColorMatrix.Matrix33 = 0.50F; //transparantie watermerk
             ImageAttributes ImgAttributes = new ImageAttributes();
             ImgAttributes.SetColorMatrix(ColorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, ImgAttributes);
+            TGraphics.DrawImage(logo, new Rectangle(0, 0, TransparentLogo.Width, TransparentLogo.Height), 0, 0, logo.Width, logo.Height, GraphicsUnit.Pixel, ImgAttributes);
             TGraphics.Dispose();
             g.DrawImage(TransparentLogo, 0, 0);
-            if (bIsThumb)
-            {
-                image = ScaleImage(inputimage, 300, 300, true);
-                logo = ScaleImage(logo, 300, 300, true);
-            }
-            else
-                logo = ScaleImage(logo, image.Width, image.Height, true);
+
             return image;
         }
 

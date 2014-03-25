@@ -185,7 +185,7 @@ function buildOverview(pictures) {
         }
 
         if (pCounter == bulCounter) {
-            html += '<ul class="collection_' + collection + '">';
+            html += '<ul>';
             if (pCounter == pInCollection) {
                 collection++;
                 pInCollection += pInCollection;
