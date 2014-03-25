@@ -13,7 +13,7 @@
         <legend>PictureModel</legend>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Name) %>
+            <h4>Name</h4>
         </div>
 
         <div class="display-field">
@@ -21,49 +21,49 @@
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Category) %>
+            <h4>Category</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.Category) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.MTime) %>
+            <h4>Modification Time</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.MTime) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.CTime) %>
+            <h4>Creation Time</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.CTime) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Color) %>
+            <h4>Color</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.Color) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Description) %>
+            <h4>Description</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.Description) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.File_name) %>
+            <h4>File Name</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.File_name) %>
         </div>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Price) %>
+            <h4>Price</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.Price) %>
@@ -73,7 +73,7 @@
        { %>
     <%: Html.AntiForgeryToken() %>
     <p>
-        <input type="submit" value="ImageDelete" />
+        <input type="submit" value="Delete Image" />
         |
         <%: Html.ActionLink("Back to List", "ImageIndex") %>
     </p>

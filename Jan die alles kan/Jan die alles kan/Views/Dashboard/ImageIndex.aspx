@@ -11,33 +11,33 @@
         <%: Html.ActionLink("Back to dashboard", "Index") %>
     </p>
     <p>
-        <%: Html.ActionLink("Create New", "ImageUpload") %>
+        <%: Html.ActionLink("Upload new image", "ImageUpload") %>
     </p>
     <table>
         <tr>
             <th>
-                <%: Html.DisplayNameFor(model => model.Name) %>
+                Name
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Category) %>
+                Category
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.MTime) %>
+               Modification Time
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.CTime) %>
+                Creation Time
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Color) %>
+                Color
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Description) %>
+                Description
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.File_name) %>
+                File Name
             </th>
             <th>
-                <%: Html.DisplayNameFor(model => model.Price) %>
+                Price
             </th>
             <th></th>
         </tr>

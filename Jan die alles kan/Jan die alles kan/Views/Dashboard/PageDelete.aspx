@@ -13,7 +13,7 @@
         <legend>PagesModels</legend>
 
         <div class="display-label">
-            <%: Html.DisplayNameFor(model => model.Name) %>
+            <h4>Name</h4>
         </div>
         <div class="display-field">
             <%: Html.DisplayFor(model => model.Name) %>

@@ -21,6 +21,7 @@
         <%: Html.HiddenFor(model => model.CTime) %>
         <%: Html.HiddenFor(model => model.File_name) %>
         <%: Html.HiddenFor(model => model.Category) %>
+        <%: Html.HiddenFor(model => model.Orientation) %>
 
         <div class="editor-label">
             Name
@@ -33,8 +34,8 @@
         <div class="editor-label">
             Category
         </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.Category) %>
+        <div class="editor-field read-only">
+            <%: Html.DisplayFor(model => model.Category) %>
             <%: Html.ValidationMessageFor(model => model.Category) %>
         </div>
 

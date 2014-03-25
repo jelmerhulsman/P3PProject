@@ -9,11 +9,8 @@
     <h2>Dashboard</h2>
     <p><%: Html.ActionLink("Image Controls","ImageIndex") %> </p>
     <p><%: Html.ActionLink("Page Controls","PageIndex") %> </p>
-    <p><%: Html.ActionLink("Upload an Image","ImageUpload") %> </p>
     <p><%: Html.ActionLink("Add/Remove a Category","CategoryIndex") %> </p>
     <p><%: Html.ActionLink("Send a Mail", "SendMail") %></p>
-
-
 
 </asp:Content>
 
