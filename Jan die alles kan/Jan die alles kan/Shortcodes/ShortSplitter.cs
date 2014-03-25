@@ -7,6 +7,14 @@ namespace Jan_die_alles_kan.Shortcodes
 {
     public static class ShortSplitter
     {
+        /// <summary>
+        /// This function goes through the content of a page and searches for the following pattern: *[text]*
+        /// If this pattern is found it will send the text within the stars and brackets to another function which
+        /// checks the code and returns the text it should be changed into. Ultimately, this function returns the changed content
+        /// of the page.
+        /// </summary>
+        /// <param name="text">The page content to check for shortcodes</param>
+        /// <returns>The changed page content</returns>
         public static string ShortReplace(string text)
         {
             for (int i = 0; i < text.Length - 1; i++)
