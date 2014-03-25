@@ -212,15 +212,6 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\Btn\ideal-button.png" />
     <Content Include="Images\Btn\paypal-button.png" />
-    <Content Include="Images\Categories\Band\band overload.jpg" />
-    <Content Include="Images\Categories\Band\Band view ExitLight.jpg" />
-    <Content Include="Images\Categories\Nature\bloem.jpg" />
-    <Content Include="Images\Categories\Band\drummer.jpg" />
-    <Content Include="Images\Categories\Band\Esker.jpg" />
-    <Content Include="Images\Categories\Band\exitlight Empire.jpg" />
-    <Content Include="Images\Categories\Landscape\dokkum.jpg" />
-    <Content Include="Images\Categories\People\kind.jpg" />
-    <Content Include="Images\Categories\People\straatfestival.jpg" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\arrow_big.png" />
     <Content Include="Images\bg_top.jpg" />

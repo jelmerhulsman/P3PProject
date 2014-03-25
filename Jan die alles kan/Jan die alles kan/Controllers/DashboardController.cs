@@ -434,6 +434,7 @@ namespace Jan_die_alles_kan.Controllers
         public ActionResult CategoryDelete(int id = 0)
         {
             Category category = dbcategories.Categories.Find(id);
+
             if (category == null)
             {
                 return HttpNotFound();
@@ -452,6 +453,17 @@ namespace Jan_die_alles_kan.Controllers
             string pad = Server.MapPath("~/Images/Categories/" + category.Name);
             try
             {
+                var a = from picture in db2.Picture
+                        where picture.Category == category.Name
+                        select picture;
+
+                foreach (var element in a)
+                {
+                    db2.Picture.Remove(element);
+                }
+
+                db2.SaveChanges();
+                
                 Directory.Delete(pad);
             }
             catch

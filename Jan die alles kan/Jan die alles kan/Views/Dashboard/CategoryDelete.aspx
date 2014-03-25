@@ -23,17 +23,10 @@
                 Response.Write("Are you sure you want to delete this category?");
     %></h3>
 
-
-
-
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
     <p>
-            <%  if( numFiles < 1) { %>
-        <input type="submit" value="Delete Category" />
-        <% } else { %>
-        <a href="/Dashboard/PageIndex"> Click here to remove the image(s) manually.</a>
-        <% } %>
+        <input type="submit" value="Delete Category" /> |
         <%: Html.ActionLink("Back to List", "Index") %>
     </p>
     <% } %>
