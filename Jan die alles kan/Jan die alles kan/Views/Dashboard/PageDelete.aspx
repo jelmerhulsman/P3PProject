@@ -23,7 +23,7 @@
        { %>
     <%: Html.AntiForgeryToken() %>
     <p>
-        <input type="submit" value="Delete" />
+        <input type="submit" value="Delete this page." />
         |
         <%: Html.ActionLink("Back to List", "PageIndex") %>
     </p>

@@ -57,7 +57,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create a new page" />
         </p>
     </fieldset>
     <% } %>

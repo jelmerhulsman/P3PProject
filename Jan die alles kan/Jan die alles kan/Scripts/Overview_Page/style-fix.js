@@ -31,7 +31,7 @@ function FixThumbnails() {
 }
 
 function StyleLeftMenu() {
-    $('#filtersContainer').css("height", $('body').height());
-    $('.stroke').css("height", $('body').height());
+    //$('#filtersContainer').css("height", $('body').height());
+    //$('.stroke').css("height", $('body').height());
     $('#main .top .inner, #main .top .bottom').css('max-width', $(window).width() - 280);
 }

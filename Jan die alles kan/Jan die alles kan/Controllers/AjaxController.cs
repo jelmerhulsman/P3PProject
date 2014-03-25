@@ -20,13 +20,18 @@ namespace Jan_die_alles_kan.Controllers
 {
     public class AjaxController : Controller
     {
-        //
-        // GET: /Ajax/
+
+        /// <summary>
+        /// Function to get all photos or all photos with the requested search term.
+        /// </summary>
+        /// <param name="collection">Holding the search term</param>
+        /// <returns>Object of all requested photos</returns>
         [HttpPost]
         public ActionResult GetPhotos(FormCollection collection) {
             PicturesContext pContext = new PicturesContext();
-            
+                        
             string searchTerm = collection["searchTerm"];
+            // If there is a searchterm, look for it
             if (collection["searchTerm"] != "")
             {
                 var pictures = from p in pContext.Picture
@@ -50,6 +55,11 @@ namespace Jan_die_alles_kan.Controllers
             }
         }
 
+        /// <summary>
+        /// Order function to order a list of photos as requested
+        /// </summary>
+        /// <param name="collection">Holding a list of all the photo ids currently showing in the overview page and how the user wants to order it</param>
+        /// <returns>Object of ordered list of photos</returns>
         [HttpPost]
         public ActionResult OrderPhotos(FormCollection collection)
         {
@@ -101,6 +111,11 @@ namespace Jan_die_alles_kan.Controllers
             return Json(false);
         }
 
+        /// <summary>
+        /// Filter function. Get photos depending of the giving filters.
+        /// </summary>
+        /// <param name="collection">Holding all the given filters. Possible filters are: colors, orientation, categories, name and pricerange.</param>
+        /// <returns>Object of filtered photos.</returns>
         [HttpPost]
         public ActionResult Filter(FormCollection collection)
         {
@@ -110,25 +125,25 @@ namespace Jan_die_alles_kan.Controllers
             List<string> aCategories = new List<string>();
             var pModel = pContext.Picture;
 
-            string sColors = collection["colors"]; // red, yellow
+            string sColors = collection["colors"]; // red,yellow
             if (sColors != "")
             {
                 aColors = sColors.Split(',').ToList();
             }
 
-            string sOrientation = collection["orientation"]; // a, b
+            string sOrientation = collection["orientation"]; // a,b
             if (sOrientation != "")
             {
                 aOrientation = sOrientation.Split(',').ToList();
             }
 
-            string sCategories = collection["categories"]; // a, b
+            string sCategories = collection["categories"]; // a,b
             if (sCategories != "")
             {
                 aCategories = sCategories.Split(',').ToList();
             }
 
-            string sPricerange = collection["priceRange"]; // €20 €30
+            string sPricerange = collection["priceRange"]; // 20,30
             var aPricerange = sPricerange.Split(',');
             int priceMin = Convert.ToInt32(aPricerange[0]);
             int priceMax = Convert.ToInt32(aPricerange[1]);
@@ -178,11 +193,14 @@ namespace Jan_die_alles_kan.Controllers
             }
         }
 
+        /// <summary>
+        /// Function to get information of one specific photo.
+        /// </summary>
+        /// <param name="collection">Holding the Id of the requested photo</param>
+        /// <returns>Object of the photo</returns>
         [HttpPost]
         public ActionResult PhotoInfo(FormCollection collection)
         {
-            if (collection["id"].Contains(","))
-                collection["id"].Remove(0, 1);
             int id = Convert.ToInt16(collection["id"]);
             PicturesContext pContext = new PicturesContext();
             PictureModel photo = pContext.Picture.Find(id);
@@ -197,11 +215,11 @@ namespace Jan_die_alles_kan.Controllers
                 collection["id"].Remove(0, 1);
             int id = Convert.ToInt16(collection["id"]);
 
-            // Foto ophalen
+            // Get photo
             PicturesContext pContext = new PicturesContext();            
             PictureModel photo = pContext.Picture.Find(id);
 
-            // Ingelogde gebruiker ophalen
+            // Get logged in user
             UserDataContext uContext = new UserDataContext();
             UserData user;
             string userName = User.Identity.Name;
@@ -235,11 +253,16 @@ namespace Jan_die_alles_kan.Controllers
             return Json(photo);
         }
 
+        /// <summary>
+        /// Function to remove a photo in the shoppingcart.
+        /// </summary>
+        /// <param name="collection">Collection of a list of the containing ids, of photos, after one is removed.</param>
+        /// <returns>New list of ordered photos</returns>
         [HttpPost]
         public ActionResult RemoveFromCart(FormCollection collection) {
             Session["order"] = collection["order"].ToString();
 
-            // Ingelogde gebruiker ophalen
+            // Get logged in user
             UserDataContext uContext = new UserDataContext();
             UserData user;
             string userName = User.Identity.Name;
@@ -262,11 +285,15 @@ namespace Jan_die_alles_kan.Controllers
             return Json(Session["order"]);
         }
 
+        /// <summary>
+        /// Function to get the order of a costumer.
+        /// </summary>
+        /// <returns>The order</returns>
         public ActionResult GetOrder()
         {
             var order = "";
 
-            // Ingelogde gebruiker ophalen
+            // Get logged in user
             if (User.Identity.IsAuthenticated)
             {
                 UserDataContext uContext = new UserDataContext();
